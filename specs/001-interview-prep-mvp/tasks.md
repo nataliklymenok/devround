@@ -132,19 +132,19 @@ plan; re-setup archives old plan (quickstart V4–V7)
 
 ### Tests for User Story 2
 
-- [ ] T048 [P] [US2] Unit tests for `assemblePlan` (filters by technologies and level, excludes unpublished lessons, orders by technology `position` → module `order` → lesson `order`, drops empty modules, global `order` 1..N, deterministic) in `apps/api/tests/unit/assemble-plan.test.ts`
-- [ ] T049 [P] [US2] Integration tests for `GET /catalog`, `POST /plans` (201; 400 empty `technologyIds`; 422 unavailable track/technology or technology not in track; 409 `ACTIVE_PLAN_EXISTS` without `replaceExisting`; `replaceExisting=true` archives old plan in same transaction; concurrent double submit creates one plan) and `GET /plans/current` (404 without plan; user isolation) in `apps/api/tests/integration/plans.test.ts`
+- [X] T048 [P] [US2] Unit tests for `assemblePlan` (filters by technologies and level, excludes unpublished lessons, orders by technology `position` → module `order` → lesson `order`, drops empty modules, global `order` 1..N, deterministic) in `apps/api/tests/unit/assemble-plan.test.ts`
+- [X] T049 [P] [US2] Integration tests for `GET /catalog`, `POST /plans` (201; 400 empty `technologyIds`; 422 unavailable track/technology or technology not in track; 409 `ACTIVE_PLAN_EXISTS` without `replaceExisting`; `replaceExisting=true` archives old plan in same transaction; concurrent double submit creates one plan) and `GET /plans/current` (404 without plan; user isolation) in `apps/api/tests/integration/plans.test.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T050 [P] [US2] Create `CatalogResponseSchema`, `CreatePlanRequestSchema` (`technologyIds` non-empty, unique; `replaceExisting` boolean default false), `PlanDetailSchema` (target, modules with lessons `{ id, order, title, description, estimatedMinutes, isAvailable, progress { completed, bestScore } }`) in `packages/shared/src/schemas/catalog.ts` and `packages/shared/src/schemas/plan.ts`
-- [ ] T051 [P] [US2] Implement pure `assemblePlan(catalog, { trackId, levelId, technologyIds })` per research R8 in `apps/api/src/domain/assemble-plan.ts`
-- [ ] T052 [US2] Implement plan service: load catalog, validate availability, run `assemblePlan`, in one transaction archive current active plan (`status='archived'`, `archivedAt`) and insert `Plan`, `PlanTechnology`, `PlanLesson` rows; map unique-index violation to 409; build `PlanDetail` joined with `LessonProgress` and `Lesson.isPublished` in `apps/api/src/services/plan-service.ts`
-- [ ] T053 [US2] Implement routes `GET /catalog`, `POST /plans`, `GET /plans/current` in `apps/api/src/routes/catalog.ts` and `apps/api/src/routes/plans.ts`
-- [ ] T054 [US2] Update `GET /me` to compute `hasActivePlan` in `apps/api/src/routes/me.ts`
-- [ ] T055 [P] [US2] Implement setup page: track cards (unavailable shown "Coming soon", disabled), level radio group, technology checkboxes (unavailable disabled), submit disabled with message naming missing choice, replace-plan confirm dialog when a plan exists, submit button disabled while the create request is pending in `apps/web/src/features/setup/SetupPage.tsx`
-- [ ] T056 [P] [US2] Implement plan outline page: modules with lessons (title, description, estimated time, status badge not started / completed / "No longer available", best score), loading/empty/error states, links to lessons in `apps/web/src/features/plan/PlanPage.tsx`
-- [ ] T057 [US2] Add hooks `useCatalog`, `useCurrentPlan`, `useCreatePlan` (invalidates `me`, `plan`, `dashboard`) and routes `/setup`, `/plan` in `apps/web/src/features/plan/hooks.ts` and `apps/web/src/app/router.tsx`
+- [X] T050 [P] [US2] Create `CatalogResponseSchema`, `CreatePlanRequestSchema` (`technologyIds` non-empty, unique; `replaceExisting` boolean default false), `PlanDetailSchema` (target, modules with lessons `{ id, order, title, description, estimatedMinutes, isAvailable, progress { completed, bestScore } }`) in `packages/shared/src/schemas/catalog.ts` and `packages/shared/src/schemas/plan.ts`
+- [X] T051 [P] [US2] Implement pure `assemblePlan(catalog, { trackId, levelId, technologyIds })` per research R8 in `apps/api/src/domain/assemble-plan.ts`
+- [X] T052 [US2] Implement plan service: load catalog, validate availability, run `assemblePlan`, in one transaction archive current active plan (`status='archived'`, `archivedAt`) and insert `Plan`, `PlanTechnology`, `PlanLesson` rows; map unique-index violation to 409; build `PlanDetail` joined with `LessonProgress` and `Lesson.isPublished` in `apps/api/src/services/plan-service.ts`
+- [X] T053 [US2] Implement routes `GET /catalog`, `POST /plans`, `GET /plans/current` in `apps/api/src/routes/catalog.ts` and `apps/api/src/routes/plans.ts`
+- [X] T054 [US2] Update `GET /me` to compute `hasActivePlan` in `apps/api/src/routes/me.ts`
+- [X] T055 [P] [US2] Implement setup page: track cards (unavailable shown "Coming soon", disabled), level radio group, technology checkboxes (unavailable disabled), submit disabled with message naming missing choice, replace-plan confirm dialog when a plan exists, submit button disabled while the create request is pending in `apps/web/src/features/setup/SetupPage.tsx`
+- [X] T056 [P] [US2] Implement plan outline page: modules with lessons (title, description, estimated time, status badge not started / completed / "No longer available", best score), loading/empty/error states, links to lessons in `apps/web/src/features/plan/PlanPage.tsx`
+- [X] T057 [US2] Add hooks `useCatalog`, `useCurrentPlan`, `useCreatePlan` (invalidates `me`, `plan`, `dashboard`) and routes `/setup`, `/plan` in `apps/web/src/features/plan/hooks.ts` and `apps/web/src/app/router.tsx`
 
 **Checkpoint**: US1 + US2 work independently (V4–V7)
 

@@ -1,0 +1,149 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.title {
+  margin: var(--space-1) 0;
+  font-size: var(--text-xl);
+}
+
+.meta {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.modules,
+.lessons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.modules {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.module {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.moduleHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.moduleTitle {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.count {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lessons {
+  display: grid;
+}
+
+.lesson {
+  display: grid;
+  grid-template-columns: 2rem 1fr auto;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.lesson[data-unavailable] {
+  color: var(--color-text-muted);
+}
+
+.order {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lessonBody {
+  min-width: 0;
+}
+
+.lessonTitle {
+  font-weight: 600;
+}
+
+.description {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.status {
+  display: grid;
+  justify-items: end;
+  gap: var(--space-1);
+}
+
+.badge {
+  padding: 2px var(--space-2);
+  border-radius: 999px;
+  background: var(--color-surface-sunken);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge[data-variant='done'] {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.minutes {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 560px) {
+  .lesson {
+    grid-template-columns: 1.5rem 1fr;
+  }
+
+  .status {
+    grid-column: 2;
+    justify-items: start;
+    grid-auto-flow: column;
+    justify-content: start;
+  }
+}

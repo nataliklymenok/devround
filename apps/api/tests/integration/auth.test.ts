@@ -132,3 +132,25 @@ describe('POST /auth/logout', () => {
     expect(res.statusCode).toBe(401)
   })
 })
+
+describe('rate limiting', () => {
+  it('throttles sign-in attempts with the error envelope', async () => {
+    const limited = await buildTestApp({ AUTH_RATE_LIMIT_PER_MINUTE: 2 })
+    try {
+      const attempt = () =>
+        limited.inject({
+          method: 'POST',
+          url: '/api/v1/auth/google',
+          headers: jsonHeaders,
+          payload: { credential: 'test:x@example.com' },
+        })
+      await attempt()
+      await attempt()
+      const res = await attempt()
+      expect(res.statusCode).toBe(429)
+      expect(res.json().error.code).toBe('RATE_LIMITED')
+    } finally {
+      await limited.close()
+    }
+  })
+})

@@ -11,6 +11,9 @@ import { errorEnvelope, registerErrorHandler } from './plugins/error-handler.js'
 import { registerOriginCheck } from './plugins/origin-check.js'
 import { registerSessionAuth } from './plugins/session-auth.js'
 import { authRoutes } from './routes/auth.js'
+import { catalogRoutes } from './routes/catalog.js'
+import { planRoutes } from './routes/plans.js'
+import { PlanService } from './services/plan-service.js'
 import { SessionService } from './services/session-service.js'
 
 export interface AppDeps {
@@ -29,7 +32,11 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
   registerErrorHandler(app)
   registerOriginCheck(app, config.WEB_ORIGIN)
   await app.register(cookie)
-  await app.register(rateLimit, { global: true, max: 300, timeWindow: '1 minute' })
+  await app.register(rateLimit, {
+    global: true,
+    max: config.RATE_LIMIT_PER_MINUTE,
+    timeWindow: '1 minute',
+  })
 
   const sessions = new SessionService(deps.db)
   registerSessionAuth(app, sessions, config.NODE_ENV === 'production')
@@ -38,6 +45,8 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
     async (api) => {
       api.get('/health', async () => ({ ok: true }))
       await api.register(authRoutes(deps, sessions))
+      await api.register(catalogRoutes(deps))
+      await api.register(planRoutes(new PlanService(deps.db)))
     },
     { prefix: '/api/v1' },
   )

@@ -10,6 +10,8 @@ const EnvSchema = z
     PORT: z.coerce.number().int().positive().default(3000),
     CONTENT_DIR: z.string().default('../../content'),
     WEB_DIST_DIR: z.string().default('../web/dist'),
+    RATE_LIMIT_PER_MINUTE: z.coerce.number().int().positive().default(300),
+    AUTH_RATE_LIMIT_PER_MINUTE: z.coerce.number().int().positive().default(20),
   })
   .superRefine((env, ctx) => {
     if (env.AUTH_PROVIDER === 'fake' && env.NODE_ENV === 'production') {

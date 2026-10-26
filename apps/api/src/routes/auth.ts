@@ -15,13 +15,21 @@ export function authRoutes(deps: AppDeps, sessions: SessionService) {
   return async (api: FastifyInstance) => {
     api.post(
       '/auth/google',
-      { config: { rateLimit: { max: 20, timeWindow: '1 minute' } } },
+      {
+        config: {
+          rateLimit: { max: deps.config.AUTH_RATE_LIMIT_PER_MINUTE, timeWindow: '1 minute' },
+        },
+      },
       async (request, reply): Promise<MeResponse> => {
         const { credential } = GoogleSignInRequestSchema.parse(request.body)
         const identity = await deps.verifier.verify(credential)
         if (!identity) throw new AppError('UNAUTHENTICATED', 401, 'Google sign-in failed')
 
-        const profile = { email: identity.email, name: identity.name, avatarUrl: identity.avatarUrl }
+        const profile = {
+          email: identity.email,
+          name: identity.name,
+          avatarUrl: identity.avatarUrl,
+        }
         const user = await deps.db.user.upsert({
           where: { googleSub: identity.sub },
           create: { googleSub: identity.sub, ...profile },
