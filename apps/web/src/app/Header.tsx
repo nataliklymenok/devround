@@ -19,7 +19,12 @@ export function Header({ user }: { user: User }) {
         </nav>
         <div className={styles.user}>
           {user.avatarUrl ? (
-            <img src={user.avatarUrl} alt="" className={styles.avatar} referrerPolicy="no-referrer" />
+            <img
+              src={user.avatarUrl}
+              alt=""
+              className={styles.avatar}
+              referrerPolicy="no-referrer"
+            />
           ) : (
             <span className={styles.avatar} aria-hidden="true">
               {user.name.slice(0, 1).toUpperCase()}
@@ -30,7 +35,9 @@ export function Header({ user }: { user: User }) {
             type="button"
             className="button button-secondary"
             disabled={signOut.isPending}
-            onClick={() => signOut.mutate(undefined, { onSettled: () => navigate('/', { replace: true }) })}
+            onClick={() =>
+              signOut.mutate(undefined, { onSettled: () => navigate('/', { replace: true }) })
+            }
           >
             Sign out
           </button>

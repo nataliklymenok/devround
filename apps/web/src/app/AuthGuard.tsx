@@ -36,4 +36,3 @@ export function AuthGuard() {
 
   return <Layout header={<Header user={me.data.user} />} />
 }
-

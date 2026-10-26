@@ -22,7 +22,10 @@ export class GoogleIdTokenVerifier implements GoogleTokenVerifier {
   async verify(credential: string): Promise<VerifiedGoogleUser | null> {
     try {
       // Checks signature, expiry, audience and issuer (accounts.google.com).
-      const ticket = await this.client.verifyIdToken({ idToken: credential, audience: this.clientId })
+      const ticket = await this.client.verifyIdToken({
+        idToken: credential,
+        audience: this.clientId,
+      })
       const payload = ticket.getPayload()
       if (!payload?.sub || !payload.email || payload.email_verified !== true) return null
       return {

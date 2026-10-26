@@ -40,7 +40,9 @@ export function LandingPage() {
     <div className={styles.landing}>
       <section className={styles.hero}>
         <p className={styles.eyebrow}>DevRound</p>
-        <h1 className={styles.title}>Prepare for your next frontend interview, one round at a time.</h1>
+        <h1 className={styles.title}>
+          Prepare for your next frontend interview, one round at a time.
+        </h1>
         <p className={styles.lead}>
           Choose the level and technologies you will be interviewed on. DevRound builds a focused
           plan of lessons, interview questions and self-checks — and keeps track of your progress.

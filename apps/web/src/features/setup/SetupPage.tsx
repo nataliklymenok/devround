@@ -12,7 +12,12 @@ export function SetupPage() {
   const catalog = useCatalog()
   if (catalog.isPending) return <Spinner label="Loading interview options…" />
   if (catalog.isError) {
-    return <ErrorState message="We could not load interview options." onRetry={() => catalog.refetch()} />
+    return (
+      <ErrorState
+        message="We could not load interview options."
+        onRetry={() => catalog.refetch()}
+      />
+    )
   }
   return <SetupForm catalog={catalog.data} />
 }
@@ -49,7 +54,8 @@ function SetupForm({ catalog }: { catalog: CatalogResponse }) {
 
   const submit = (replaceExisting: boolean) => {
     // Keep catalog order so the request is stable regardless of click order.
-    const ordered = track?.technologies.map((t) => t.id).filter((id) => technologyIds.includes(id)) ?? []
+    const ordered =
+      track?.technologies.map((t) => t.id).filter((id) => technologyIds.includes(id)) ?? []
     createPlan.mutate(
       { trackId, levelId, technologyIds: ordered, replaceExisting },
       { onSuccess: () => navigate('/plan') },
@@ -165,7 +171,11 @@ function SetupForm({ catalog }: { catalog: CatalogResponse }) {
           completed stay completed.
         </p>
         <div className={styles.dialogActions}>
-          <button type="button" className="button button-secondary" onClick={() => dialogRef.current?.close()}>
+          <button
+            type="button"
+            className="button button-secondary"
+            onClick={() => dialogRef.current?.close()}
+          >
             Keep current plan
           </button>
           <button

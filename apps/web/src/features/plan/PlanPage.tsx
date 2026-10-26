@@ -68,7 +68,11 @@ export function PlanPage() {
               <ProgressBar value={done} max={available.length} label={`${module.title} progress`} />
               <ol className={styles.lessons}>
                 {module.lessons.map((lesson) => (
-                  <li key={lesson.id} className={styles.lesson} data-unavailable={!lesson.isAvailable || undefined}>
+                  <li
+                    key={lesson.id}
+                    className={styles.lesson}
+                    data-unavailable={!lesson.isAvailable || undefined}
+                  >
                     <span className={styles.order}>{lesson.order}</span>
                     <div className={styles.lessonBody}>
                       {lesson.isAvailable ? (
@@ -85,7 +89,8 @@ export function PlanPage() {
                         <span className={styles.badge}>No longer available</span>
                       ) : lesson.progress.completed ? (
                         <span className={styles.badge} data-variant="done">
-                          Completed{lesson.progress.bestScore !== null && ` · ${lesson.progress.bestScore}%`}
+                          Completed
+                          {lesson.progress.bestScore !== null && ` · ${lesson.progress.bestScore}%`}
                         </span>
                       ) : (
                         <span className={styles.badge}>Not started</span>

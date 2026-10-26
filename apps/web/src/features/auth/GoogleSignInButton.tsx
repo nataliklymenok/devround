@@ -62,7 +62,12 @@ function GoogleButton({ onCredential, onError }: Props) {
       .then((gis) => {
         if (cancelled || !ref.current) return
         gis.initialize({ client_id: clientId, callback: (r) => callback.current(r.credential) })
-        gis.renderButton(ref.current, { theme: 'outline', size: 'large', text: 'signin_with', width: 280 })
+        gis.renderButton(ref.current, {
+          theme: 'outline',
+          size: 'large',
+          text: 'signin_with',
+          width: 280,
+        })
       })
       .catch(() => onError('Could not load Google sign-in. Check your connection and try again.'))
     return () => {

@@ -35,15 +35,26 @@ export class SessionService {
   async create(userId: string, now = new Date()): Promise<string> {
     const token = generateSessionToken()
     await this.db.session.create({
-      data: { userId, tokenHash: hashSessionToken(token), expiresAt: nextExpiry(now), lastSeenAt: now },
+      data: {
+        userId,
+        tokenHash: hashSessionToken(token),
+        expiresAt: nextExpiry(now),
+        lastSeenAt: now,
+      },
     })
     return token
   }
 
   /** Resolves a token to its user; expired sessions are deleted. `slid` tells the caller to refresh the cookie. */
-  async resolve(token: string, now = new Date()): Promise<{ user: SessionUser; slid: boolean } | null> {
+  async resolve(
+    token: string,
+    now = new Date(),
+  ): Promise<{ user: SessionUser; slid: boolean } | null> {
     const tokenHash = hashSessionToken(token)
-    const session = await this.db.session.findUnique({ where: { tokenHash }, include: { user: true } })
+    const session = await this.db.session.findUnique({
+      where: { tokenHash },
+      include: { user: true },
+    })
     if (!session) return null
     if (session.expiresAt <= now) {
       await this.db.session.deleteMany({ where: { id: session.id } })

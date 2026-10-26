@@ -161,19 +161,19 @@ retake lower → best kept (quickstart V8, V9, V11)
 
 ### Tests for User Story 3
 
-- [ ] T058 [P] [US3] Unit tests for quiz scoring (`score = round(correctCount / totalCount × 100)`, answers length mismatch, index out of range) in `apps/api/tests/unit/scoring.test.ts`
-- [ ] T059 [P] [US3] Integration tests for `GET /lessons/:id` (200 with quiz stripped of `correct`/`explanation`; updates `lastOpenedAt`; 404 for lesson not in user's active plan; 410 for unpublished; prev/next skip unavailable) and `POST /lessons/:id/attempts` (201 result; first attempt sets `completedAt`; retake keeps max `bestScore`; 400 bad answers; user isolation) in `apps/api/tests/integration/lessons.test.ts`
+- [X] T058 [P] [US3] Unit tests for quiz scoring (`score = round(correctCount / totalCount × 100)`, answers length mismatch, index out of range) in `apps/api/tests/unit/scoring.test.ts`
+- [X] T059 [P] [US3] Integration tests for `GET /lessons/:id` (200 with quiz stripped of `correct`/`explanation`; updates `lastOpenedAt`; 404 for lesson not in user's active plan; 410 for unpublished; prev/next skip unavailable) and `POST /lessons/:id/attempts` (201 result; first attempt sets `completedAt`; retake keeps max `bestScore`; 400 bad answers; user isolation) in `apps/api/tests/integration/lessons.test.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T060 [P] [US3] Create `LessonViewSchema` (quiz items `{ id, question, options }` only), `QuizAttemptRequestSchema` (`answers` int[]), `QuizAttemptResultSchema` in `packages/shared/src/schemas/lesson.ts`
-- [ ] T061 [P] [US3] Implement pure `scoreQuiz(quiz, answers)` in `apps/api/src/domain/scoring.ts`
-- [ ] T062 [US3] Implement lesson service: verify lesson is in user's active plan (else 404) and published (else 410 `LESSON_UNAVAILABLE`), strip answers, compute prev/next by plan `order`, upsert `LessonProgress.lastOpenedAt`; record attempt with `questionIds` and upsert progress (`completedAt` if null, `bestScore = max`) in one transaction in `apps/api/src/services/lesson-service.ts`
-- [ ] T063 [US3] Implement routes `GET /lessons/:lessonId`, `POST /lessons/:lessonId/attempts` in `apps/api/src/routes/lessons.ts`
-- [ ] T064 [P] [US3] Implement `Markdown` component (`react-markdown` + `remark-gfm`, raw HTML disabled, lazy `shiki` highlighting for fenced code) in `apps/web/src/components/Markdown.tsx`
-- [ ] T065 [P] [US3] Implement `Quiz` component (radio group per question with labels, submit disabled until all answered, result view with correct/incorrect per question, explanation, score, "Retake") in `apps/web/src/features/lesson/Quiz.tsx`
-- [ ] T066 [US3] Implement lesson page (header with module/technology, Markdown body, interview questions as expandable `<details>` with model answers, key takeaways, Quiz, prev/next and "Next lesson" after submit; persist unsent quiz answers in `sessionStorage` under `quiz-draft:<lessonId>` (wrapped in try/catch), restore them on mount after re-auth, clear on successful submit) in `apps/web/src/features/lesson/LessonPage.tsx`
-- [ ] T067 [US3] Add hooks `useLesson`, `useSubmitAttempt` (invalidates `plan`, `dashboard`) and route `/lessons/:lessonId` in `apps/web/src/features/lesson/hooks.ts` and `apps/web/src/app/router.tsx`
+- [X] T060 [P] [US3] Create `LessonViewSchema` (quiz items `{ id, question, options }` only), `QuizAttemptRequestSchema` (`answers` int[]), `QuizAttemptResultSchema` in `packages/shared/src/schemas/lesson.ts`
+- [X] T061 [P] [US3] Implement pure `scoreQuiz(quiz, answers)` in `apps/api/src/domain/scoring.ts`
+- [X] T062 [US3] Implement lesson service: verify lesson is in user's active plan (else 404) and published (else 410 `LESSON_UNAVAILABLE`), strip answers, compute prev/next by plan `order`, upsert `LessonProgress.lastOpenedAt`; record attempt with `questionIds` and upsert progress (`completedAt` if null, `bestScore = max`) in one transaction in `apps/api/src/services/lesson-service.ts`
+- [X] T063 [US3] Implement routes `GET /lessons/:lessonId`, `POST /lessons/:lessonId/attempts` in `apps/api/src/routes/lessons.ts`
+- [X] T064 [P] [US3] Implement `Markdown` component (`react-markdown` + `remark-gfm`, raw HTML disabled, lazy `shiki` highlighting for fenced code) in `apps/web/src/components/Markdown.tsx`
+- [X] T065 [P] [US3] Implement `Quiz` component (radio group per question with labels, submit disabled until all answered, result view with correct/incorrect per question, explanation, score, "Retake") in `apps/web/src/features/lesson/Quiz.tsx`
+- [X] T066 [US3] Implement lesson page (header with module/technology, Markdown body, interview questions as expandable `<details>` with model answers, key takeaways, Quiz, prev/next and "Next lesson" after submit; persist unsent quiz answers in `sessionStorage` under `quiz-draft:<lessonId>` (wrapped in try/catch), restore them on mount after re-auth, clear on successful submit) in `apps/web/src/features/lesson/LessonPage.tsx`
+- [X] T067 [US3] Add hooks `useLesson`, `useSubmitAttempt` (invalidates `plan`, `dashboard`) and route `/lessons/:lessonId` in `apps/web/src/features/lesson/hooks.ts` and `apps/web/src/app/router.tsx`
 
 **Checkpoint**: US1–US3 work independently (V8, V9, V11)
 

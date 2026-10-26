@@ -17,7 +17,11 @@ export function catalogRoutes(deps: AppDeps) {
           id: t.id,
           name: t.name,
           isAvailable: t.isAvailable,
-          technologies: t.technologies.map(({ id, name, isAvailable }) => ({ id, name, isAvailable })),
+          technologies: t.technologies.map(({ id, name, isAvailable }) => ({
+            id,
+            name,
+            isAvailable,
+          })),
         })),
         levels: levels.map(({ id, name, rank }) => ({ id, name, rank })),
       }

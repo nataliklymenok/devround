@@ -15,11 +15,13 @@ export interface AssembledLesson {
   order: number
 }
 
-const byKey = <T>(key: (item: T) => number | string) => (a: T, b: T) => {
-  const ka = key(a)
-  const kb = key(b)
-  return ka < kb ? -1 : ka > kb ? 1 : 0
-}
+const byKey =
+  <T>(key: (item: T) => number | string) =>
+  (a: T, b: T) => {
+    const ka = key(a)
+    const kb = key(b)
+    return ka < kb ? -1 : ka > kb ? 1 : 0
+  }
 
 /**
  * Deterministic plan assembly (research R8): selected technologies in catalog position order →
@@ -38,7 +40,9 @@ export function assemblePlan(catalog: CatalogForPlan, selection: PlanSelection):
       .sort(byKey((m) => m.order))
     for (const module of modules) {
       const lessons = catalog.lessons
-        .filter((l) => l.moduleId === module.id && l.isPublished && l.levels.includes(selection.levelId))
+        .filter(
+          (l) => l.moduleId === module.id && l.isPublished && l.levels.includes(selection.levelId),
+        )
         .sort(byKey((l) => l.order))
       for (const lesson of lessons) {
         result.push({ lessonId: lesson.id, moduleId: module.id, order: result.length + 1 })

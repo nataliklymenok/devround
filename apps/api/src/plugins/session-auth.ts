@@ -22,7 +22,11 @@ export function sessionCookieOptions(secure: boolean) {
   }
 }
 
-export function registerSessionAuth(app: FastifyInstance, sessions: SessionService, secure: boolean) {
+export function registerSessionAuth(
+  app: FastifyInstance,
+  sessions: SessionService,
+  secure: boolean,
+) {
   app.decorateRequest('sessionUser', null)
   app.decorateRequest('sessionToken', null)
 

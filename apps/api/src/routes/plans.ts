@@ -11,8 +11,10 @@ export function planRoutes(plans: PlanService) {
       return reply.status(201).send(plan)
     })
 
-    api.get('/plans/current', { preHandler: api.requireAuth }, async (request): Promise<PlanDetail> =>
-      plans.getCurrent(currentUser(request).id),
+    api.get(
+      '/plans/current',
+      { preHandler: api.requireAuth },
+      async (request): Promise<PlanDetail> => plans.getCurrent(currentUser(request).id),
     )
   }
 }
