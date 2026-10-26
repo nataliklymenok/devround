@@ -9,6 +9,9 @@ import type { Config } from './config.js'
 import type { Db } from './db.js'
 import { errorEnvelope, registerErrorHandler } from './plugins/error-handler.js'
 import { registerOriginCheck } from './plugins/origin-check.js'
+import { registerSessionAuth } from './plugins/session-auth.js'
+import { authRoutes } from './routes/auth.js'
+import { SessionService } from './services/session-service.js'
 
 export interface AppDeps {
   config: Config
@@ -28,9 +31,13 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
   await app.register(cookie)
   await app.register(rateLimit, { global: true, max: 300, timeWindow: '1 minute' })
 
+  const sessions = new SessionService(deps.db)
+  registerSessionAuth(app, sessions, config.NODE_ENV === 'production')
+
   await app.register(
     async (api) => {
       api.get('/health', async () => ({ ok: true }))
+      await api.register(authRoutes(deps, sessions))
     },
     { prefix: '/api/v1' },
   )

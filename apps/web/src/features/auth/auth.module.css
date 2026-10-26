@@ -1,0 +1,107 @@
+.landing {
+  display: grid;
+  gap: var(--space-12);
+  padding-top: var(--space-8);
+}
+
+.hero {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 680px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw + 1rem, var(--text-2xl));
+}
+
+.lead {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+}
+
+.signIn {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  margin-top: var(--space-2);
+}
+
+.googleButton {
+  min-height: 44px;
+}
+
+.notice {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-sunken);
+}
+
+.error {
+  margin: 0;
+  color: var(--color-danger);
+}
+
+.devForm {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.devForm label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.devRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.devRow input {
+  min-height: 40px;
+  min-width: 220px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.features h2 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-md);
+}
+
+.features p {
+  margin: 0;
+  color: var(--color-text-muted);
+}

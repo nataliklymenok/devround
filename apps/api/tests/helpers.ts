@@ -65,3 +65,17 @@ export async function buildTestApp(): Promise<FastifyInstance> {
 
 /** Headers every mutating request from our web app carries (origin check). */
 export const jsonHeaders = { origin: TEST_ORIGIN, 'content-type': 'application/json' }
+
+/** Sign in through the real endpoint with the fake verifier; returns the session cookie header. */
+export async function signIn(app: FastifyInstance, email: string): Promise<string> {
+  const res = await app.inject({
+    method: 'POST',
+    url: '/api/v1/auth/google',
+    headers: jsonHeaders,
+    payload: { credential: `test:${email}` },
+  })
+  if (res.statusCode !== 200) throw new Error(`sign-in failed: ${res.statusCode} ${res.body}`)
+  const cookie = res.cookies.find((c) => c.name === 'dr_session')
+  if (!cookie) throw new Error('no session cookie')
+  return `dr_session=${cookie.value}`
+}

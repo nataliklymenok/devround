@@ -101,21 +101,21 @@ session → sign out → `/api/v1/me` returns 401 (quickstart V1–V3)
 
 ### Tests for User Story 1
 
-- [ ] T036 [P] [US1] Integration tests for `POST /auth/google` (new user created with only `googleSub`, `email`, `name`, `avatarUrl`; returning user updated; invalid token → 401; cookie `HttpOnly`, `SameSite=Lax`), `GET /me` (401 without cookie), `POST /auth/logout` (204, session row deleted, cookie cleared), expired session → 401 in `apps/api/tests/integration/auth.test.ts`
-- [ ] T037 [P] [US1] Unit tests for session token generation/hashing and sliding expiry (30 days, refreshed at most hourly) in `apps/api/tests/unit/session.test.ts`
+- [X] T036 [P] [US1] Integration tests for `POST /auth/google` (new user created with only `googleSub`, `email`, `name`, `avatarUrl`; returning user updated; invalid token → 401; cookie `HttpOnly`, `SameSite=Lax`), `GET /me` (401 without cookie), `POST /auth/logout` (204, session row deleted, cookie cleared), expired session → 401 in `apps/api/tests/integration/auth.test.ts`
+- [X] T037 [P] [US1] Unit tests for session token generation/hashing and sliding expiry (30 days, refreshed at most hourly) in `apps/api/tests/unit/session.test.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T038 [P] [US1] Create `MeResponseSchema` (`user { id, email, name, avatarUrl }`, `hasActivePlan`) and `GoogleSignInRequestSchema` (`{ credential: string }`) in `packages/shared/src/schemas/auth.ts`
-- [ ] T039 [P] [US1] Implement `GoogleTokenVerifier` interface and Google implementation using `OAuth2Client.verifyIdToken` (check `aud` = `GOOGLE_CLIENT_ID`, issuer, expiry, `email_verified`) in `apps/api/src/auth/google-verifier.ts`
-- [ ] T040 [P] [US1] Implement `FakeGoogleVerifier` accepting tokens `test:<email>` in `apps/api/src/auth/fake-google-verifier.ts`
-- [ ] T041 [US1] Implement session service (create: 32-byte base64url token, store SHA-256 `tokenHash`, `expiresAt` = now + 30 days; resolve: lookup by hash, reject expired, slide expiry if `lastSeenAt` older than 1 h; destroy) in `apps/api/src/services/session-service.ts`
-- [ ] T042 [US1] Implement session plugin decorating `request.user` and `requireAuth` preHandler returning 401 `UNAUTHENTICATED` in `apps/api/src/plugins/session-auth.ts`
-- [ ] T043 [US1] Implement routes `POST /auth/google` (stricter rate limit 20 req/min, upsert user by `googleSub`, set `dr_session` cookie `HttpOnly; SameSite=Lax; Path=/`, plus `Secure` only when `NODE_ENV=production`), `POST /auth/logout`, `GET /me` in `apps/api/src/routes/auth.ts` and `apps/api/src/routes/me.ts`
-- [ ] T044 [P] [US1] Implement GIS script loader and `GoogleSignInButton` component (renders official button, returns `credential`; in fake mode renders an email input "Dev sign-in") in `apps/web/src/features/auth/GoogleSignInButton.tsx`
-- [ ] T045 [US1] Implement `useMe` query and `useSignIn`/`useSignOut` mutations in `apps/web/src/features/auth/hooks.ts`
-- [ ] T046 [US1] Implement landing page (product pitch, sign-in button, non-technical error message on cancel/failure with retry) in `apps/web/src/features/auth/LandingPage.tsx`
-- [ ] T047 [US1] Implement auth guard route (redirect signed-out users — including on any 401 from the API — to `/?returnTo=<current path>`; after sign-in navigate to `returnTo` if it is a same-origin relative path, else to `/setup` when `hasActivePlan=false`, else `/dashboard`) and header with avatar, name, "Sign out" in `apps/web/src/app/AuthGuard.tsx` and `apps/web/src/app/Header.tsx`
+- [X] T038 [P] [US1] Create `MeResponseSchema` (`user { id, email, name, avatarUrl }`, `hasActivePlan`) and `GoogleSignInRequestSchema` (`{ credential: string }`) in `packages/shared/src/schemas/auth.ts`
+- [X] T039 [P] [US1] Implement `GoogleTokenVerifier` interface and Google implementation using `OAuth2Client.verifyIdToken` (check `aud` = `GOOGLE_CLIENT_ID`, issuer, expiry, `email_verified`) in `apps/api/src/auth/google-verifier.ts`
+- [X] T040 [P] [US1] Implement `FakeGoogleVerifier` accepting tokens `test:<email>` in `apps/api/src/auth/fake-google-verifier.ts`
+- [X] T041 [US1] Implement session service (create: 32-byte base64url token, store SHA-256 `tokenHash`, `expiresAt` = now + 30 days; resolve: lookup by hash, reject expired, slide expiry if `lastSeenAt` older than 1 h; destroy) in `apps/api/src/services/session-service.ts`
+- [X] T042 [US1] Implement session plugin decorating `request.user` and `requireAuth` preHandler returning 401 `UNAUTHENTICATED` in `apps/api/src/plugins/session-auth.ts`
+- [X] T043 [US1] Implement routes `POST /auth/google` (stricter rate limit 20 req/min, upsert user by `googleSub`, set `dr_session` cookie `HttpOnly; SameSite=Lax; Path=/`, plus `Secure` only when `NODE_ENV=production`), `POST /auth/logout`, `GET /me` in `apps/api/src/routes/auth.ts` and `apps/api/src/routes/me.ts`
+- [X] T044 [P] [US1] Implement GIS script loader and `GoogleSignInButton` component (renders official button, returns `credential`; in fake mode renders an email input "Dev sign-in") in `apps/web/src/features/auth/GoogleSignInButton.tsx`
+- [X] T045 [US1] Implement `useMe` query and `useSignIn`/`useSignOut` mutations in `apps/web/src/features/auth/hooks.ts`
+- [X] T046 [US1] Implement landing page (product pitch, sign-in button, non-technical error message on cancel/failure with retry) in `apps/web/src/features/auth/LandingPage.tsx`
+- [X] T047 [US1] Implement auth guard route (redirect signed-out users — including on any 401 from the API — to `/?returnTo=<current path>`; after sign-in navigate to `returnTo` if it is a same-origin relative path, else to `/setup` when `hasActivePlan=false`, else `/dashboard`) and header with avatar, name, "Sign out" in `apps/web/src/app/AuthGuard.tsx` and `apps/web/src/app/Header.tsx`
 
 **Checkpoint**: US1 independently functional and tested (V1–V3)
 
