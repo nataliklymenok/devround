@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Env & tooling
+.env
+.env.*
+!.env.example
+coverage
+build
+playwright-report
+test-results
+apps/api/src/generated
+*.tmp
+.vscode/*

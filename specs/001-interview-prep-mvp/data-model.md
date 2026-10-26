@@ -53,7 +53,7 @@ User 1─* QuizAttempt    *─1 Lesson
 | technologyId | FK → Technology | |
 | title | string | 3–120 chars |
 | description | string | ≤ 500 chars |
-| order | int | unique per technology |
+| order | int | position in `modules.yaml` (unique by construction; DB index, not unique constraint) |
 
 ### Lesson
 | Field | Type | Rules |

@@ -1,0 +1,197 @@
+// DevRound data model — see specs/001-interview-prep-mvp/data-model.md
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Catalog (read model of content/, written only by content:sync) ----------
+
+model Track {
+  id           String       @id
+  name         String
+  isAvailable  Boolean
+  position     Int
+  technologies Technology[]
+  plans        Plan[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Level {
+  id        String   @id
+  name      String
+  rank      Int
+  plans     Plan[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Technology {
+  id          String           @id
+  trackId     String
+  track       Track            @relation(fields: [trackId], references: [id])
+  name        String
+  isAvailable Boolean
+  position    Int
+  modules     Module[]
+  plans       PlanTechnology[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Module {
+  id           String       @id
+  technologyId String
+  technology   Technology   @relation(fields: [technologyId], references: [id])
+  title        String
+  description  String
+  order        Int
+  lessons      Lesson[]
+  planLessons  PlanLesson[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  // order comes from the position in modules.yaml (unique by construction); no DB unique
+  // constraint so content:sync can reorder modules and keep retired ones.
+  @@index([technologyId, order])
+}
+
+model Lesson {
+  id                 String           @id
+  moduleId           String
+  module             Module           @relation(fields: [moduleId], references: [id])
+  order              Int
+  title              String
+  description        String
+  levels             String[]
+  estimatedMinutes   Int
+  body               String
+  /// InterviewQuestion[] (validated by LessonFileSchema)
+  interviewQuestions Json
+  keyTakeaways       String[]
+  /// QuizItem[] incl. correct answers — never sent before submission
+  quiz               Json
+  isPublished        Boolean          @default(true)
+  contentHash        String
+  planLessons        PlanLesson[]
+  progress           LessonProgress[]
+  attempts           QuizAttempt[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@index([moduleId, order])
+}
+
+// ---------- Users & auth ----------
+
+model User {
+  id        String           @id @default(cuid())
+  googleSub String           @unique
+  email     String
+  name      String
+  avatarUrl String?
+  sessions  Session[]
+  plans     Plan[]
+  progress  LessonProgress[]
+  attempts  QuizAttempt[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  lastSeenAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------- Plans ----------
+
+enum PlanStatus {
+  active
+  archived
+}
+
+model Plan {
+  id           String           @id @default(cuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId      String
+  track        Track            @relation(fields: [trackId], references: [id])
+  levelId      String
+  level        Level            @relation(fields: [levelId], references: [id])
+  status       PlanStatus       @default(active)
+  archivedAt   DateTime?
+  technologies PlanTechnology[]
+  lessons      PlanLesson[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  // Partial unique index "plan_one_active_per_user" (status = 'active') lives in raw SQL migration.
+  @@index([userId, status])
+}
+
+model PlanTechnology {
+  planId       String
+  plan         Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  technologyId String
+  technology   Technology @relation(fields: [technologyId], references: [id])
+
+  @@id([planId, technologyId])
+}
+
+model PlanLesson {
+  planId   String
+  plan     Plan   @relation(fields: [planId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id])
+  moduleId String
+  module   Module @relation(fields: [moduleId], references: [id])
+  order    Int
+
+  @@id([planId, lessonId])
+  @@unique([planId, order])
+}
+
+// ---------- Progress ----------
+
+model LessonProgress {
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       Lesson    @relation(fields: [lessonId], references: [id])
+  completedAt  DateTime?
+  /// 0–100, max over attempts
+  bestScore    Int?
+  lastOpenedAt DateTime  @default(now())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@id([userId, lessonId])
+}
+
+model QuizAttempt {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       Lesson   @relation(fields: [lessonId], references: [id])
+  answers      Int[]
+  questionIds  String[]
+  correctCount Int
+  totalCount   Int
+  score        Int
+  createdAt    DateTime @default(now())
+
+  @@index([userId, lessonId])
+}

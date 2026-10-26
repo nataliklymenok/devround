@@ -1,0 +1,137 @@
+:root {
+  color-scheme: light;
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #ececea;
+  --color-text: #1b1b1f;
+  --color-text-muted: #5c5c66;
+  --color-border: #dcdcd8;
+  --color-accent: #4f46e5;
+  --color-accent-strong: #3730a3;
+  --color-accent-contrast: #ffffff;
+  --color-success: #15803d;
+  --color-success-bg: #dcfce7;
+  --color-danger: #b91c1c;
+  --color-danger-bg: #fee2e2;
+  --color-code-bg: #f1f1ef;
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --content-width: 960px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #121216;
+    --color-surface: #1b1b21;
+    --color-surface-sunken: #26262e;
+    --color-text: #ececf1;
+    --color-text-muted: #a3a3b0;
+    --color-border: #33333d;
+    --color-accent: #818cf8;
+    --color-accent-strong: #a5b4fc;
+    --color-accent-contrast: #121216;
+    --color-success: #4ade80;
+    --color-success-bg: #14321f;
+    --color-danger: #f87171;
+    --color-danger-bg: #3b1717;
+    --color-code-bg: #22222a;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-accent-strong);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button-secondary {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.button-secondary:hover {
+  background: var(--color-surface-sunken);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
