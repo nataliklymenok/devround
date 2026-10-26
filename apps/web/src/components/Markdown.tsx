@@ -13,7 +13,8 @@ function CodeBlock({ code, lang }: { code: string; lang: string }) {
       .then(({ codeToHtml }) =>
         codeToHtml(code, {
           lang,
-          themes: { light: 'github-light', dark: 'github-dark' },
+          // High-contrast light theme: github-light keywords fail WCAG AA on our code background.
+          themes: { light: 'github-light-high-contrast', dark: 'github-dark' },
           defaultColor: false,
         }),
       )

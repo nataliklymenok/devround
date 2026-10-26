@@ -219,11 +219,11 @@ Drafts may be AI-assisted but MUST be reviewed by a person before merge (Constit
 
 ## Phase 8: Polish & Cross-Cutting Concerns
 
-- [ ] T080 Playwright setup (starts db-test, syncs fixture content, runs api with `AUTH_PROVIDER=fake` and web) in `playwright.config.ts` and E2E journey sign in → setup → plan → lesson → quiz → dashboard → sign out, asserting plan shown and lesson shown within 2 s (SC-002, SC-003), plus session-expiry case (clear cookie mid-quiz → re-sign-in returns to the same lesson with answers restored) in `e2e/journey.spec.ts`
-- [ ] T081 [P] Accessibility pass: keyboard navigation through setup, quiz, dashboard; labels; contrast; add `@axe-core/playwright` check to `e2e/a11y.spec.ts`
-- [ ] T082 [P] Responsive check at 360 px and 1280 px widths for all pages; fix layout issues in `apps/web/src/styles/`
-- [ ] T083 [P] Write root `README.md` (what DevRound is, stack, setup from quickstart.md, content authoring guide linking contracts/content-format.md)
-- [ ] T084 Run full quickstart.md validation V1–V13 and quality gates (`typecheck`, `lint`, `content:validate`, `test`, `build`, `e2e`)
+- [X] T080 Playwright setup (starts db-test, syncs fixture content, runs api with `AUTH_PROVIDER=fake` and web) in `playwright.config.ts` and E2E journey sign in → setup → plan → lesson → quiz → dashboard → sign out, asserting plan shown and lesson shown within 2 s (SC-002, SC-003), plus session-expiry case (clear cookie mid-quiz → re-sign-in returns to the same lesson with answers restored) in `e2e/journey.spec.ts`
+- [X] T081 [P] Accessibility pass: keyboard navigation through setup, quiz, dashboard; labels; contrast; add `@axe-core/playwright` check to `e2e/a11y.spec.ts`
+- [X] T082 [P] Responsive check at 360 px and 1280 px widths for all pages; fix layout issues in `apps/web/src/styles/`
+- [X] T083 [P] Write root `README.md` (what DevRound is, stack, setup from quickstart.md, content authoring guide linking contracts/content-format.md)
+- [X] T084 Run full quickstart.md validation V1–V13 and quality gates (`typecheck`, `lint`, `content:validate`, `test`, `build`, `e2e`)
 
 ---
 

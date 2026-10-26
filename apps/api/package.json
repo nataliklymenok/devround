@@ -14,7 +14,8 @@
     "db:deploy": "prisma migrate deploy",
     "content:validate": "tsx --env-file-if-exists=.env scripts/content/validate.ts",
     "content:check-ids": "tsx --env-file-if-exists=.env scripts/content/check-ids.ts",
-    "content:sync": "tsx --env-file-if-exists=.env scripts/content/sync.ts"
+    "content:sync": "tsx --env-file-if-exists=.env scripts/content/sync.ts",
+    "e2e:reset": "prisma migrate deploy && tsx scripts/e2e-reset.ts"
   },
   "dependencies": {
     "@devround/shared": "^0.0.0",
