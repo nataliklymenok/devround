@@ -208,11 +208,11 @@ first uncompleted available lesson; completion state at 100% (quickstart V10, V1
 each, ≥ 3 per level). Can start right after T021 (validator) and run in parallel with Phases 3–6.
 Drafts may be AI-assisted but MUST be reviewed by a person before merge (Constitution IV).
 
-- [ ] T074 Create `content/catalog.yaml` (levels junior/middle/senior; tracks frontend (available) with technologies javascript, typescript, react, nodejs (available) and html-css (unavailable); qa, automation, backend (unavailable)) and an empty `content/retired.yaml` (`lessons: []`, `modules: []`)
-- [ ] T075 [P] Write `content/frontend/javascript/modules.yaml` and ≥ 6 lessons (e.g. types & coercion, scope & closures, `this` & prototypes, event loop & async, promises/async-await, ES modules & modern syntax) as `content/frontend/javascript/*.md`
-- [ ] T076 [P] Write `content/frontend/typescript/modules.yaml` and ≥ 6 lessons (e.g. type system basics, unions & narrowing, generics, utility & mapped types, typing React/props, strictness & config) as `content/frontend/typescript/*.md`
-- [ ] T077 [P] Write `content/frontend/react/modules.yaml` and ≥ 6 lessons (e.g. components & JSX, state & props, rules of hooks, effects & lifecycle, performance & memoization, state management & context) as `content/frontend/react/*.md`
-- [ ] T078 [P] Write `content/frontend/nodejs/modules.yaml` and ≥ 6 lessons (e.g. runtime & event loop, modules & npm, async I/O & streams, HTTP server basics, error handling, security basics) as `content/frontend/nodejs/*.md`
+- [X] T074 Create `content/catalog.yaml` (levels junior/middle/senior; tracks frontend (available) with technologies javascript, typescript, react, nodejs (available) and html-css (unavailable); qa, automation, backend (unavailable)) and an empty `content/retired.yaml` (`lessons: []`, `modules: []`)
+- [X] T075 [P] Write `content/frontend/javascript/modules.yaml` and ≥ 6 lessons (e.g. types & coercion, scope & closures, `this` & prototypes, event loop & async, promises/async-await, ES modules & modern syntax) as `content/frontend/javascript/*.md`
+- [X] T076 [P] Write `content/frontend/typescript/modules.yaml` and ≥ 6 lessons (e.g. type system basics, unions & narrowing, generics, utility & mapped types, typing React/props, strictness & config) as `content/frontend/typescript/*.md`
+- [X] T077 [P] Write `content/frontend/react/modules.yaml` and ≥ 6 lessons (e.g. components & JSX, state & props, rules of hooks, effects & lifecycle, performance & memoization, state management & context) as `content/frontend/react/*.md`
+- [X] T078 [P] Write `content/frontend/nodejs/modules.yaml` and ≥ 6 lessons (e.g. runtime & event loop, modules & npm, async I/O & streams, HTTP server basics, error handling, security basics) as `content/frontend/nodejs/*.md`
 - [ ] T079 Run `npm run content:validate` on the real library, fix all issues, and record human review sign-off in the PR description
 
 ---

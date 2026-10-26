@@ -1,0 +1,7 @@
+modules:
+  - id: react-core
+    title: Core concepts
+    description: Components, JSX, state, props and how React decides what to update.
+  - id: react-hooks
+    title: Hooks, effects and performance
+    description: Rules of hooks, effects, memoization and sharing state with context.

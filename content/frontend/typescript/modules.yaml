@@ -1,0 +1,7 @@
+modules:
+  - id: ts-type-system
+    title: The type system
+    description: Annotations, inference, structural typing, unions and narrowing — the core of everyday TypeScript.
+  - id: ts-advanced-types
+    title: Generics and advanced types
+    description: Generics, utility, mapped and conditional types, and typing React components.

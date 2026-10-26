@@ -1,0 +1,7 @@
+modules:
+  - id: node-runtime
+    title: The Node.js runtime
+    description: How Node runs JavaScript, its event loop phases, modules, npm and streams.
+  - id: node-web
+    title: Building web servers
+    description: HTTP servers, error handling and the security basics every API needs.

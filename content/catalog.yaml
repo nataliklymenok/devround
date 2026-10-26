@@ -1,0 +1,19 @@
+# DevRound lesson library catalog. List order defines display / plan order.
+# Ids are permanent — never rename or reuse them (see retired.yaml).
+levels:
+  - { id: junior, name: Junior, rank: 1 }
+  - { id: middle, name: Middle, rank: 2 }
+  - { id: senior, name: Senior, rank: 3 }
+tracks:
+  - id: frontend
+    name: Frontend
+    available: true
+    technologies:
+      - { id: html-css, name: HTML & CSS, available: false }
+      - { id: javascript, name: JavaScript, available: true }
+      - { id: typescript, name: TypeScript, available: true }
+      - { id: react, name: React, available: true }
+      - { id: nodejs, name: Node.js basics, available: true }
+  - { id: qa, name: QA, available: false, technologies: [] }
+  - { id: automation, name: Automation, available: false, technologies: [] }
+  - { id: backend, name: Backend, available: false, technologies: [] }
