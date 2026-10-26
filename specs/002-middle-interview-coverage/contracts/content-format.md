@@ -10,10 +10,10 @@ content/
 ├── catalog.yaml                       # + recommends per technology
 ├── retired.yaml                       # + tasks: [], exercises: []
 └── frontend/
-    ├── topic-map.middle.yaml          # NEW
     ├── system-design/                 # NEW (reserved name): <exercise-id>.md
     └── <technology>/
         ├── modules.yaml
+        ├── topics.middle.yaml         # NEW: Middle topic map for this technology
         ├── <lesson-id>.md             # + topics, references, reviewed
         └── tasks/                     # NEW (reserved name): <task-id>.md
 ```
@@ -25,17 +25,16 @@ technologies:
   - { id: react, name: React, available: true, recommends: [javascript, browser-web] }
 ```
 
-## topic-map.middle.yaml
+## `<technology>/topics.middle.yaml`
 
 ```yaml
-level: middle
-technologies:
-  browser-web:
-    - { id: web-event-delegation, title: Event bubbling, capturing and delegation, priority: must }
-    - { id: web-service-workers, title: Service workers and offline, priority: good }
+topics:
+  - { id: web-event-delegation, title: Event bubbling, capturing and delegation, priority: must }
+  - { id: web-service-workers, title: Service workers and offline, priority: good }
 ```
-Rules: topic ids kebab-case, unique per file; `priority` ∈ `must|good`; technologies exist in the
-catalog. Coverage: each `must` topic ⇒ ≥ 1 published lesson in that technology with `middle` in
+Rules: topic ids kebab-case and unique across all topic files; `priority` ∈ `must|good`; an
+available technology without a topic file is reported (every available technology needs a Middle
+map). Coverage: each `must` topic ⇒ ≥ 1 published lesson in that technology with `middle` in
 `levels` and the topic id in `topics`.
 
 ## Lesson front matter additions

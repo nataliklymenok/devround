@@ -7,14 +7,15 @@ snapshots). Each decision: what, why, alternatives.
 
 ## R1. Topic map format and coverage check
 
-- **Decision**: One file per track and level: `content/frontend/topic-map.middle.yaml`:
+- **Decision**: One file per technology and level, next to its lessons:
+  `content/frontend/<technology>/topics.middle.yaml`:
   ```yaml
-  level: middle
-  technologies:
-    javascript:
-      - { id: js-closures, title: Closures and lexical scope, priority: must }
-      - { id: js-generators, title: Iterators and generators, priority: good }
+  topics:
+    - { id: js-closures, title: Closures and lexical scope, priority: must }
+    - { id: js-generators, title: Iterators and generators, priority: good }
   ```
+  The Middle topic map is the union of these files. Per-technology files let content batches for
+  different technologies be written in parallel without editing a shared file.
   Lessons declare `topics: [topic ids]` in front matter. `content:validate` checks (a) every topic id
   a lesson references exists in a map of its technology, (b) **every `must` topic is covered by at
   least one published lesson of that technology whose `levels` include `middle`** (FR-003, SC-001),

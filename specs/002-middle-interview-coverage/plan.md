@@ -7,7 +7,7 @@
 ## Summary
 
 Make the DevRound library sufficient for Middle-level frontend interviews and add two new content
-kinds. (1) A Middle topic map (`content/frontend/topic-map.middle.yaml`) with must/good priorities,
+kinds. (1) A Middle topic map (`content/frontend/<technology>/topics.middle.yaml`) with must/good priorities,
 validated coverage, five new technologies (HTML & CSS, Browser & Web, Next.js, Redux & state,
 Testing), further-reading references and a draft/reviewed status on every item. (2) Live coding
 tasks: JavaScript tasks with an in-app CodeMirror editor and automated tests executed in an
@@ -88,10 +88,11 @@ content/
 ├── catalog.yaml                    # new technologies, recommends
 ├── retired.yaml                    # + tasks, exercises
 └── frontend/
-    ├── topic-map.middle.yaml       # NEW
     ├── system-design/*.md          # NEW design exercises
     ├── html-css/ browser-web/ nextjs/ redux/ testing/   # NEW technologies (modules + lessons)
-    └── <technology>/tasks/*.md     # NEW coding tasks (javascript, react)
+    └── <technology>/
+        ├── topics.middle.yaml      # NEW Middle topic map per technology
+        └── tasks/*.md              # NEW coding tasks (javascript, react)
 
 packages/shared/src/
 ├── schemas/content.ts              # + TopicMapFile, TaskFile, ExerciseFile, references/reviewed
