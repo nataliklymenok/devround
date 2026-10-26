@@ -188,15 +188,15 @@ first uncompleted available lesson; completion state at 100% (quickstart V10, V1
 
 ### Tests for User Story 4
 
-- [ ] T068 [P] [US4] Unit tests for dashboard aggregation (0% state, per-module counts, `averageBestScore` null when none, `topicsToReview` = up to 3 completed lessons with `bestScore < 70` lowest first, `continueLessonId` skips completed and unavailable, `isComplete`, unpublished lessons excluded from totals) in `apps/api/tests/unit/dashboard.test.ts`
-- [ ] T069 [P] [US4] Integration test for `GET /dashboard` (404 without plan; numbers after attempts; unpublished lesson excluded after re-sync → V12) in `apps/api/tests/integration/dashboard.test.ts`
+- [X] T068 [P] [US4] Unit tests for dashboard aggregation (0% state, per-module counts, `averageBestScore` null when none, `topicsToReview` = up to 3 completed lessons with `bestScore < 70` lowest first, `continueLessonId` skips completed and unavailable, `isComplete`, unpublished lessons excluded from totals) in `apps/api/tests/unit/dashboard.test.ts`
+- [X] T069 [P] [US4] Integration test for `GET /dashboard` (404 without plan; numbers after attempts; unpublished lesson excluded after re-sync → V12) in `apps/api/tests/integration/dashboard.test.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T070 [P] [US4] Create `DashboardSchema` in `packages/shared/src/schemas/dashboard.ts`
-- [ ] T071 [P] [US4] Implement pure `buildDashboard(planLessons, progress)` in `apps/api/src/domain/dashboard.ts`
-- [ ] T072 [US4] Implement progress service loading plan lessons + progress and route `GET /dashboard` in `apps/api/src/services/progress-service.ts` and `apps/api/src/routes/dashboard.ts`
-- [ ] T073 [US4] Implement dashboard page (target summary, overall ProgressBar + percent, per-module progress list, average score, "Topics to review" links, prominent "Continue" button, completion state at 100%, "Change interview target" link to `/setup`) and route `/dashboard` in `apps/web/src/features/dashboard/DashboardPage.tsx` and `apps/web/src/app/router.tsx`
+- [X] T070 [P] [US4] Create `DashboardSchema` in `packages/shared/src/schemas/dashboard.ts`
+- [X] T071 [P] [US4] Implement pure `buildDashboard(planLessons, progress)` in `apps/api/src/domain/dashboard.ts`
+- [X] T072 [US4] Implement progress service loading plan lessons + progress and route `GET /dashboard` in `apps/api/src/services/progress-service.ts` and `apps/api/src/routes/dashboard.ts`
+- [X] T073 [US4] Implement dashboard page (target summary, overall ProgressBar + percent, per-module progress list, average score, "Topics to review" links, prominent "Continue" button, completion state at 100%, "Change interview target" link to `/setup`) and route `/dashboard` in `apps/web/src/features/dashboard/DashboardPage.tsx` and `apps/web/src/app/router.tsx`
 
 **Checkpoint**: All user stories independently functional
 

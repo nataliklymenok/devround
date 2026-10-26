@@ -1,0 +1,131 @@
+import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
+import type { FastifyInstance } from 'fastify'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import {
+  FIXTURE_CONTENT_DIR,
+  buildTestApp,
+  jsonHeaders,
+  resetDb,
+  signIn,
+  syncContent,
+} from '../helpers.js'
+
+let app: FastifyInstance
+let cookie: string
+const tmpDirs: string[] = []
+
+beforeAll(async () => {
+  app = await buildTestApp()
+})
+beforeEach(async () => {
+  await resetDb()
+  await syncContent()
+  cookie = await signIn(app, 'ann@example.com')
+})
+afterAll(async () => {
+  await app.close()
+  await Promise.all(tmpDirs.map((d) => rm(d, { recursive: true, force: true })))
+})
+
+function dashboard(as = cookie) {
+  return app.inject({ method: 'GET', url: '/api/v1/dashboard', headers: { cookie: as } })
+}
+
+async function createPlan() {
+  const res = await app.inject({
+    method: 'POST',
+    url: '/api/v1/plans',
+    headers: { ...jsonHeaders, cookie },
+    payload: { trackId: 'frontend', levelId: 'middle', technologyIds: ['react'] },
+  })
+  expect(res.statusCode).toBe(201)
+}
+
+async function submit(lessonId: string, answers: number[]) {
+  const res = await app.inject({
+    method: 'POST',
+    url: `/api/v1/lessons/${lessonId}/attempts`,
+    headers: { ...jsonHeaders, cookie },
+    payload: { answers },
+  })
+  expect(res.statusCode).toBe(201)
+}
+
+describe('GET /dashboard', () => {
+  it('requires auth and an active plan', async () => {
+    expect((await app.inject({ method: 'GET', url: '/api/v1/dashboard' })).statusCode).toBe(401)
+    const res = await dashboard()
+    expect(res.statusCode).toBe(404)
+    expect(res.json().error.code).toBe('NOT_FOUND')
+  })
+
+  it('reflects quiz results (V10)', async () => {
+    await createPlan()
+    await submit('react-jsx', [0, 1, 2]) // 100
+    await submit('react-props', [0, 0, 0]) // 33
+    const res = await dashboard()
+    expect(res.statusCode).toBe(200)
+    expect(res.json()).toEqual({
+      target: { track: 'Frontend', level: 'Middle', technologies: ['React'] },
+      overall: { completed: 2, total: 6, percent: 33 },
+      modules: [
+        { id: 'react-basics', title: 'React basics', completed: 2, total: 3 },
+        { id: 'react-advanced', title: 'Advanced React', completed: 0, total: 3 },
+      ],
+      averageBestScore: 67,
+      topicsToReview: [{ lessonId: 'react-props', title: 'React Props', bestScore: 33 }],
+      continueLessonId: 'react-state',
+      isComplete: false,
+    })
+  })
+
+  it('excludes a lesson unpublished by a content re-sync (V12)', async () => {
+    await createPlan()
+    await submit('react-jsx', [0, 1, 2])
+
+    const dir = await mkdtemp(path.join(os.tmpdir(), 'devround-content-'))
+    tmpDirs.push(dir)
+    await cp(FIXTURE_CONTENT_DIR, dir, { recursive: true })
+    // Coverage only applies to available technologies; mark React unavailable to retire a lesson.
+    const catalog = path.join(dir, 'catalog.yaml')
+    await writeFile(
+      catalog,
+      (await readFile(catalog, 'utf8')).replace(
+        '{ id: react, name: React, available: true }',
+        '{ id: react, name: React, available: false }',
+      ),
+    )
+    await rm(path.join(dir, 'frontend/react/react-jsx.md'))
+    await writeFile(
+      path.join(dir, 'retired.yaml'),
+      'lessons:\n  - { id: react-jsx, retiredAt: 2026-10-26, reason: test }\nmodules: []\n',
+    )
+    await syncContent(dir)
+
+    const body = (await dashboard()).json()
+    expect(body.overall).toEqual({ completed: 0, total: 5, percent: 0 })
+    expect(body.continueLessonId).toBe('react-props')
+    const plan = await app.inject({
+      method: 'GET',
+      url: '/api/v1/plans/current',
+      headers: { cookie },
+    })
+    const jsx = plan.json().modules[0].lessons[0]
+    expect(jsx).toMatchObject({ id: 'react-jsx', isAvailable: false })
+  })
+
+  it("does not leak other users' progress", async () => {
+    await createPlan()
+    await submit('react-jsx', [0, 1, 2])
+    const bob = await signIn(app, 'bob@example.com')
+    await app.inject({
+      method: 'POST',
+      url: '/api/v1/plans',
+      headers: { ...jsonHeaders, cookie: bob },
+      payload: { trackId: 'frontend', levelId: 'middle', technologyIds: ['react'] },
+    })
+    expect((await dashboard(bob)).json().overall.completed).toBe(0)
+  })
+})

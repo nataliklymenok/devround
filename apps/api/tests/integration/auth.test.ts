@@ -96,7 +96,9 @@ describe('GET /me', () => {
   it('slides the expiry when the session was last seen over an hour ago', async () => {
     const cookie = await signIn(app, 'bob@example.com')
     const old = new Date(Date.now() - 2 * 60 * 60 * 1000)
-    await testDb().session.updateMany({ data: { lastSeenAt: old, expiresAt: new Date(Date.now() + 1000 * 60) } })
+    await testDb().session.updateMany({
+      data: { lastSeenAt: old, expiresAt: new Date(Date.now() + 1000 * 60) },
+    })
     const res = await app.inject({ method: 'GET', url: '/api/v1/me', headers: { cookie } })
     expect(res.statusCode).toBe(200)
     const session = await testDb().session.findFirstOrThrow()

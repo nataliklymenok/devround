@@ -57,11 +57,20 @@ export function testConfig(overrides: Partial<Config> = {}): Config {
     WEB_ORIGIN: TEST_ORIGIN,
   })
   // High limits so suites that sign in before every test are not throttled.
-  return { ...base, RATE_LIMIT_PER_MINUTE: 10_000, AUTH_RATE_LIMIT_PER_MINUTE: 10_000, ...overrides }
+  return {
+    ...base,
+    RATE_LIMIT_PER_MINUTE: 10_000,
+    AUTH_RATE_LIMIT_PER_MINUTE: 10_000,
+    ...overrides,
+  }
 }
 
 export async function buildTestApp(overrides: Partial<Config> = {}): Promise<FastifyInstance> {
-  return buildApp({ config: testConfig(overrides), db: testDb(), verifier: new FakeGoogleVerifier() })
+  return buildApp({
+    config: testConfig(overrides),
+    db: testDb(),
+    verifier: new FakeGoogleVerifier(),
+  })
 }
 
 /** Headers every mutating request from our web app carries (origin check). */

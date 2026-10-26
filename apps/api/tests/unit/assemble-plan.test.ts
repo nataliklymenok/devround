@@ -26,7 +26,10 @@ const catalog: CatalogForPlan = {
 
 describe('assemblePlan', () => {
   it('filters by technologies and level and orders by technology → module → lesson', () => {
-    const plan = assemblePlan(catalog, { levelId: 'middle', technologyIds: ['react', 'typescript'] })
+    const plan = assemblePlan(catalog, {
+      levelId: 'middle',
+      technologyIds: ['react', 'typescript'],
+    })
     expect(plan).toEqual([
       { lessonId: 't-a1', moduleId: 'ts-a', order: 1 },
       { lessonId: 'r-a1', moduleId: 'react-a', order: 2 },
@@ -36,7 +39,9 @@ describe('assemblePlan', () => {
   })
 
   it('excludes unpublished lessons and lessons for other levels', () => {
-    const ids = assemblePlan(catalog, { levelId: 'middle', technologyIds: ['react'] }).map((l) => l.lessonId)
+    const ids = assemblePlan(catalog, { levelId: 'middle', technologyIds: ['react'] }).map(
+      (l) => l.lessonId,
+    )
     expect(ids).not.toContain('r-a3')
     expect(ids).not.toContain('r-a2')
   })
@@ -59,7 +64,9 @@ describe('assemblePlan', () => {
   })
 
   it('ignores technologies that were not selected', () => {
-    const ids = assemblePlan(catalog, { levelId: 'middle', technologyIds: ['javascript'] }).map((l) => l.lessonId)
+    const ids = assemblePlan(catalog, { levelId: 'middle', technologyIds: ['javascript'] }).map(
+      (l) => l.lessonId,
+    )
     expect(ids).toEqual(['j-a1'])
   })
 })

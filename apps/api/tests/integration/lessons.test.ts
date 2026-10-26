@@ -63,7 +63,11 @@ describe('GET /lessons/:id', () => {
     expect(lesson.body).toContain('## Overview')
     expect(lesson.interviewQuestions).toHaveLength(3)
     expect(lesson.keyTakeaways).toHaveLength(3)
-    expect(lesson.quiz[0]).toEqual({ id: 'q1', question: 'Fixture question one?', options: ['Right', 'Wrong'] })
+    expect(lesson.quiz[0]).toEqual({
+      id: 'q1',
+      question: 'Fixture question one?',
+      options: ['Right', 'Wrong'],
+    })
   })
 
   it('records lastOpenedAt', async () => {
@@ -73,12 +77,12 @@ describe('GET /lessons/:id', () => {
     expect(progress.completedAt).toBeNull()
   })
 
-  it('returns 404 for a lesson that is not in the user\'s active plan', async () => {
+  it("returns 404 for a lesson that is not in the user's active plan", async () => {
     expect((await getLesson('js-values')).statusCode).toBe(404)
     expect((await getLesson('does-not-exist')).statusCode).toBe(404)
   })
 
-  it('returns 404 for another user\'s lessons when they have no such plan (V11)', async () => {
+  it("returns 404 for another user's lessons when they have no such plan (V11)", async () => {
     const eve = await signIn(app, 'eve@example.com')
     expect((await getLesson('react-props', eve)).statusCode).toBe(404)
     expect((await submit('react-props', ALL_CORRECT, eve)).statusCode).toBe(404)
@@ -125,17 +129,25 @@ describe('POST /lessons/:id/attempts', () => {
 
   it('keeps the best score and first completion time across retakes', async () => {
     await submit('react-props', ALL_CORRECT)
-    const first = await testDb().lessonProgress.findFirstOrThrow({ where: { lessonId: 'react-props' } })
+    const first = await testDb().lessonProgress.findFirstOrThrow({
+      where: { lessonId: 'react-props' },
+    })
     const retake = await submit('react-props', [1, 0, 0])
     expect(retake.json()).toMatchObject({ score: 0, progress: { completed: true, bestScore: 100 } })
-    const after = await testDb().lessonProgress.findFirstOrThrow({ where: { lessonId: 'react-props' } })
+    const after = await testDb().lessonProgress.findFirstOrThrow({
+      where: { lessonId: 'react-props' },
+    })
     expect(after.completedAt).toEqual(first.completedAt)
     expect(await testDb().quizAttempt.count()).toBe(2)
   })
 
   it('updates plan progress immediately', async () => {
     await submit('react-jsx', ALL_CORRECT)
-    const plan = await app.inject({ method: 'GET', url: '/api/v1/plans/current', headers: { cookie } })
+    const plan = await app.inject({
+      method: 'GET',
+      url: '/api/v1/plans/current',
+      headers: { cookie },
+    })
     const lesson = plan.json().modules[0].lessons[0]
     expect(lesson.progress).toEqual({ completed: true, bestScore: 100 })
   })

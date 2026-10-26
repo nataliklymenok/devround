@@ -35,14 +35,20 @@ describe('content:sync', () => {
     await syncContent(dir)
 
     const edited = path.join(dir, 'frontend/javascript/js-values.md')
-    await writeFile(edited, (await readFile(edited, 'utf8')).replace('explained for tests', 'rewritten'))
+    await writeFile(
+      edited,
+      (await readFile(edited, 'utf8')).replace('explained for tests', 'rewritten'),
+    )
 
     // The fixture has no spare lessons, so make React unavailable (coverage applies only to
     // available technologies) before retiring one of its lessons.
     const catalog = path.join(dir, 'catalog.yaml')
     await writeFile(
       catalog,
-      (await readFile(catalog, 'utf8')).replace('{ id: react, name: React, available: true }', '{ id: react, name: React, available: false }'),
+      (await readFile(catalog, 'utf8')).replace(
+        '{ id: react, name: React, available: true }',
+        '{ id: react, name: React, available: false }',
+      ),
     )
     await rm(path.join(dir, 'frontend/react/react-memo.md'))
     await writeFile(
@@ -54,7 +60,9 @@ describe('content:sync', () => {
     expect(report).toMatchObject({ created: 0, updated: 1, unpublished: 1 })
     const lesson = await testDb().lesson.findUniqueOrThrow({ where: { id: 'react-memo' } })
     expect(lesson.isPublished).toBe(false)
-    expect((await testDb().lesson.findUniqueOrThrow({ where: { id: 'js-values' } })).body).toContain('rewritten')
+    expect(
+      (await testDb().lesson.findUniqueOrThrow({ where: { id: 'js-values' } })).body,
+    ).toContain('rewritten')
   })
 
   it('refuses to republish an unpublished lesson id', async () => {

@@ -40,7 +40,9 @@ describe('GET /catalog', () => {
     expect(res.statusCode).toBe(200)
     const body = res.json()
     expect(body.levels.map((l: { id: string }) => l.id)).toEqual(['junior', 'middle', 'senior'])
-    expect(body.tracks.map((t: { id: string; isAvailable: boolean }) => [t.id, t.isAvailable])).toEqual([
+    expect(
+      body.tracks.map((t: { id: string; isAvailable: boolean }) => [t.id, t.isAvailable]),
+    ).toEqual([
       ['frontend', true],
       ['qa', false],
     ])
@@ -57,7 +59,11 @@ describe('POST /plans', () => {
     const res = await createPlan({ ...middleReact, technologyIds: ['react', 'javascript'] })
     expect(res.statusCode).toBe(201)
     const plan = res.json()
-    expect(plan.target).toEqual({ track: 'Frontend', level: 'Middle', technologies: ['JavaScript', 'React'] })
+    expect(plan.target).toEqual({
+      track: 'Frontend',
+      level: 'Middle',
+      technologies: ['JavaScript', 'React'],
+    })
     expect(plan.modules.map((m: { id: string }) => m.id)).toEqual([
       'js-basics',
       'js-async',
@@ -66,7 +72,9 @@ describe('POST /plans', () => {
     ])
     const lessons = plan.modules.flatMap((m: { lessons: { order: number }[] }) => m.lessons)
     expect(lessons).toHaveLength(12) // fixture: every lesson has "middle"
-    expect(lessons.map((l: { order: number }) => l.order)).toEqual(lessons.map((_: unknown, i: number) => i + 1))
+    expect(lessons.map((l: { order: number }) => l.order)).toEqual(
+      lessons.map((_: unknown, i: number) => i + 1),
+    )
     expect(lessons[0]).toEqual({
       id: 'js-values',
       order: 1,
@@ -120,7 +128,11 @@ describe('POST /plans', () => {
 
   it('archives the previous plan when replaceExisting is true (V7)', async () => {
     const first = (await createPlan(middleReact)).json()
-    const res = await createPlan({ ...middleReact, technologyIds: ['javascript'], replaceExisting: true })
+    const res = await createPlan({
+      ...middleReact,
+      technologyIds: ['javascript'],
+      replaceExisting: true,
+    })
     expect(res.statusCode).toBe(201)
     const old = await testDb().plan.findUniqueOrThrow({ where: { id: first.id } })
     expect(old.status).toBe('archived')
@@ -142,7 +154,7 @@ describe('GET /plans/current', () => {
     expect(res.json().error.code).toBe('NOT_FOUND')
   })
 
-  it('returns only the signed-in user\'s plan', async () => {
+  it("returns only the signed-in user's plan", async () => {
     const created = (await createPlan(middleReact)).json()
     expect((await currentPlan()).json().id).toBe(created.id)
     const other = await signIn(app, 'eve@example.com')
@@ -152,7 +164,9 @@ describe('GET /plans/current', () => {
   it('marks unpublished lessons as unavailable', async () => {
     await createPlan(middleReact)
     await testDb().lesson.update({ where: { id: 'react-jsx' }, data: { isPublished: false } })
-    const lessons = (await currentPlan()).json().modules.flatMap((m: { lessons: unknown[] }) => m.lessons)
+    const lessons = (await currentPlan())
+      .json()
+      .modules.flatMap((m: { lessons: unknown[] }) => m.lessons)
     expect(lessons.find((l: { id: string }) => l.id === 'react-jsx').isAvailable).toBe(false)
   })
 

@@ -58,15 +58,21 @@ describe('checkLibrary', () => {
 
   it('enforces coverage per technology and per level', () => {
     const lib = clone()
-    lib.lessons = lib.lessons.filter((l) => l.technologyId !== 'react' || !l.data.levels.includes('senior'))
-    const messages = checkLibrary(lib).filter((i) => i.rule === 'coverage').map((i) => i.message)
+    lib.lessons = lib.lessons.filter(
+      (l) => l.technologyId !== 'react' || !l.data.levels.includes('senior'),
+    )
+    const messages = checkLibrary(lib)
+      .filter((i) => i.rule === 'coverage')
+      .map((i) => i.message)
     expect(messages.some((m) => m.includes('≥ 6 lessons'))).toBe(true)
     expect(messages.some((m) => m.includes('level "senior"'))).toBe(true)
   })
 
   it('ignores coverage for unavailable technologies', () => {
     const lib = clone()
-    expect(lib.catalog.tracks[0]!.technologies.find((t) => t.id === 'html-css')?.available).toBe(false)
+    expect(lib.catalog.tracks[0]!.technologies.find((t) => t.id === 'html-css')?.available).toBe(
+      false,
+    )
     expect(rules(lib)).not.toContain('coverage')
   })
 
@@ -79,7 +85,11 @@ describe('checkLibrary', () => {
   it('rejects a retired id reused as a file or module', () => {
     const lib = clone()
     lib.retired.lessons.push({ id: lib.lessons[0]!.data.id, retiredAt: '2026-10-01', reason: 'x' })
-    lib.retired.modules.push({ id: lib.modules[0]!.modules[0]!.id, retiredAt: '2026-10-01', reason: 'x' })
+    lib.retired.modules.push({
+      id: lib.modules[0]!.modules[0]!.id,
+      retiredAt: '2026-10-01',
+      reason: 'x',
+    })
     expect(rules(lib).filter((r) => r === 'retired-id-reused')).toHaveLength(2)
   })
 })
@@ -95,11 +105,15 @@ describe('checkBody', () => {
   })
 
   it('requires a language on fenced code blocks', () => {
-    expect(checkBody('a.md', '## T\n```\ncode\n```').map((i) => i.rule)).toContain('code-fence-language')
+    expect(checkBody('a.md', '## T\n```\ncode\n```').map((i) => i.rule)).toContain(
+      'code-fence-language',
+    )
   })
 
   it('detects an unclosed fence', () => {
-    expect(checkBody('a.md', '## T\n```ts\ncode').map((i) => i.rule)).toContain('code-fence-unclosed')
+    expect(checkBody('a.md', '## T\n```ts\ncode').map((i) => i.rule)).toContain(
+      'code-fence-unclosed',
+    )
   })
 })
 
@@ -107,7 +121,10 @@ describe('findRemovedIds', () => {
   it('flags ids removed without retirement and accepts retired ones', () => {
     const lib = clone()
     const current = collectIds(lib)
-    const base = { lessons: [...current.lessons, 'old-lesson', 'gone-lesson'], modules: [...current.modules, 'old-module'] }
+    const base = {
+      lessons: [...current.lessons, 'old-lesson', 'gone-lesson'],
+      modules: [...current.modules, 'old-module'],
+    }
     lib.retired.lessons.push({ id: 'old-lesson', retiredAt: '2026-10-01', reason: 'merged' })
     const messages = findRemovedIds(base, current, lib).map((i) => i.message)
     expect(messages).toHaveLength(2)
