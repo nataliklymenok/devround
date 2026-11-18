@@ -10,6 +10,8 @@ export const ErrorCodeSchema = z.enum([
   'TRACK_UNAVAILABLE',
   'RATE_LIMITED',
   'INTERNAL',
+  'HINTS_USED',
+  'NO_MORE_HINTS',
 ])
 export type ErrorCode = z.infer<typeof ErrorCodeSchema>
 

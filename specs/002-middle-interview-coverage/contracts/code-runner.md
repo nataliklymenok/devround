@@ -7,12 +7,17 @@
 ```text
 App page (our origin, has session cookie)
  └─ <iframe sandbox="allow-scripts" srcdoc="…">   ← opaque origin, CSP: default-src 'none';
-     │                                               script-src 'unsafe-inline' blob:; worker-src blob:
+     │                                               script-src 'unsafe-inline' 'unsafe-eval' blob:;
+     │                                               worker-src blob:
      └─ Web Worker (blob:)                         ← runs harness + user code
 ```
 
 - No `allow-same-origin` → no cookies, storage, IndexedDB or parent DOM access.
 - CSP `default-src 'none'` → `fetch`, XHR, WebSocket, `importScripts` from the network are blocked.
+- `'unsafe-eval'` is required because the harness compiles user code with `new Function`; it is
+  confined to the opaque-origin sandbox, which has no network, storage or session access.
+- The worker source (harness via `createHarness.toString()` + bootstrap) is sent from the app in the
+  `run` message, so nothing is loaded from our origin inside the sandbox.
 - One fresh iframe per run; removed after the run or on timeout (terminates the worker).
 - Total time limit: **5000 ms** per run (configurable constant); console capture capped at
   100 lines × 500 chars; result payload capped at 256 KB.
@@ -22,7 +27,7 @@ App page (our origin, has session cookie)
 App → iframe (`postMessage(msg, '*')`; the iframe has an opaque origin):
 
 ```ts
-{ type: 'run', version: 1, runId: string, code: string, entry: string,
+{ type: 'run', version: 1, runId: string, workerSource: string, code: string, entry: string,
   tests: { name: string; code: string }[], perCaseTimeoutMs: number }
 ```
 

@@ -15,9 +15,11 @@ import { catalogRoutes } from './routes/catalog.js'
 import { dashboardRoutes } from './routes/dashboard.js'
 import { lessonRoutes } from './routes/lessons.js'
 import { planRoutes } from './routes/plans.js'
+import { taskRoutes } from './routes/tasks.js'
 import { LessonService } from './services/lesson-service.js'
 import { PlanService } from './services/plan-service.js'
 import { ProgressService } from './services/progress-service.js'
+import { TaskService } from './services/task-service.js'
 import { SessionService } from './services/session-service.js'
 
 export interface AppDeps {
@@ -53,6 +55,7 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
       await api.register(planRoutes(new PlanService(deps.db)))
       await api.register(lessonRoutes(new LessonService(deps.db)))
       await api.register(dashboardRoutes(new ProgressService(deps.db)))
+      await api.register(taskRoutes(new TaskService(deps.db)))
     },
     { prefix: '/api/v1' },
   )

@@ -98,6 +98,11 @@ snapshots). Each decision: what, why, alternatives.
   "Timed out". A fresh iframe is created for every run.
 - **Rationale**: Uses only browser primitives; user code never runs on our server; an infinite loop
   only blocks a worker that we kill; opaque origin + CSP gives defence in depth for the session.
+- **Spike result (T039, 2026-11-18, Playwright 1.64: Chromium, Firefox, WebKit)**: a blob Worker is
+  created successfully inside `<iframe sandbox="allow-scripts" srcdoc>` with the CSP above in all
+  three engines. `fetch` from both the iframe and the worker is blocked (TypeError); `localStorage`
+  and the parent DOM throw SecurityError; `document.cookie` throws in Chromium/Firefox and returns
+  an empty string in WebKit (the host page's session cookie is never visible). No fallback needed.
 - **Alternatives**: QuickJS compiled to WebAssembly (strongest isolation and memory limits, but
   ~1 MB extra and a different JS engine than the user's interview environment — keep as a fallback
   if browser sandboxing proves insufficient); running code on the server in containers (cost,

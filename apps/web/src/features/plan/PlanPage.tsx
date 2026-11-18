@@ -7,6 +7,15 @@ import { Spinner } from '../../components/Spinner'
 import { useCurrentPlan } from './hooks'
 import styles from './plan.module.css'
 
+const TASK_STATUS = {
+  solved_own: 'Solved on my own',
+  solved_with_hints: 'Solved with hints',
+  revisit: 'Revisit',
+} as const
+
+const isSolved = (status: keyof typeof TASK_STATUS | null) =>
+  status === 'solved_own' || status === 'solved_with_hints'
+
 function formatDuration(minutes: number): string {
   return minutes < 60 ? `${minutes} min` : `about ${Math.round(minutes / 60)} h`
 }
@@ -106,6 +115,65 @@ export function PlanPage() {
           )
         })}
       </ol>
+
+      {plan.data.tasks.length > 0 && (
+        <section className={styles.module} aria-labelledby="live-coding">
+          <div className={styles.moduleHeader}>
+            <div>
+              <span className={styles.tag}>Practice</span>
+              <h2 id="live-coding" className={styles.moduleTitle}>
+                Live coding
+              </h2>
+            </div>
+            <span className={styles.count}>
+              {plan.data.tasks.filter((t) => t.isAvailable && isSolved(t.progress.status)).length}/
+              {plan.data.tasks.filter((t) => t.isAvailable).length}
+            </span>
+          </div>
+          <ol className={styles.lessons}>
+            {plan.data.tasks.map((task) => (
+              <li
+                key={task.id}
+                className={styles.lesson}
+                data-unavailable={!task.isAvailable || undefined}
+              >
+                <span className={styles.order}>{task.order}</span>
+                <div className={styles.lessonBody}>
+                  {task.isAvailable ? (
+                    <Link to={`/tasks/${task.id}`} className={styles.lessonTitle}>
+                      {task.title}
+                    </Link>
+                  ) : (
+                    <span className={styles.lessonTitle}>{task.title}</span>
+                  )}
+                  <p className={styles.description}>
+                    {task.technology} · {task.difficulty} ·{' '}
+                    {task.mode === 'tests' ? 'auto-checked' : 'self-check'}
+                    {task.progress.lastCheck &&
+                      ` · last run ${task.progress.lastCheck.passed}/${task.progress.lastCheck.total}`}
+                  </p>
+                </div>
+                <div className={styles.status}>
+                  {task.isDraft && task.isAvailable && <DraftBadge />}
+                  {!task.isAvailable ? (
+                    <span className={styles.badge}>No longer available</span>
+                  ) : task.progress.status ? (
+                    <span
+                      className={styles.badge}
+                      data-variant={isSolved(task.progress.status) ? 'done' : undefined}
+                    >
+                      {TASK_STATUS[task.progress.status]}
+                    </span>
+                  ) : (
+                    <span className={styles.badge}>Not started</span>
+                  )}
+                  <span className={styles.minutes}>{task.estimatedMinutes} min</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
     </div>
   )
 }

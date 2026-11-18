@@ -2,7 +2,8 @@
 
 Extends [001 api](../../001-interview-prep-mvp/contracts/api.md): same auth (🔒 = session
 required), origin check, error envelope, and 404 for items outside the user's active plan /
-410 for unpublished items. New error code: `409 HINTS_USED` (cannot mark "Solved on my own").
+410 for unpublished items. New error codes: `409 HINTS_USED` (cannot mark "Solved on my own" after a reveal) and
+`409 NO_MORE_HINTS` (all hints already revealed).
 
 ## Changed
 
@@ -41,7 +42,7 @@ completed: number, total: number }[]`; `topicsToReview` items gain `kind: 'lesso
 | Method & path | Body | Response | Notes |
 |---|---|---|---|
 | `GET /tasks/:id` 🔒 | — | `200 TaskViewSchema` | statement, starterCode, `entry`, `tests` (tests mode) or `acceptanceCriteria`, `hints` = revealed only, `solution` = null unless revealed, `progress` (status, hintsRevealed, solutionRevealed, draftCode, lastCheck), `hintsTotal`, references, isDraft |
-| `POST /tasks/:id/hints` 🔒 | `{}` | `200 { hint, index, hintsRevealed }` | reveals the next hint; 409 when none left |
+| `POST /tasks/:id/hints` 🔒 | `{}` | `200 { hint, index, hintsRevealed }` | reveals the next hint; `409 NO_MORE_HINTS` when none left |
 | `POST /tasks/:id/solution` 🔒 | `{}` | `200 { solution }` | marks solution revealed for this attempt |
 | `POST /tasks/:id/draft` 🔒 | `{ code }` (≤ 20 KB) | `204` | tests mode only, else 400 |
 | `POST /tasks/:id/check-result` 🔒 | `{ passed, total }` | `204` | self-reported (R8); `passed ≤ total` |
