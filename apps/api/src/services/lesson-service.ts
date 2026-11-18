@@ -1,5 +1,6 @@
 import {
   InterviewQuestionSchema,
+  ReferenceSchema,
   QuizItemSchema,
   type LessonView,
   type QuizAttemptResult,
@@ -11,6 +12,7 @@ import { AppError, notFound } from '../errors.js'
 
 const QuizSchema = z.array(QuizItemSchema)
 const InterviewQuestionsSchema = z.array(InterviewQuestionSchema)
+const ReferencesSchema = z.array(ReferenceSchema)
 
 export class LessonService {
   constructor(private readonly db: Db) {}
@@ -73,6 +75,8 @@ export class LessonService {
         options,
       })),
       progress: { completed: progress.completedAt !== null, bestScore: progress.bestScore },
+      references: ReferencesSchema.parse(lesson.references),
+      isDraft: lesson.isDraft,
       ...(await this.neighbours(entry.planId, entry.order)),
     }
   }

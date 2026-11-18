@@ -49,6 +49,15 @@ function SetupForm({ catalog }: { catalog: CatalogResponse }) {
     setTechnologyIds([])
   }
 
+  // FR-008: technologies often asked together with the selection, not yet selected.
+  const recommended =
+    track?.technologies.filter(
+      (t) =>
+        t.isAvailable &&
+        !technologyIds.includes(t.id) &&
+        track.technologies.some((s) => technologyIds.includes(s.id) && s.recommends.includes(t.id)),
+    ) ?? []
+
   const toggleTechnology = (id: string) =>
     setTechnologyIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]))
 
@@ -142,6 +151,22 @@ function SetupForm({ catalog }: { catalog: CatalogResponse }) {
           ))}
         </div>
       </fieldset>
+
+      {recommended.length > 0 && (
+        <div className={styles.recommend} role="note">
+          <span>
+            Often asked together with your selection:{' '}
+            <strong>{recommended.map((t) => t.name).join(', ')}</strong>
+          </span>
+          <button
+            type="button"
+            className="button button-secondary"
+            onClick={() => setTechnologyIds((ids) => [...ids, ...recommended.map((t) => t.id)])}
+          >
+            Add {recommended.length === 1 ? 'it' : 'them'}
+          </button>
+        </div>
+      )}
 
       <div className={styles.actions}>
         <button

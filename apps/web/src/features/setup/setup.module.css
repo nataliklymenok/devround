@@ -120,3 +120,14 @@
   justify-content: flex-end;
   gap: var(--space-2);
 }
+
+.recommend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-sunken);
+}

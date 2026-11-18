@@ -11,6 +11,8 @@ export function uniqueEmail(prefix = 'e2e'): string {
 export async function signIn(page: Page, email: string) {
   await page.getByLabel('Dev sign-in (fake auth)').fill(email)
   await page.getByRole('button', { name: 'Sign in' }).click()
+  // Wait until the app has navigated away from the sign-in form (session cookie is set).
+  await expect(page.getByRole('button', { name: 'Sign in' })).toHaveCount(0)
 }
 
 export async function createPlan(page: Page, level: string, technologies: string[]) {

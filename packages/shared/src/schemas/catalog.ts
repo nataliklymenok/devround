@@ -4,6 +4,8 @@ export const CatalogTechnologySchema = z.object({
   id: z.string(),
   name: z.string(),
   isAvailable: z.boolean(),
+  /** technology ids often asked together (setup recommendation, FR-008) */
+  recommends: z.array(z.string()),
 })
 
 export const CatalogTrackSchema = z.object({

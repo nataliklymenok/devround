@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { InterviewQuestionSchema } from './content.js'
+import { InterviewQuestionSchema, ReferenceSchema } from './content.js'
 import { LessonProgressSummarySchema } from './plan.js'
 
 /** Quiz question as shown before submission — no correct answer, no explanation. */
@@ -22,6 +22,8 @@ export const LessonViewSchema = z.object({
   keyTakeaways: z.array(z.string()),
   quiz: z.array(PublicQuizItemSchema),
   progress: LessonProgressSummarySchema,
+  references: z.array(ReferenceSchema),
+  isDraft: z.boolean(),
   prevLessonId: z.string().nullable(),
   nextLessonId: z.string().nullable(),
 })

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router'
 import { ApiError } from '../../api/client'
 import { EmptyState } from '../../components/EmptyState'
 import { ErrorState } from '../../components/ErrorState'
+import { DraftBadge } from '../../components/DraftBadge'
 import { Markdown } from '../../components/Markdown'
 import { Spinner } from '../../components/Spinner'
 import { useLesson } from './hooks'
@@ -44,6 +45,7 @@ function LessonContent({ lessonId }: { lessonId: string }) {
           {data.technology} · {data.moduleTitle} · Lesson {data.order}
         </p>
         <h1 className={styles.title}>{data.title}</h1>
+        {data.isDraft && <DraftBadge long />}
         <p className={styles.muted}>
           {data.estimatedMinutes} min
           {data.progress.completed &&
@@ -79,6 +81,22 @@ function LessonContent({ lessonId }: { lessonId: string }) {
         <h2 id="quiz">Check yourself</h2>
         <Quiz lessonId={data.id} quiz={data.quiz} onResult={() => setFinished(true)} />
       </section>
+
+      {data.references.length > 0 && (
+        <section aria-labelledby="further-reading" className={styles.section}>
+          <h2 id="further-reading">Further reading</h2>
+          <ul className={styles.references}>
+            {data.references.map((r) => (
+              <li key={r.url}>
+                <a href={r.url} target="_blank" rel="noopener noreferrer">
+                  {r.title}
+                  <span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <nav className={styles.pager} aria-label="Lesson navigation">
         {data.prevLessonId ? (

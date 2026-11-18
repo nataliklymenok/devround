@@ -1,5 +1,6 @@
 # DevRound lesson library catalog. List order defines display / plan order.
 # Ids are permanent — never rename or reuse them (see retired.yaml).
+# recommends: technologies often asked together, suggested on the setup screen.
 levels:
   - { id: junior, name: Junior, rank: 1 }
   - { id: middle, name: Middle, rank: 2 }
@@ -9,11 +10,15 @@ tracks:
     name: Frontend
     available: true
     technologies:
-      - { id: html-css, name: HTML & CSS, available: false }
-      - { id: javascript, name: JavaScript, available: true }
-      - { id: typescript, name: TypeScript, available: true }
-      - { id: react, name: React, available: true }
-      - { id: nodejs, name: Node.js basics, available: true }
+      - { id: html-css, name: HTML & CSS, available: false, recommends: [browser-web] }
+      - { id: browser-web, name: Browser & Web, available: false, recommends: [javascript, html-css] }
+      - { id: javascript, name: JavaScript, available: true, recommends: [browser-web] }
+      - { id: typescript, name: TypeScript, available: true, recommends: [javascript] }
+      - { id: react, name: React, available: true, recommends: [javascript, browser-web] }
+      - { id: nextjs, name: Next.js, available: false, recommends: [react, javascript, browser-web] }
+      - { id: redux, name: Redux & state management, available: false, recommends: [react] }
+      - { id: testing, name: Testing, available: false, recommends: [javascript, react] }
+      - { id: nodejs, name: Node.js basics, available: true, recommends: [javascript] }
   - { id: qa, name: QA, available: false, technologies: [] }
   - { id: automation, name: Automation, available: false, technologies: [] }
   - { id: backend, name: Backend, available: false, technologies: [] }

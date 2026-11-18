@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { DraftBadge } from '../../components/DraftBadge'
 import { EmptyState } from '../../components/EmptyState'
 import { ErrorState } from '../../components/ErrorState'
 import { ProgressBar } from '../../components/ProgressBar'
@@ -85,6 +86,7 @@ export function PlanPage() {
                       <p className={styles.description}>{lesson.description}</p>
                     </div>
                     <div className={styles.status}>
+                      {lesson.isDraft && lesson.isAvailable && <DraftBadge />}
                       {!lesson.isAvailable ? (
                         <span className={styles.badge}>No longer available</span>
                       ) : lesson.progress.completed ? (

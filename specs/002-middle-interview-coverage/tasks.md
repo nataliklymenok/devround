@@ -77,15 +77,15 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 
 ### Tests for User Story 1
 
-- [ ] T022 [P] [US1] Integration tests: `GET /catalog` returns `recommends`; `GET /lessons/:id` returns `references` and `isDraft`; plan lesson items carry `isDraft` in `apps/api/tests/integration/catalog-lessons-002.test.ts`
-- [ ] T023 [P] [US1] E2E: setup recommendation hint adds JavaScript + Browser & Web when React is chosen; lesson page shows "Further reading" and the Draft badge in `e2e/coverage.spec.ts`
+- [X] T022 [P] [US1] Integration tests: `GET /catalog` returns `recommends`; `GET /lessons/:id` returns `references` and `isDraft`; plan lesson items carry `isDraft` in `apps/api/tests/integration/catalog-lessons-002.test.ts`
+- [X] T023 [P] [US1] E2E: setup recommendation hint adds JavaScript + Browser & Web when React is chosen; lesson page shows "Further reading" and the Draft badge in `e2e/coverage.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T024 [US1] API: include `recommends` in `apps/api/src/routes/catalog.ts`; `references`, `isDraft` in `apps/api/src/services/lesson-service.ts`; extend `CatalogResponseSchema`/`LessonViewSchema` in `packages/shared/src/schemas/`
-- [ ] T025 [P] [US1] Setup page recommendation hint ("Often asked together with …" + one-click add, non-blocking) in `apps/web/src/features/setup/SetupPage.tsx`
-- [ ] T026 [P] [US1] Lesson page "Further reading" list (external links with `rel="noopener noreferrer"`) and "Draft — not yet reviewed" badge in `apps/web/src/features/lesson/LessonPage.tsx`; Draft badge on plan items in `apps/web/src/features/plan/PlanPage.tsx`
-- [ ] T027 [US1] Catalog update in `content/catalog.yaml`: technologies in order `html-css`, `browser-web`, `javascript`, `typescript`, `react`, `nextjs`, `redux` ("Redux & state management"), `testing`, `nodejs` with `recommends` (R11); new ones start `available: false` and are switched on by their batch
+- [X] T024 [US1] API: include `recommends` in `apps/api/src/routes/catalog.ts`; `references`, `isDraft` in `apps/api/src/services/lesson-service.ts`; extend `CatalogResponseSchema`/`LessonViewSchema` in `packages/shared/src/schemas/`
+- [X] T025 [P] [US1] Setup page recommendation hint ("Often asked together with …" + one-click add, non-blocking) in `apps/web/src/features/setup/SetupPage.tsx`
+- [X] T026 [P] [US1] Lesson page "Further reading" list (external links with `rel="noopener noreferrer"`) and "Draft — not yet reviewed" badge in `apps/web/src/features/lesson/LessonPage.tsx`; Draft badge on plan items in `apps/web/src/features/plan/PlanPage.tsx`
+- [X] T027 [US1] Catalog update in `content/catalog.yaml`: technologies in order `html-css`, `browser-web`, `javascript`, `typescript`, `react`, `nextjs`, `redux` ("Redux & state management"), `testing`, `nodejs` with `recommends` (R11); new ones start `available: false` and are switched on by their batch
 - [ ] T028 [US1] Apply corrections from the owner's review of the 25 feature-001 lessons (task T079 of feature 001) in `content/frontend/{javascript,typescript,react,nodejs}/` and add their `reviewed:` dates — non-blocking, can happen any time before the PR into `main`
 - [ ] T029 [P] [US1] Batch — JavaScript gaps: add the missing Middle topics to `topics.middle.yaml` and lessons for uncovered `must` topics (e.g. arrays & immutability, Map/Set/WeakMap & GC, iterators & generators, error handling, timers & debounce/throttle concepts, deep vs shallow copy) in `content/frontend/javascript/`
 - [ ] T030 [P] [US1] Batch — Browser & Web (new, set available): `modules.yaml`, `topics.middle.yaml`, lessons on DOM & events (bubbling/capturing/delegation), rendering pipeline (reflow/repaint), HTTP & caching, CORS, cookies vs storage, security (XSS/CSRF/CSP), accessibility, Core Web Vitals & performance, plus `fe-system-design-approach` (FR-020) in `content/frontend/browser-web/`

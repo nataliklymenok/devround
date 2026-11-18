@@ -47,9 +47,9 @@ describe('GET /catalog', () => {
       ['qa', false],
     ])
     expect(body.tracks[0].technologies).toEqual([
-      { id: 'javascript', name: 'JavaScript', isAvailable: true },
-      { id: 'react', name: 'React', isAvailable: true },
-      { id: 'html-css', name: 'HTML & CSS', isAvailable: false },
+      { id: 'javascript', name: 'JavaScript', isAvailable: true, recommends: [] },
+      { id: 'react', name: 'React', isAvailable: true, recommends: ['javascript'] },
+      { id: 'html-css', name: 'HTML & CSS', isAvailable: false, recommends: [] },
     ])
   })
 })
