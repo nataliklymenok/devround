@@ -40,3 +40,7 @@
 - Informed defaults (review with `/speckit-clarify` if needed): must-know / good-to-know priority
   instead of numeric frequency; tasks and exercises live inside the personalized plan; Middle-only
   topic map; minimum volumes ≥ 60 lessons / ≥ 15 tasks / ≥ 5 design exercises for a full plan.
+
+- Analysis 2026-11-18 (/speckit-analyze): C1 (review before merge → CI gate), I1, U1, G1, D1, A1
+  (constitution 2.0.1), G2, I2, T1, G3 applied to spec, research, data model, contracts, quickstart
+  and tasks.

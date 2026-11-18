@@ -221,7 +221,8 @@ results.
   ordered hints, reference solution, explanation, complexity notes (where relevant), and common
   mistakes.
 - **FR-010**: Plans MUST include the coding tasks that match the chosen technologies and level, in a
-  "Live coding" section ordered by difficulty.
+  "Live coding" section, grouped by technology (catalog order) and ordered by difficulty within each
+  technology.
 - **FR-011**: Hints and the reference solution MUST stay hidden until the user explicitly reveals
   them; hints are revealed one at a time in order.
 - **FR-012**: The user MUST be able to mark a task "Solved on my own", "Solved with hints" or

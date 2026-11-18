@@ -10,7 +10,9 @@ npm run content:sync          # dev: drafts published with a "Draft" badge
 npm run dev
 ```
 
-Production deploys use `npm run content:sync -- --require-reviewed`.
+Drafts (no `reviewed:` date) are fine on feature branches. Pull requests into `main` must pass
+`npm run content:validate -- --require-reviewed` (CI gate); production deploys also run
+`npm run content:sync -- --require-reviewed`.
 
 ## Validation scenarios
 
@@ -30,7 +32,7 @@ Production deploys use `npm run content:sync -- --require-reviewed`.
 | V12 | US2 | Open a React task | No editor; starter code to copy, acceptance criteria, self-assessment |
 | V13 | US3 | Open "Design an autocomplete" | Prompt + timebox; 8 sections collapsed; reveal one by one; submit checklist → score saved, best kept |
 | V14 | US4 | Dashboard with mixed progress | Theory per technology, Live coding, System design areas; review list mixes kinds (≤ 5) |
-| V15 | All | `content:sync --require-reviewed` with drafts present | Fails listing draft items |
+| V15 | All | `content:validate --require-reviewed` / `content:sync --require-reviewed` with drafts present | Both fail listing draft items (PR gate into `main`) |
 | V16 | All | `content:validate` with a broken reference solution / passing naive solution | Fails (SC-004, SC-008) |
 
 Automated: V2, V6–V8, V10, V11, V13–V16 in unit/integration/E2E suites; V9 in E2E (browser).

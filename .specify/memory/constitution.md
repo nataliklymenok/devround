@@ -1,17 +1,11 @@
 <!--
 Sync Impact Report
-- Version change: 1.0.0 → 2.0.0 (MAJOR: principle IV redefined; runtime AI generation removed)
-- Modified principles:
-  IV. "AI Content Is Validated, Persisted, and Cost-Bounded" → "Curated, Versioned Content"
-  III. Security: removed Anthropic API key from the secrets list
-  V. Test Discipline: external-service fakes now cover Google verification only; added content
-     validation gate
-  VI. Data-Driven, Extensible Domain: new tracks are added via content files, not prompts
-- Added sections: none
-- Removed sections: none
-- Technology & Architecture Constraints: removed "AI: Anthropic Claude API"; added "Content"
-- Templates: plan/spec/tasks templates read this file at runtime; no template edits required.
-- Follow-up: specs/001-interview-prep-mvp spec/plan updated to curated content in the same change.
+- Version change: 2.0.0 → 2.0.1 (PATCH: clarification, no principle change)
+- Modified: Technology & Architecture Constraints — `packages/shared` may also hold pure,
+  environment-agnostic utilities used by more than one workspace (e.g. the code-task test harness
+  shared by the browser runner and content validation, feature 002).
+- Added/removed sections: none
+- Templates: no changes required.
 - Deferred TODOs: none
 -->
 
@@ -123,7 +117,8 @@ Rationale: a small, understandable system ships faster and is easier to extend.
 - **Repository**: npm workspaces monorepo:
   - `apps/web`: React 19 + Vite + TypeScript (SPA)
   - `apps/api`: Node.js (LTS) + Fastify + TypeScript
-  - `packages/shared`: Zod schemas, inferred types, shared constants
+  - `packages/shared`: Zod schemas, inferred types, shared constants, and pure environment-agnostic
+    utilities needed by more than one workspace (no DOM, Node or database access)
   - `content/`: curated lesson catalog (Markdown + YAML front matter)
 - **Database**: PostgreSQL, accessed only through Prisma; schema changes only through Prisma
   migrations committed to the repo. Content is synced into the database by a validated,
@@ -159,4 +154,4 @@ Rationale: a small, understandable system ships faster and is easier to extend.
 - Every spec, plan, and code review MUST verify compliance with these principles.
 - Runtime development guidance for agents lives in `CLAUDE.md`.
 
-**Version**: 2.0.0 | **Ratified**: 2026-10-23 | **Last Amended**: 2026-10-23
+**Version**: 2.0.1 | **Ratified**: 2026-10-23 | **Last Amended**: 2026-11-18

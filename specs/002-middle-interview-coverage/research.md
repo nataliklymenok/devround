@@ -33,11 +33,14 @@ snapshots). Each decision: what, why, alternatives.
   - `references: [{ title, url }]` — at least 1, `https://` only (FR-006);
   - `reviewed: YYYY-MM-DD` — optional; absent = draft.
   `content:sync` publishes drafts in development and marks them `isDraft = true` (shown with a
-  "Draft — not yet reviewed" badge). `content:sync --require-reviewed` (used for production
-  deploys) refuses to publish drafts. CI reports the number of drafts.
-- **Rationale**: Constitution IV requires human review before publication. The project owner studies
-  the material locally *while* reviewing it, so drafts must be usable locally but never reach
-  production unreviewed. The review is recorded in the file itself (and in the PR), per change.
+  "Draft — not yet reviewed" badge). Drafts may exist **only on feature branches**: CI runs
+  `content:validate --require-reviewed` on every pull request that targets `main` and fails if any
+  item is still a draft, so unreviewed content can never be merged (Constitution IV: "reviewed by a
+  human before merge"). `content:sync --require-reviewed` is also used for production deploys as a
+  second guard.
+- **Rationale**: Constitution IV requires human review before merge. The project owner studies the
+  material locally on the feature branch *while* reviewing it, so drafts must be usable locally but
+  never reach `main` (and therefore production) unreviewed. The review is recorded in the file itself (and in the PR), per change.
 - **Alternatives**: Block all drafts everywhere (owner could not study from drafts); review only in
   PR descriptions (not machine-checkable).
 

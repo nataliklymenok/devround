@@ -48,14 +48,14 @@ production; existing plans unchanged
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.* (Constitution v2.0.0)
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.* (Constitution v2.0.1)
 
 | Principle | Gate | Pre-research | Post-design |
 |---|---|---|---|
 | I. Spec-Driven | Spec with prioritized independent stories | ✅ P1–P4 | ✅ quickstart V1–V16 map to stories |
 | II. Type Safety | New content kinds and endpoints have shared Zod schemas | ✅ | ✅ TaskFile/ExerciseFile/TopicMap schemas; Task/Exercise view schemas; runner messages validated with Zod |
 | III. Security | No secrets exposure; hidden answers server-side; ownership | ✅ | ✅ R5 opaque-origin sandbox + CSP, no server execution; R7 hints/solutions/sections withheld until reveal; 404/410 rules reused |
-| IV. Curated content | Content in repo, validated, permanent ids, human review, no runtime AI, deterministic plans | ✅ | ✅ R1 coverage check; R2 `reviewed:` + `--require-reviewed`; R3/R4 solutions verified in CI; retired.yaml extended; R10 snapshots |
+| IV. Curated content | Content in repo, validated, permanent ids, human review **before merge**, no runtime AI, deterministic plans | ✅ | ✅ R1 coverage check; R2 `reviewed:` + CI gate `--require-reviewed` on PRs into `main`; R3/R4 solutions verified in CI; retired.yaml extended; R10 snapshots |
 | V. Tests | Unit for domain + harness, integration on Postgres, E2E for critical journeys | ✅ | ✅ harness tests in Node, isolation tests in real browsers (E2E) |
 | VI. Data-driven | New technologies/tasks/exercises are content only | ✅ | ✅ adding a task or exercise = adding a file |
 | VII. Simplicity | Justify new deps; UI states; WCAG AA | ✅ | ✅ one new dep (CodeMirror, justified R6); no server sandbox, no queue |

@@ -25,12 +25,12 @@ changes are listed. All new catalog rows are written exclusively by `content:syn
 |---|---|---|
 | id | string | PK, permanent kebab-case, unique across tasks |
 | technologyId | FK → Technology | |
-| order | int | position within technology (file order key) |
+| order | int | from front matter `order`, unique per technology |
 | title | string | 3–120 |
 | levels | Level id[] | ≥ 1 |
 | difficulty | enum | `easy` · `medium` · `hard` |
 | estimatedMinutes | int | 5–90 |
-| mode | enum | `tests` (JavaScript, in-app editor) · `self_check` (React, own environment) |
+| mode | enum | `tests` (JavaScript, in-app editor) · `self_check` (React, own environment). Content files and the API use the spelling `self-check`; `self_check` is only the DB enum name |
 | statement | text | Markdown: Problem + Constraints + Examples (public) |
 | starterCode | text | ≤ 5 KB |
 | entry | string? | required for `tests`: function name the tests call |
@@ -47,7 +47,7 @@ changes are listed. All new catalog rows are written exclusively by `content:syn
 |---|---|---|
 | id | string | PK, permanent |
 | trackId | FK → Track | |
-| order | int | |
+| order | int | from front matter `order`, unique per track |
 | title | string | 3–120 |
 | levels | Level id[] | ≥ 1 |
 | timeboxMinutes | int | 15–90 |
@@ -85,6 +85,7 @@ no rows → their sections are empty, nothing breaks.
 | hintsRevealed | int | 0..hints.length, current attempt |
 | solutionRevealed | boolean | current attempt |
 | draftCode | text? | ≤ 20 KB, `tests` mode only (FR-015b) |
+| draftContentHash | string? | task `contentHash` when the draft was last saved; if it differs from the current hash the UI says "This task was updated" and offers Reset (spec edge case) |
 | lastCheckPassed / lastCheckTotal | int? | self-reported by the browser runner (R8) |
 | attemptStartedAt | timestamp | reset by `POST /tasks/:id/reset` |
 | lastOpenedAt | timestamp | |

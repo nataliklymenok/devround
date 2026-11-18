@@ -40,7 +40,7 @@ map). Coverage: each `must` topic ⇒ ≥ 1 published lesson in that technology 
 ## Lesson front matter additions
 
 ```yaml
-topics: [js-closures, js-scope]
+topics: [js-closures, js-scope]   # ≥ 1 for technologies that have a topic map
 references:
   - { title: "MDN — Closures", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures" }
 reviewed: 2026-10-30        # optional; absent = draft
@@ -53,11 +53,12 @@ topics are all `good` must not precede a lesson with a `must` topic.
 ```markdown
 ---
 id: js-debounce
+order: 1                        # position within the technology's tasks (unique)
 title: Implement debounce
 levels: [junior, middle, senior]
 difficulty: medium
 estimatedMinutes: 20
-mode: tests                     # tests | self-check
+mode: tests                     # tests | self-check (same spelling in the API; DB enum self_check)
 topics: [js-closures, js-timers]
 references:
   - { title: "MDN — setTimeout", url: "https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout" }
@@ -109,6 +110,7 @@ Validation (in addition to schema):
 ```markdown
 ---
 id: sd-autocomplete
+order: 1                        # position within the track's exercises (unique)
 title: Design an autocomplete
 levels: [middle, senior]
 timeboxMinutes: 45
@@ -136,7 +138,14 @@ All nine headings are required, in this exact order (FR-016).
 `retired.yaml` gains `tasks` and `exercises` lists with the same rules as lessons; `content:check-ids`
 covers them.
 
+## Review gate
+
+- `content:validate --require-reviewed`: fail if any lesson, task or exercise has no `reviewed:`
+  date. Required in CI for pull requests into `main` (Constitution IV) — drafts live only on feature
+  branches.
+
 ## Sync
 
-- `--require-reviewed`: fail if any item would be published as a draft (production deploys).
+- `--require-reviewed`: fail if any item would be published as a draft (production deploys, second
+  guard).
 - Without the flag: drafts are published with `isDraft = true`; the summary prints the draft count.
