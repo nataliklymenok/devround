@@ -11,16 +11,18 @@ export interface ValidateOptions {
   coverage?: CoverageRules
   /** Fail on drafts (items without `reviewed:`) — CI gate for PRs into main. */
   requireReviewed?: boolean
+  /** Run reference/naive solutions (default true; tests that only need the data can skip it). */
+  verifySolutions?: boolean
 }
 
 export async function validateLibrary(
   dir: string,
-  { coverage = DEFAULT_COVERAGE, requireReviewed = false }: ValidateOptions = {},
+  { coverage = DEFAULT_COVERAGE, requireReviewed = false, verifySolutions: verify = true }: ValidateOptions = {},
 ): Promise<{ library: LoadedLibrary | null; issues: ContentIssue[] }> {
   const { library, issues } = await loadLibrary(dir)
   if (library) {
     issues.push(...checkLibrary(library, coverage))
-    issues.push(...(await verifySolutions(library)))
+    if (verify) issues.push(...(await verifySolutions(library)))
     if (requireReviewed) issues.push(...findDrafts(library))
   }
   return { library: issues.length === 0 ? library : null, issues }

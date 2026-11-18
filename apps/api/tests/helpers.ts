@@ -43,7 +43,8 @@ export async function resetDb(target: Db = testDb()): Promise<void> {
 }
 
 export async function syncContent(dir = FIXTURE_CONTENT_DIR, target: Db = testDb()) {
-  const { library, issues } = await validateLibrary(dir)
+  // Solution verification has its own tests; skipping it keeps per-test setup fast.
+  const { library, issues } = await validateLibrary(dir, { verifySolutions: false })
   if (!library) throw new Error(`fixture content invalid:\n${formatIssues(issues)}`)
   return syncLibrary(target, library)
 }

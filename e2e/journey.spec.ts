@@ -39,9 +39,10 @@ test('critical journey: sign in → setup → plan → lesson → quiz → dashb
 
   // US4 — dashboard reflects the result
   await page.getByRole('link', { name: 'Dashboard' }).click()
-  await expect(page.getByText('2 of 6 lessons completed')).toBeHidden()
-  await expect(page.getByText('17%')).toBeVisible()
-  await expect(page.getByText('1 of 6 lessons completed')).toBeVisible()
+  // 6 lessons + 1 live coding task + 2 design exercises in the fixture Middle React plan
+  await expect(page.getByText('11%')).toBeVisible()
+  await expect(page.getByText('1 of 9 items completed')).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Readiness by area' })).toContainText('Live coding')
   await page.getByRole('link', { name: 'Continue' }).click()
   await expect(page.getByRole('heading', { level: 1, name: 'React Props' })).toBeVisible()
 

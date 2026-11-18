@@ -164,10 +164,10 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 
 **Independent Test**: V14
 
-- [ ] T060 [P] [US4] Unit tests for `buildDashboard` areas (theory per technology, coding, design; areas omitted when empty; unavailable excluded; overall across all kinds) and mixed `topicsToReview` (≤ 5, weakest first, task "revisit" = 0) and `continue` `{ kind, id }` in `apps/api/tests/unit/dashboard.test.ts`
-- [ ] T061 [P] [US4] Integration test for `GET /dashboard` with lessons, tasks and exercises in `apps/api/tests/integration/dashboard.test.ts`
-- [ ] T062 [US4] Extend `apps/api/src/domain/dashboard.ts`, `apps/api/src/services/progress-service.ts` and `DashboardSchema` in `packages/shared/src/schemas/dashboard.ts`
-- [ ] T063 [US4] Dashboard UI: area cards (theory per technology, Live coding, System design), mixed "Topics to review" with kind labels, Continue to any item kind in `apps/web/src/features/dashboard/DashboardPage.tsx`
+- [X] T060 [P] [US4] Unit tests for `buildDashboard` areas (theory per technology, coding, design; areas omitted when empty; unavailable excluded; overall across all kinds) and mixed `topicsToReview` (≤ 5, weakest first, task "revisit" = 0) and `continue` `{ kind, id }` in `apps/api/tests/unit/dashboard.test.ts`
+- [X] T061 [P] [US4] Integration test for `GET /dashboard` with lessons, tasks and exercises in `apps/api/tests/integration/dashboard.test.ts`
+- [X] T062 [US4] Extend `apps/api/src/domain/dashboard.ts`, `apps/api/src/services/progress-service.ts` and `DashboardSchema` in `packages/shared/src/schemas/dashboard.ts`
+- [X] T063 [US4] Dashboard UI: area cards (theory per technology, Live coding, System design), mixed "Topics to review" with kind labels, Continue to any item kind in `apps/web/src/features/dashboard/DashboardPage.tsx`
 
 **Checkpoint**: All user stories functional
 

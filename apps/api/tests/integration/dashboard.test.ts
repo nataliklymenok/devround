@@ -70,14 +70,19 @@ describe('GET /dashboard', () => {
     expect(res.statusCode).toBe(200)
     expect(res.json()).toEqual({
       target: { track: 'Frontend', level: 'Middle', technologies: ['React'] },
-      overall: { completed: 2, total: 6, percent: 33 },
+      overall: { completed: 2, total: 9, percent: 22 }, // 6 lessons + 1 task + 2 exercises
       modules: [
         { id: 'react-basics', title: 'React basics', completed: 2, total: 3 },
         { id: 'react-advanced', title: 'Advanced React', completed: 0, total: 3 },
       ],
+      areas: [
+        { kind: 'theory', technology: 'React', completed: 2, total: 6 },
+        { kind: 'coding', technology: null, completed: 0, total: 1 },
+        { kind: 'design', technology: null, completed: 0, total: 2 },
+      ],
       averageBestScore: 67,
-      topicsToReview: [{ lessonId: 'react-props', title: 'React Props', bestScore: 33 }],
-      continueLessonId: 'react-state',
+      topicsToReview: [{ kind: 'lesson', id: 'react-props', title: 'React Props', score: 33 }],
+      continue: { kind: 'lesson', id: 'react-state' },
       isComplete: false,
     })
   })
@@ -94,8 +99,8 @@ describe('GET /dashboard', () => {
     await syncContent(dir)
 
     const body = (await dashboard()).json()
-    expect(body.overall).toEqual({ completed: 0, total: 5, percent: 0 })
-    expect(body.continueLessonId).toBe('react-props')
+    expect(body.overall).toEqual({ completed: 0, total: 8, percent: 0 })
+    expect(body.continue).toEqual({ kind: 'lesson', id: 'react-props' })
     const plan = await app.inject({
       method: 'GET',
       url: '/api/v1/plans/current',

@@ -18,7 +18,7 @@ test('lessons show further reading and the draft badge', async ({ page }) => {
   await page.goto('/')
   await signIn(page, uniqueEmail('reading'))
   await createPlan(page, 'Middle', ['JavaScript'])
-  await expect(page.getByText('Draft', { exact: true })).toHaveCount(1) // only js-values is a draft
+  await expect(page.getByText('Draft', { exact: true })).toHaveCount(2) // fixture drafts: lesson js-values + task js-sum-array
 
   await page.goto('/lessons/js-values')
   await expect(page.getByText('Draft — not yet reviewed')).toBeVisible()
