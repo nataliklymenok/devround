@@ -9,7 +9,6 @@
   color: var(--color-accent);
   font-weight: 700;
   font-size: var(--text-sm);
-  text-transform: capitalize;
 }
 
 .title {

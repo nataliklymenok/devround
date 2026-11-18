@@ -21,6 +21,8 @@ import { runInSandbox, type RunOutcome } from './runner/sandbox'
 import { TestResults } from './TestResults'
 import styles from './task.module.css'
 
+const DIFFICULTY_LABEL = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const
+
 const STATUS_LABEL: Record<TaskStatus, string> = {
   solved_own: 'Solved on my own',
   solved_with_hints: 'Solved with hints',
@@ -118,7 +120,7 @@ function TaskWorkspace({ task }: { task: TaskView }) {
     <article className={styles.page}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>
-          {task.technology} · Live coding · {task.difficulty} · {task.estimatedMinutes} min
+          {task.technology} · Live coding · {DIFFICULTY_LABEL[task.difficulty]} · {task.estimatedMinutes} min
         </p>
         <h1 className={styles.title}>{task.title}</h1>
         <div className={styles.badges}>

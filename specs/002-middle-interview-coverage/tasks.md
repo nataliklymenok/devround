@@ -127,9 +127,9 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 - [X] T047 [P] [US2] `TestResults` (per case status, expected vs actual, console output, summary `passed/total`, `aria-live` announcement) and `Hints` (reveal next hint, count used) components in `apps/web/src/features/task/`
 - [X] T048 [US2] Task page in `apps/web/src/features/task/TaskPage.tsx`: loading, error (with retry) and 404/410 states like LessonPage; "This task was updated" notice with Reset when `taskUpdated`; statement (Markdown), visible tests list, editor with autosave (debounced 1 s), Run checks, Hints, Reveal solution (confirmation), status buttons (Solved on my own only when allowed), Reset; `self-check` mode shows starter code to copy, acceptance criteria checklist and solution reveal; route `/tasks/:taskId`; hooks in `apps/web/src/features/task/hooks.ts`
 - [X] T049 [US2] Plan page "Live coding" section (difficulty, mode, status, last check, Draft badge) in `apps/web/src/features/plan/PlanPage.tsx`
-- [ ] T050 [P] [US2] Content — ≥ 10 JavaScript `tests`-mode tasks with ≥ 5 tests and a naive solution each: debounce, throttle, `Promise.all` polyfill, deep clone, event emitter, `bind` polyfill, memoize, flatten, curry, retry with exponential backoff in `content/frontend/javascript/tasks/`
-- [ ] T051 [P] [US2] Content — ≥ 5 React `self-check` tasks: accessible tabs, autocomplete input (debounced, keyboard navigation, aborting stale requests), todo list with filters, modal with focus trap, data fetching with loading/error/empty states in `content/frontend/react/tasks/`
-- [ ] T052 [US2] Run `content:validate` (all reference solutions pass, all naive solutions fail) and confirm a Middle plan with JavaScript + React shows ≥ 15 tasks
+- [X] T050 [P] [US2] Content — ≥ 10 JavaScript `tests`-mode tasks with ≥ 5 tests and a naive solution each: debounce, throttle, `Promise.all` polyfill, deep clone, event emitter, `bind` polyfill, memoize, flatten, curry, retry with exponential backoff in `content/frontend/javascript/tasks/`
+- [X] T051 [P] [US2] Content — ≥ 5 React `self-check` tasks: accessible tabs, autocomplete input (debounced, keyboard navigation, aborting stale requests), todo list with filters, modal with focus trap, data fetching with loading/error/empty states in `content/frontend/react/tasks/`
+- [X] T052 [US2] Run `content:validate` (all reference solutions pass, all naive solutions fail) and confirm a Middle plan with JavaScript + React shows ≥ 15 tasks
 
 **Checkpoint**: US1 + US2 functional (V6–V12)
 

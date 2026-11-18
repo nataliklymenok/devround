@@ -21,6 +21,18 @@ const compile: Compile = (source, params) => {
   }
 }
 
+/**
+ * Naive solutions are wrong on purpose and may leave rejected promises unhandled (e.g. a sequential
+ * Promise.all). Those come from code evaluated in our vm contexts ("evalmachine" frames) and must not
+ * crash validation; any other unhandled rejection still crashes the process as usual.
+ */
+process.on('unhandledRejection', (reason) => {
+  // typeof, not instanceof: errors from vm contexts belong to another realm
+  const stack = typeof reason === 'object' && reason !== null && 'stack' in reason ? String(reason.stack) : ''
+  if (stack.includes('evalmachine.')) return
+  throw reason
+})
+
 const harness = createHarness({
   compile,
   setTimeout: (fn, ms) => setTimeout(fn, ms),
