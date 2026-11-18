@@ -9,3 +9,9 @@ topics:
   - { id: react-memoization, title: 'Re-renders, memoization and the React Compiler', priority: must }
   - { id: react-context, title: 'Context', priority: must }
   - { id: react-state-management, title: 'Where state should live: local, context, query cache, stores', priority: must }
+  - { id: react-forms, title: 'Forms: controlled vs uncontrolled, actions and validation', priority: must }
+  - { id: react-refs-portals, title: 'Refs, ref as a prop, imperative handles and portals', priority: must }
+  - { id: react-error-boundaries-suspense, title: 'Error boundaries, Suspense and lazy loading', priority: must }
+  - { id: react-19, title: 'React 19 features: actions, useActionState, useOptimistic, use', priority: must }
+  - { id: react-concurrent, title: 'Concurrent rendering, transitions and batching', priority: must }
+  - { id: react-internals, title: 'Virtual DOM, Fiber and reconciliation internals', priority: good }

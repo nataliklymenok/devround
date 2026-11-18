@@ -1,0 +1,9 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: html-semantics, title: 'Semantic HTML, document structure and forms', priority: must }
+  - { id: css-cascade, title: 'Cascade, specificity, inheritance and cascade layers', priority: must }
+  - { id: css-box-positioning, title: 'Box model, positioning and stacking contexts', priority: must }
+  - { id: css-flexbox, title: 'Flexbox', priority: must }
+  - { id: css-grid, title: 'CSS Grid', priority: must }
+  - { id: css-responsive, title: 'Responsive design: media and container queries, units, images', priority: must }
+  - { id: css-architecture, title: 'Custom properties, modern selectors and CSS architecture', priority: must }

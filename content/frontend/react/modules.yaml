@@ -5,3 +5,6 @@ modules:
   - id: react-hooks
     title: Hooks, effects and performance
     description: Rules of hooks, effects, memoization and sharing state with context.
+  - id: react-advanced
+    title: Advanced React and React 19
+    description: Error boundaries, Suspense, transitions, React 19 features and how React works inside.

@@ -1,0 +1,7 @@
+modules:
+  - id: html-css-foundations
+    title: HTML and CSS foundations
+    description: Semantic markup, the cascade, the box model and positioning.
+  - id: css-layout
+    title: Layout and modern CSS
+    description: Flexbox, Grid, responsive design and how to organize styles in a codebase.
