@@ -174,6 +174,56 @@ export function PlanPage() {
           </ol>
         </section>
       )}
+
+      {plan.data.exercises.length > 0 && (
+        <section className={styles.module} aria-labelledby="system-design">
+          <div className={styles.moduleHeader}>
+            <div>
+              <span className={styles.tag}>Practice</span>
+              <h2 id="system-design" className={styles.moduleTitle}>
+                System design
+              </h2>
+            </div>
+            <span className={styles.count}>
+              {plan.data.exercises.filter((e) => e.isAvailable && e.progress.completed).length}/
+              {plan.data.exercises.filter((e) => e.isAvailable).length}
+            </span>
+          </div>
+          <ol className={styles.lessons}>
+            {plan.data.exercises.map((exercise) => (
+              <li
+                key={exercise.id}
+                className={styles.lesson}
+                data-unavailable={!exercise.isAvailable || undefined}
+              >
+                <span className={styles.order}>{exercise.order}</span>
+                <div className={styles.lessonBody}>
+                  {exercise.isAvailable ? (
+                    <Link to={`/exercises/${exercise.id}`} className={styles.lessonTitle}>
+                      {exercise.title}
+                    </Link>
+                  ) : (
+                    <span className={styles.lessonTitle}>{exercise.title}</span>
+                  )}
+                  <p className={styles.description}>{exercise.timeboxMinutes} min timebox</p>
+                </div>
+                <div className={styles.status}>
+                  {exercise.isDraft && exercise.isAvailable && <DraftBadge />}
+                  {!exercise.isAvailable ? (
+                    <span className={styles.badge}>No longer available</span>
+                  ) : exercise.progress.completed ? (
+                    <span className={styles.badge} data-variant="done">
+                      Done · {exercise.progress.bestScore}%
+                    </span>
+                  ) : (
+                    <span className={styles.badge}>Not started</span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
     </div>
   )
 }

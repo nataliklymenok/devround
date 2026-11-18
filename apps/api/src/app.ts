@@ -13,9 +13,11 @@ import { registerSessionAuth } from './plugins/session-auth.js'
 import { authRoutes } from './routes/auth.js'
 import { catalogRoutes } from './routes/catalog.js'
 import { dashboardRoutes } from './routes/dashboard.js'
+import { exerciseRoutes } from './routes/exercises.js'
 import { lessonRoutes } from './routes/lessons.js'
 import { planRoutes } from './routes/plans.js'
 import { taskRoutes } from './routes/tasks.js'
+import { ExerciseService } from './services/exercise-service.js'
 import { LessonService } from './services/lesson-service.js'
 import { PlanService } from './services/plan-service.js'
 import { ProgressService } from './services/progress-service.js'
@@ -56,6 +58,7 @@ export async function buildApp(deps: AppDeps): Promise<FastifyInstance> {
       await api.register(lessonRoutes(new LessonService(deps.db)))
       await api.register(dashboardRoutes(new ProgressService(deps.db)))
       await api.register(taskRoutes(new TaskService(deps.db)))
+      await api.register(exerciseRoutes(new ExerciseService(deps.db)))
     },
     { prefix: '/api/v1' },
   )

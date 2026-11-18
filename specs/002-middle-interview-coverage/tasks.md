@@ -143,16 +143,16 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 
 ### Tests for User Story 3
 
-- [ ] T053 [P] [US3] Integration tests in `apps/api/tests/integration/exercises.test.ts`: section bodies hidden until revealed; reveal unknown key → 400; assessment with unknown checklist id → 400; score = round(covered/total × 100); best score kept; first submission sets `completedAt`; 404/410/isolation rules
-- [ ] T054 [P] [US3] E2E in `e2e/system-design.spec.ts`: V13 (prompt + timebox, collapsed sections, reveal one by one, submit checklist, best score kept), exercise page content shown ≤ 2 s (SC-006)
+- [X] T053 [P] [US3] Integration tests in `apps/api/tests/integration/exercises.test.ts`: section bodies hidden until revealed; reveal unknown key → 400; assessment with unknown checklist id → 400; score = round(covered/total × 100); best score kept; first submission sets `completedAt`; 404/410/isolation rules
+- [X] T054 [P] [US3] E2E in `e2e/system-design.spec.ts`: V13 (prompt + timebox, collapsed sections, reveal one by one, submit checklist, best score kept), exercise page content shown ≤ 2 s (SC-006)
 
 ### Implementation for User Story 3
 
-- [ ] T055 [P] [US3] Shared schemas `ExerciseViewSchema`, `ExerciseAssessmentRequestSchema`, result schema in `packages/shared/src/schemas/exercise.ts`
-- [ ] T056 [US3] Exercise service and routes per contracts/api.md in `apps/api/src/services/exercise-service.ts` and `apps/api/src/routes/exercises.ts`; register in `apps/api/src/app.ts`
-- [ ] T057 [US3] Exercise page in `apps/web/src/features/exercise/ExercisePage.tsx`: loading, error (with retry) and 404/410 states like LessonPage; prompt, timebox with an optional start/stop timer, "Try it yourself first" note, 8 sections as reveal-on-demand disclosure with persisted state, self-assessment checklist with score and best score; route `/exercises/:exerciseId`; hooks
-- [ ] T058 [US3] Plan page "System design" section in `apps/web/src/features/plan/PlanPage.tsx`
-- [ ] T059 [P] [US3] Content — ≥ 5 Middle exercises with 8–15 checklist items each: autocomplete, infinite news feed, image gallery/carousel, real-time notifications, multi-step form wizard with validation and draft saving in `content/frontend/system-design/`
+- [X] T055 [P] [US3] Shared schemas `ExerciseViewSchema`, `ExerciseAssessmentRequestSchema`, result schema in `packages/shared/src/schemas/exercise.ts`
+- [X] T056 [US3] Exercise service and routes per contracts/api.md in `apps/api/src/services/exercise-service.ts` and `apps/api/src/routes/exercises.ts`; register in `apps/api/src/app.ts`
+- [X] T057 [US3] Exercise page in `apps/web/src/features/exercise/ExercisePage.tsx`: loading, error (with retry) and 404/410 states like LessonPage; prompt, timebox with an optional start/stop timer, "Try it yourself first" note, 8 sections as reveal-on-demand disclosure with persisted state, self-assessment checklist with score and best score; route `/exercises/:exerciseId`; hooks
+- [X] T058 [US3] Plan page "System design" section in `apps/web/src/features/plan/PlanPage.tsx`
+- [X] T059 [P] [US3] Content — ≥ 5 Middle exercises with 8–15 checklist items each: autocomplete, infinite news feed, image gallery/carousel, real-time notifications, multi-step form wizard with validation and draft saving in `content/frontend/system-design/`
 
 **Checkpoint**: US1–US3 functional
 

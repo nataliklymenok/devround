@@ -49,7 +49,8 @@ export function createHarness(env: HarnessEnv): Harness {
       if (depth > 6) return '[…]'
       seen.add(v)
       if (Array.isArray(v)) return `[${v.map((x) => walk(x, depth + 1)).join(', ')}]`
-      if (v instanceof Date) return `Date(${Number.isNaN(v.getTime()) ? 'Invalid' : v.toISOString()})`
+      if (v instanceof Date)
+        return `Date(${Number.isNaN(v.getTime()) ? 'Invalid' : v.toISOString()})`
       if (isErrorLike(v)) return `${v.name}: ${v.message}`
       if (v instanceof Map) {
         return `Map {${[...v].map(([k, x]) => `${walk(k, depth + 1)} => ${walk(x, depth + 1)}`).join(', ')}}`
@@ -57,10 +58,14 @@ export function createHarness(env: HarnessEnv): Harness {
       if (v instanceof Set) return `Set {${[...v].map((x) => walk(x, depth + 1)).join(', ')}}`
       if (v instanceof Promise) return 'Promise {…}'
       const entries = Object.keys(v).map(
-        (k) => `${/^[A-Za-z_$][\w$]*$/.test(k) ? k : JSON.stringify(k)}: ${walk((v as Record<string, unknown>)[k], depth + 1)}`,
+        (k) =>
+          `${/^[A-Za-z_$][\w$]*$/.test(k) ? k : JSON.stringify(k)}: ${walk((v as Record<string, unknown>)[k], depth + 1)}`,
       )
       const proto = Object.getPrototypeOf(v)
-      const prefix = proto && proto !== Object.prototype && proto.constructor?.name ? `${proto.constructor.name} ` : ''
+      const prefix =
+        proto && proto !== Object.prototype && proto.constructor?.name
+          ? `${proto.constructor.name} `
+          : ''
       return `${prefix}{${entries.join(', ')}}`
     }
     const text = walk(value, 0)
@@ -126,16 +131,30 @@ export function createHarness(env: HarnessEnv): Harness {
         fn()
       } catch (error) {
         if (matches(error, match)) return
-        throw new AssertionError(message ?? 'Function threw an unexpected error', match, error, true)
+        throw new AssertionError(
+          message ?? 'Function threw an unexpected error',
+          match,
+          error,
+          true,
+        )
       }
       throw new AssertionError(message ?? 'Expected the function to throw')
     },
-    async rejects(target: Promise<unknown> | (() => Promise<unknown>), match?: string | RegExp, message?: string) {
+    async rejects(
+      target: Promise<unknown> | (() => Promise<unknown>),
+      match?: string | RegExp,
+      message?: string,
+    ) {
       try {
         await (typeof target === 'function' ? target() : target)
       } catch (error) {
         if (matches(error, match)) return
-        throw new AssertionError(message ?? 'Promise rejected with an unexpected error', match, error, true)
+        throw new AssertionError(
+          message ?? 'Promise rejected with an unexpected error',
+          match,
+          error,
+          true,
+        )
       }
       throw new AssertionError(message ?? 'Expected the promise to reject')
     },
@@ -145,7 +164,10 @@ export function createHarness(env: HarnessEnv): Harness {
   function createClock() {
     let now = 0
     let nextId = 1
-    const timers = new Map<number, { at: number; fn: (...a: unknown[]) => void; args: unknown[]; interval?: number }>()
+    const timers = new Map<
+      number,
+      { at: number; fn: (...a: unknown[]) => void; args: unknown[]; interval?: number }
+    >()
 
     const schedule = (fn: unknown, ms: unknown, args: unknown[], interval: boolean) => {
       if (typeof fn !== 'function') throw new TypeError('Callback must be a function')
@@ -163,7 +185,10 @@ export function createHarness(env: HarnessEnv): Harness {
     const nextDue = (until: number) => {
       let best: [number, { at: number }] | undefined
       for (const entry of timers) {
-        if (entry[1].at <= until && (!best || entry[1].at < best[1].at || (entry[1].at === best[1].at && entry[0] < best[0]))) {
+        if (
+          entry[1].at <= until &&
+          (!best || entry[1].at < best[1].at || (entry[1].at === best[1].at && entry[0] < best[0]))
+        ) {
           best = entry
         }
       }
@@ -207,7 +232,8 @@ export function createHarness(env: HarnessEnv): Harness {
         let guard = 0
         await flushMicrotasks()
         for (let id = nextDue(until); id !== undefined; id = nextDue(until)) {
-          if (++guard > 10_000) throw new Error('clock.tickAsync: too many timers (infinite interval?)')
+          if (++guard > 10_000)
+            throw new Error('clock.tickAsync: too many timers (infinite interval?)')
           fire(id)
           await flushMicrotasks()
         }
@@ -218,7 +244,8 @@ export function createHarness(env: HarnessEnv): Harness {
         let guard = 0
         await flushMicrotasks()
         for (let id = nextDue(Infinity); id !== undefined; id = nextDue(Infinity)) {
-          if (++guard > 10_000) throw new Error('clock.runAll: too many timers (infinite interval?)')
+          if (++guard > 10_000)
+            throw new Error('clock.runAll: too many timers (infinite interval?)')
           fire(id)
           await flushMicrotasks()
         }
@@ -268,7 +295,11 @@ export function createHarness(env: HarnessEnv): Harness {
     'performance',
   ]
 
-  async function runCase(request: RunRequest, test: { name: string; code: string }, consoleLines: string[]): Promise<CaseResult> {
+  async function runCase(
+    request: RunRequest,
+    test: { name: string; code: string },
+    consoleLines: string[],
+  ): Promise<CaseResult> {
     const started = env.now()
     const timeoutMs = request.perCaseTimeoutMs ?? 1000
     const { clock, api, FakeDate, performance } = createClock()
@@ -281,10 +312,28 @@ export function createHarness(env: HarnessEnv): Harness {
     try {
       const fn = env.compile(source, PARAMS)
       const run = Promise.resolve(
-        fn(assert, clock, createConsole(consoleLines), api.setTimeout, api.clearTimeout, api.setInterval, api.clearInterval, FakeDate, performance),
+        fn(
+          assert,
+          clock,
+          createConsole(consoleLines),
+          api.setTimeout,
+          api.clearTimeout,
+          api.setInterval,
+          api.clearInterval,
+          FakeDate,
+          performance,
+        ),
       )
       const timeout = new Promise((_, reject) => {
-        timer = env.setTimeout(() => reject(new Error(`Timed out after ${timeoutMs} ms (unresolved promise or waiting on a real timer?)`)), timeoutMs)
+        timer = env.setTimeout(
+          () =>
+            reject(
+              new Error(
+                `Timed out after ${timeoutMs} ms (unresolved promise or waiting on a real timer?)`,
+              ),
+            ),
+          timeoutMs,
+        )
       })
       await Promise.race([run, timeout])
       return { name: test.name, status: 'passed', durationMs: env.now() - started }
@@ -295,11 +344,15 @@ export function createHarness(env: HarnessEnv): Harness {
           name: test.name,
           status: 'failed',
           message: error.message,
-          ...(error.hasValues ? { expected: serialize(error.expected), actual: serialize(error.actual) } : {}),
+          ...(error.hasValues
+            ? { expected: serialize(error.expected), actual: serialize(error.actual) }
+            : {}),
           durationMs,
         }
       }
-      const message = isErrorLike(error) ? `${error.name}: ${error.message}` : `Thrown: ${serialize(error)}`
+      const message = isErrorLike(error)
+        ? `${error.name}: ${error.message}`
+        : `Thrown: ${serialize(error)}`
       return { name: test.name, status: 'error', message, durationMs }
     } finally {
       env.clearTimeout(timer)

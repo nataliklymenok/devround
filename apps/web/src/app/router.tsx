@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import { LandingPage } from '../features/auth/LandingPage'
 import { DashboardPage } from '../features/dashboard/DashboardPage'
+import { ExercisePage } from '../features/exercise/ExercisePage'
 import { LessonPage } from '../features/lesson/LessonPage'
 import { PlanPage } from '../features/plan/PlanPage'
 import { SetupPage } from '../features/setup/SetupPage'
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { path: '/plan', element: <PlanPage /> },
       { path: '/lessons/:lessonId', element: <LessonPage /> },
       { path: '/tasks/:taskId', element: <TaskPage /> },
+      { path: '/exercises/:exerciseId', element: <ExercisePage /> },
     ],
   },
 ])
