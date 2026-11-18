@@ -93,10 +93,10 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 - [X] T032 [P] [US1] Batch — HTML & CSS (set available): semantics, forms, box model, specificity & cascade, flexbox, grid, positioning & stacking context, responsive design, CSS custom properties, modern CSS (`:has`, container queries) in `content/frontend/html-css/`
 - [X] T033 [P] [US1] Batch — TypeScript gaps: `satisfies`, enums vs unions, overloads, classes & access modifiers, `tsconfig` strictness, declaration files & module augmentation in `content/frontend/typescript/`
 - [X] T034 [P] [US1] Batch — Next.js (new, set available): App Router & layouts, Server vs Client Components, rendering (SSR/SSG/ISR/streaming), data fetching & caching/revalidation, Server Actions, routing & middleware, images/fonts/metadata in `content/frontend/nextjs/`
-- [ ] T035 [P] [US1] Batch — Redux & state management (new, set available): when to use global state, Redux Toolkit (slices, store, immutability with Immer), async (thunks), RTK Query, selectors & memoization, alternatives (Zustand, Context, TanStack Query) in `content/frontend/redux/`
-- [ ] T036 [P] [US1] Batch — Testing (new, set available): testing pyramid & strategy, unit tests with Vitest/Jest, React Testing Library (queries, user-event, async), mocking & MSW, E2E with Playwright, accessibility testing in `content/frontend/testing/`
-- [ ] T037 [P] [US1] Batch — Node.js gaps (Middle `must` topics only, e.g. middleware, auth with sessions vs JWT, REST design) in `content/frontend/nodejs/`
-- [ ] T038 [US1] Run `npm run content:validate` until coverage passes for all available technologies; confirm a Middle plan with all technologies has ≥ 60 lessons (SC-002 lessons part)
+- [X] T035 [P] [US1] Batch — Redux & state management (new, set available): when to use global state, Redux Toolkit (slices, store, immutability with Immer), async (thunks), RTK Query, selectors & memoization, alternatives (Zustand, Context, TanStack Query) in `content/frontend/redux/`
+- [X] T036 [P] [US1] Batch — Testing (new, set available): testing pyramid & strategy, unit tests with Vitest/Jest, React Testing Library (queries, user-event, async), mocking & MSW, E2E with Playwright, accessibility testing in `content/frontend/testing/`
+- [X] T037 [P] [US1] Batch — Node.js gaps (Middle `must` topics only, e.g. middleware, auth with sessions vs JWT, REST design) in `content/frontend/nodejs/`
+- [X] T038 [US1] Run `npm run content:validate` until coverage passes for all available technologies; confirm a Middle plan with all technologies has ≥ 60 lessons (SC-002 lessons part)
 
 **Checkpoint**: US1 independently functional (V1–V5)
 

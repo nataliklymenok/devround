@@ -1,0 +1,7 @@
+modules:
+  - id: state-core
+    title: State management and Redux Toolkit
+    description: Choosing where state lives, Redux Toolkit fundamentals and async logic.
+  - id: state-advanced
+    title: Server state, selectors and alternatives
+    description: RTK Query, memoized selectors and normalized state, and lighter alternatives such as Zustand.

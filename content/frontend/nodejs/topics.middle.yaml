@@ -7,3 +7,5 @@ topics:
   - { id: node-http-server, title: 'HTTP servers, status codes and graceful shutdown', priority: must }
   - { id: node-error-handling, title: 'Error handling and unhandled rejections', priority: must }
   - { id: node-api-security, title: 'API security basics', priority: must }
+  - { id: node-auth, title: 'Authentication: sessions vs JWT, cookies and refresh tokens', priority: must }
+  - { id: node-rest-design, title: 'REST API design, middleware, validation and pagination', priority: must }
