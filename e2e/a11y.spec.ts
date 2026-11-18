@@ -26,7 +26,7 @@ for (const scheme of ['light', 'dark'] as const) {
     await expect(page.getByRole('heading', { name: 'Choose your interview' })).toBeVisible()
     await expectNoSeriousViolations(page)
 
-    await createPlan(page, 'Middle', ['React'])
+    await createPlan(page, 'Middle', ['JavaScript', 'React'])
     await expectNoSeriousViolations(page)
 
     await page.goto('/lessons/react-jsx')
@@ -36,8 +36,60 @@ for (const scheme of ['light', 'dark'] as const) {
     await page.goto('/dashboard')
     await expect(page.getByRole('heading', { name: 'Your interview prep' })).toBeVisible()
     await expectNoSeriousViolations(page)
+
+    // 002: live coding task with the code editor and test results, a self-check task, a design exercise
+    await page.goto('/tasks/js-debounce-fx')
+    await expect(page.locator('.cm-content')).toBeVisible()
+    await page.getByRole('button', { name: 'Run checks' }).click()
+    await expect(page.getByRole('status').filter({ hasText: 'tests passed' })).toBeVisible()
+    await expectNoSeriousViolations(page)
+
+    await page.goto('/tasks/react-counter-fx')
+    await expect(page.getByRole('heading', { level: 1, name: 'Build a counter component' })).toBeVisible()
+    await expectNoSeriousViolations(page)
+
+    await page.goto('/exercises/sd-fx-autocomplete')
+    await expect(page.getByRole('heading', { level: 1, name: 'Design an autocomplete' })).toBeVisible()
+    await page.getByRole('button', { name: 'Reveal Requirements' }).click()
+    await expect(page.getByText('requirements notes')).toBeVisible()
+    await expectNoSeriousViolations(page)
   })
 }
+
+test('task and exercise pages work with the keyboard only (002)', async ({ page }) => {
+  await page.goto('/')
+  await signIn(page, uniqueEmail('keyboard-002'))
+  await createPlan(page, 'Middle', ['JavaScript'])
+
+  await page.goto('/tasks/js-debounce-fx')
+  await expect(page.getByRole('heading', { level: 1, name: 'Implement debounce' })).toBeVisible()
+  await page.getByRole('button', { name: 'Run checks' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('status').filter({ hasText: 'tests passed' })).toBeVisible()
+  await page.getByRole('button', { name: 'Show hint 1 of 2' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByText('Keep the timer id in a closure.')).toBeVisible()
+  await page.getByRole('button', { name: 'Need to revisit' }).focus()
+  await page.keyboard.press('Space')
+  await expect(page.getByRole('button', { name: 'Need to revisit' })).toHaveAttribute('aria-pressed', 'true')
+
+  // Escape then Tab leaves the code editor (no keyboard trap)
+  await page.locator('.cm-content').focus()
+  await page.keyboard.press('Escape')
+  await page.keyboard.press('Tab')
+  await expect(page.locator('.cm-content')).not.toBeFocused()
+
+  await page.goto('/exercises/sd-fx-feed')
+  await expect(page.getByRole('heading', { level: 1, name: 'Design a news feed' })).toBeVisible()
+  await page.getByRole('button', { name: 'Reveal Requirements' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByText('Design a news feed: requirements notes.')).toBeVisible()
+  await page.getByRole('checkbox').first().focus()
+  await page.keyboard.press('Space')
+  await page.getByRole('button', { name: 'Save self-assessment' }).focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('status').filter({ hasText: 'You covered' })).toContainText('1 of 8')
+})
 
 test('quiz can be completed with the keyboard only', async ({ page }) => {
   await page.goto('/')

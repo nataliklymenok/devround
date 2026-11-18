@@ -19,6 +19,9 @@ const apiEnv = {
   AUTH_PROVIDER: 'fake',
   WEB_ORIGIN,
   PORT: String(API_PORT),
+  // A full run signs in dozens of times per minute from one IP; production limits would throttle it.
+  RATE_LIMIT_PER_MINUTE: '10000',
+  AUTH_RATE_LIMIT_PER_MINUTE: '10000',
 }
 
 export default defineConfig({
@@ -31,7 +34,12 @@ export default defineConfig({
     baseURL: WEB_ORIGIN,
     trace: 'retain-on-failure',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    // The code runner sandbox must work in every engine (research R5, feature 002)
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] }, testMatch: /live-coding\.spec\.ts/ },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] }, testMatch: /live-coding\.spec\.ts/ },
+  ],
   webServer: [
     {
       // Reset the test database with fixture content, then start the API with fake auth.

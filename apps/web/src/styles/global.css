@@ -14,6 +14,12 @@
   --color-danger: #b91c1c;
   --color-danger-bg: #fee2e2;
   --color-code-bg: #f1f1ef;
+  /* Editor syntax colors — all ≥ 4.5:1 on --color-code-bg (WCAG AA) */
+  --code-keyword: #7a1fa2;
+  --code-string: #0b6b2e;
+  --code-number: #0050a0;
+  --code-comment: #55555f;
+  --code-property: #8a3b00;
 
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -52,6 +58,11 @@
     --color-danger: #f87171;
     --color-danger-bg: #3b1717;
     --color-code-bg: #22222a;
+    --code-keyword: #d8a7ff;
+    --code-string: #8fdc9b;
+    --code-number: #8cc8ff;
+    --code-comment: #a9a9b6;
+    --code-property: #f2b37a;
   }
 }
 

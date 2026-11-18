@@ -5,8 +5,10 @@ for (track, level, technologies), and get a personal plan of lessons from a cura
 with explanations, code examples, typical interview questions with model answers and a short quiz.
 Your progress and weakest topics are tracked on a dashboard.
 
-The MVP covers the **Frontend** track (JavaScript, TypeScript, React, Node.js basics). QA,
-Automation and Backend are planned and show up as "coming soon".
+The **Frontend** track covers HTML & CSS, Browser & Web, JavaScript, TypeScript, React, Next.js,
+Redux & state management, Testing and Node.js basics — theory lessons, auto-checked JavaScript
+live-coding tasks, React self-check tasks and frontend system design exercises. QA Automation is
+specified next (feature 003); other tracks show up as "coming soon".
 
 The project is built spec-first with [Spec Kit](https://github.com/github/spec-kit):
 [constitution](.specify/memory/constitution.md) ·
@@ -56,38 +58,39 @@ npm run e2e     # Playwright: starts its own API (:3100) and web (:5174) on the 
 
 CI runs all of them, plus `content:check-ids` on pull requests.
 
-## Writing lessons
+## Writing content
 
-Lessons live in `content/<track>/<technology>/<lesson-id>.md`; modules are listed in
-`modules.yaml` next to them and tracks/technologies in `content/catalog.yaml`. The full format and
-rules are in [contracts/content-format.md](specs/001-interview-prep-mvp/contracts/content-format.md).
+The library lives in `content/` (format and rules:
+[001 content-format](specs/001-interview-prep-mvp/contracts/content-format.md) and
+[002 additions](specs/002-middle-interview-coverage/contracts/content-format.md)).
 
-```markdown
----
-id: react-effects              # permanent, equals the file name
-module: react-hooks
-order: 2
-title: useEffect done right
-description: One sentence shown in the plan.
-levels: [junior, middle, senior]
-estimatedMinutes: 30
-keyTakeaways: [...]            # 3–6
-interviewQuestions: [...]      # 3–8 × { question, answer }
-quiz: [...]                    # 3–5 × { id, question, options, correct, explanation }
----
-
-## First section
-Markdown with fenced code blocks (always with a language). No raw HTML.
-```
+| Kind | Where | Notes |
+| --- | --- | --- |
+| Lesson | `content/<track>/<technology>/<id>.md` | theory, interview Q&A, quiz, `topics`, `references` |
+| Topic map | `content/<track>/<technology>/topics.middle.yaml` | every `must` topic needs a Middle lesson |
+| Coding task | `content/<track>/<technology>/tasks/<id>.md` | `mode: tests` (JS, in-app editor + tests) or `self-check` (React) |
+| Design exercise | `content/<track>/system-design/<id>.md` | prompt + 8 fixed walkthrough sections + checklist |
 
 Rules worth remembering:
 
-- `npm run content:validate` must pass: schema, cross-file references, and coverage (each available
-  technology needs ≥ 6 lessons and ≥ 3 per level).
-- Ids are permanent. To remove a lesson, delete the file **and** add its id to
+- `npm run content:validate` must pass: schemas, cross-file references, coverage (each available
+  technology needs ≥ 6 lessons and ≥ 3 per level, and every Middle `must` topic is covered), and for
+  `tests`-mode tasks the reference solution must pass **all** tests while `naiveSolution` must fail
+  at least one.
+- Every item needs at least one official `references` link.
+- Ids are permanent. To remove a lesson, task or exercise, delete the file **and** list its id in
   `content/retired.yaml`; it is unpublished, never deleted, so user progress survives.
-- Lessons may be drafted with AI tools, but every lesson is reviewed by a person before merge.
-- Existing plans are snapshots: new lessons appear in newly created plans only.
+- Items without a `reviewed: YYYY-MM-DD` date are **drafts**: they show a "Draft" badge locally and
+  are fine on feature branches, but pull requests into `main` must pass
+  `npm run content:validate -- --require-reviewed` (CI gate). Production deploys run
+  `npm run content:sync -- --require-reviewed`.
+- Content may be drafted with AI tools, but every item is reviewed by a person before merge.
+- Existing plans are snapshots: new content appears in newly created plans only.
+
+Coding task tests are small snippets run by the shared harness (`packages/shared/src/runner`), with
+`assert.equal/deepEqual/ok/throws/rejects` and a fake clock (`clock.tick(ms)`,
+`await clock.tickAsync(ms)`, `await clock.runAll()`). In the app, user code runs only in the
+browser inside a sandboxed iframe + Web Worker with no network, storage or session access.
 
 ## Project layout
 
@@ -96,6 +99,6 @@ apps/api/src/domain     pure logic: plan assembly, quiz scoring, dashboard aggre
 apps/api/src/services   database access per feature (sessions, plans, lessons, progress)
 apps/api/src/routes     HTTP routes under /api/v1 (see contracts/api.md)
 apps/api/scripts        content validate / check-ids / sync, e2e reset
-apps/web/src/features   auth, setup, plan, lesson, dashboard
+apps/web/src/features   auth, setup, plan, lesson, task (editor + sandbox runner), exercise, dashboard
 e2e/                    Playwright journeys, accessibility and responsive checks
 ```

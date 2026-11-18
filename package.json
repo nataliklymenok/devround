@@ -16,9 +16,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "npm run typecheck --workspaces --if-present && tsc -p tsconfig.e2e.json",
-    "content:validate": "npm run content:validate -w @devround/api",
+    "content:validate": "npm run content:validate -w @devround/api --",
     "content:check-ids": "npm run content:check-ids -w @devround/api --",
-    "content:sync": "npm run content:sync -w @devround/api",
+    "content:sync": "npm run content:sync -w @devround/api --",
     "e2e": "playwright test"
   },
   "devDependencies": {

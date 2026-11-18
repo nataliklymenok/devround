@@ -41,7 +41,7 @@ jobs:
         run: npm run content:check-ids -- --base origin/${{ github.base_ref }}
       - run: npm test
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run e2e
       - uses: actions/upload-artifact@v4
         if: failure()

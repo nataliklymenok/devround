@@ -1,5 +1,7 @@
 import { indentWithTab } from '@codemirror/commands'
 import { javascript } from '@codemirror/lang-javascript'
+import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
+import { tags } from '@lezer/highlight'
 import { EditorView, basicSetup } from 'codemirror'
 import { keymap } from '@codemirror/view'
 import { useEffect, useRef } from 'react'
@@ -23,6 +25,25 @@ const theme = EditorView.theme({
   '&.cm-focused': { outline: '3px solid var(--color-accent)', outlineOffset: '2px' },
 })
 
+/** Syntax colors from CSS variables so both themes meet WCAG AA contrast (the default style is light-only). */
+const highlight = HighlightStyle.define([
+  {
+    tag: [tags.keyword, tags.operatorKeyword, tags.controlKeyword, tags.definitionKeyword],
+    color: 'var(--code-keyword)',
+  },
+  { tag: [tags.string, tags.special(tags.string), tags.regexp], color: 'var(--code-string)' },
+  { tag: [tags.number, tags.bool, tags.null, tags.atom], color: 'var(--code-number)' },
+  {
+    tag: [tags.comment, tags.lineComment, tags.blockComment],
+    color: 'var(--code-comment)',
+    fontStyle: 'italic',
+  },
+  {
+    tag: [tags.propertyName, tags.function(tags.variableName), tags.function(tags.propertyName)],
+    color: 'var(--code-property)',
+  },
+])
+
 /** CodeMirror 6 (lazy-loaded). Tab indents; Escape then Tab moves focus out (CodeMirror tab-focus mode). */
 export default function CodeMirrorEditor({ value, onChange, label }: Props) {
   const host = useRef<HTMLDivElement>(null)
@@ -41,6 +62,7 @@ export default function CodeMirrorEditor({ value, onChange, label }: Props) {
         basicSetup,
         keymap.of([indentWithTab]),
         javascript(),
+        syntaxHighlighting(highlight),
         theme,
         EditorView.contentAttributes.of({ 'aria-label': label }),
         EditorView.updateListener.of((update) => {

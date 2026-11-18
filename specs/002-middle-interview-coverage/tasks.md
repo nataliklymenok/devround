@@ -175,13 +175,13 @@ Content tasks produce AI-drafted material: every file is created **without** a `
 
 ## Phase 7: Polish & Cross-Cutting Concerns
 
-- [ ] T064 Add Firefox and WebKit Playwright projects for `e2e/live-coding.spec.ts` in `playwright.config.ts` (runner must work in all three engines); install browsers in CI
-- [ ] T065 [P] Accessibility: axe checks for task and exercise pages (light/dark) and keyboard-only flow (run checks, reveal hint, mark status, reveal section, submit checklist) in `e2e/a11y.spec.ts`
-- [ ] T066 [P] Responsive: task and exercise pages at 360/1280 px without horizontal overflow (editor scrolls internally) in `e2e/responsive.spec.ts`
-- [ ] T067 [P] Update `README.md` (writing tasks and exercises, topic maps, review workflow, `--require-reviewed`)
+- [X] T064 Add Firefox and WebKit Playwright projects for `e2e/live-coding.spec.ts` in `playwright.config.ts` (runner must work in all three engines); install browsers in CI
+- [X] T065 [P] Accessibility: axe checks for task and exercise pages (light/dark) and keyboard-only flow (run checks, reveal hint, mark status, reveal section, submit checklist) in `e2e/a11y.spec.ts`
+- [X] T066 [P] Responsive: task and exercise pages at 360/1280 px without horizontal overflow (editor scrolls internally) in `e2e/responsive.spec.ts`
+- [X] T067 [P] Update `README.md` (writing tasks and exercises, topic maps, review workflow, `--require-reviewed`)
 - [ ] T068 Owner review: go through drafts, fix issues, add `reviewed:` dates until `content:validate --require-reviewed` passes; required before the PR into `main` (FR-024, SC-003, Constitution IV)
 - [ ] T069 SC-005 self-check with the owner: map 3 real Middle interview question lists to library items; add missing topics/lessons for anything unmapped above 10%
-- [ ] T070 Run quickstart.md validation V1–V16 and all quality gates (`typecheck`, `lint`, `content:validate`, `test`, `build`, `e2e`)
+- [X] T070 Run quickstart.md validation V1–V16 and all quality gates (`typecheck`, `lint`, `content:validate`, `test`, `build`, `e2e`)
 
 ---
 
