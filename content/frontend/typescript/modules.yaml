@@ -5,3 +5,6 @@ modules:
   - id: ts-advanced-types
     title: Generics and advanced types
     description: Generics, utility, mapped and conditional types, and typing React components.
+  - id: ts-in-practice
+    title: TypeScript in practice
+    description: Everyday language features and project setup questions — satisfies, enums, classes, tsconfig and declaration files.

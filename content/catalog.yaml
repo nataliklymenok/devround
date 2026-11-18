@@ -15,7 +15,7 @@ tracks:
       - { id: javascript, name: JavaScript, available: true, recommends: [browser-web] }
       - { id: typescript, name: TypeScript, available: true, recommends: [javascript] }
       - { id: react, name: React, available: true, recommends: [javascript, browser-web] }
-      - { id: nextjs, name: Next.js, available: false, recommends: [react, javascript, browser-web] }
+      - { id: nextjs, name: Next.js, available: true, recommends: [react, javascript, browser-web] }
       - { id: redux, name: Redux & state management, available: false, recommends: [react] }
       - { id: testing, name: Testing, available: false, recommends: [javascript, react] }
       - { id: nodejs, name: Node.js basics, available: true, recommends: [javascript] }

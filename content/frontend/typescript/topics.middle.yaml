@@ -9,3 +9,8 @@ topics:
   - { id: ts-utility-types, title: 'Built-in utility types', priority: must }
   - { id: ts-mapped-conditional-types, title: 'Mapped and conditional types', priority: must }
   - { id: ts-react-typing, title: 'Typing React components and hooks', priority: must }
+  - { id: ts-satisfies-enums, title: 'satisfies, as const, enums vs unions', priority: must }
+  - { id: ts-classes, title: 'Classes, access modifiers and abstract classes', priority: must }
+  - { id: ts-config, title: 'tsconfig, strict mode and module resolution', priority: must }
+  - { id: ts-declarations, title: 'Declaration files and module augmentation', priority: must }
+  - { id: ts-overloads, title: 'Function overloads and this typing', priority: good }

@@ -1,0 +1,10 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+# Next.js changes quickly — lessons state the version they describe.
+topics:
+  - { id: next-app-router, title: 'App Router: file conventions, layouts, dynamic routes, navigation', priority: must }
+  - { id: next-server-client, title: 'Server Components vs Client Components', priority: must }
+  - { id: next-rendering, title: 'Static vs dynamic rendering, SSR, SSG, ISR and streaming', priority: must }
+  - { id: next-caching, title: 'Data fetching, caching and revalidation', priority: must }
+  - { id: next-server-actions, title: 'Server Actions (Server Functions) and mutations', priority: must }
+  - { id: next-route-handlers, title: 'Route handlers and middleware/proxy', priority: must }
+  - { id: next-optimizations, title: 'Images, fonts, metadata and scripts', priority: must }
