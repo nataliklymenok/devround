@@ -1,0 +1,13 @@
+modules:
+  - id: web-dom-rendering
+    title: DOM, events and rendering
+    description: How the browser turns HTML, CSS and JavaScript into pixels, and how events travel through the DOM.
+  - id: web-network-storage
+    title: Networking and storage
+    description: HTTP and caching, the same-origin policy and CORS, cookies and client-side storage.
+  - id: web-quality
+    title: Security, accessibility and performance
+    description: XSS, CSRF and CSP, accessible interfaces, and Core Web Vitals.
+  - id: web-architecture
+    title: Frontend architecture
+    description: A structured approach to frontend system design interviews.

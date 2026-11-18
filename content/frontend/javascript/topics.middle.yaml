@@ -10,3 +10,8 @@ topics:
   - { id: js-event-loop, title: 'Event loop, tasks and microtasks', priority: must }
   - { id: js-promises, title: 'Promises and combinators', priority: must }
   - { id: js-async-await, title: 'async/await and error handling', priority: must }
+  - { id: js-arrays-immutability, title: 'Array methods, mutation vs immutability, shallow vs deep copy', priority: must }
+  - { id: js-collections-gc, title: 'Map, Set, WeakMap and garbage collection', priority: must }
+  - { id: js-error-handling, title: 'Error handling: try/catch, custom errors, async and global errors', priority: must }
+  - { id: js-timers-abort, title: 'Timers, debounce vs throttle, requestAnimationFrame and AbortController', priority: must }
+  - { id: js-iterators-generators, title: 'Iterators, generators and async iteration', priority: good }

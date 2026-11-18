@@ -11,7 +11,7 @@ tracks:
     available: true
     technologies:
       - { id: html-css, name: HTML & CSS, available: false, recommends: [browser-web] }
-      - { id: browser-web, name: Browser & Web, available: false, recommends: [javascript, html-css] }
+      - { id: browser-web, name: Browser & Web, available: true, recommends: [javascript, html-css] }
       - { id: javascript, name: JavaScript, available: true, recommends: [browser-web] }
       - { id: typescript, name: TypeScript, available: true, recommends: [javascript] }
       - { id: react, name: React, available: true, recommends: [javascript, browser-web] }
