@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { assemblePlan, type CatalogForPlan } from '../../src/domain/assemble-plan.js'
+import {
+  assembleExercises,
+  assemblePlan,
+  assembleTasks,
+  type CatalogForPlan,
+  type ExerciseForPlan,
+  type TaskForPlan,
+} from '../../src/domain/assemble-plan.js'
 
 const catalog: CatalogForPlan = {
   technologies: [
@@ -68,5 +75,107 @@ describe('assemblePlan', () => {
       (l) => l.lessonId,
     )
     expect(ids).toEqual(['j-a1'])
+  })
+})
+
+describe('assembleTasks', () => {
+  const technologies = [
+    { id: 'react', position: 2 },
+    { id: 'javascript', position: 1 },
+  ]
+  const tasks: TaskForPlan[] = [
+    {
+      id: 'r-hard',
+      technologyId: 'react',
+      order: 1,
+      difficulty: 'hard',
+      levels: ['middle'],
+      isPublished: true,
+    },
+    {
+      id: 'j-medium',
+      technologyId: 'javascript',
+      order: 1,
+      difficulty: 'medium',
+      levels: ['middle'],
+      isPublished: true,
+    },
+    {
+      id: 'j-easy-2',
+      technologyId: 'javascript',
+      order: 3,
+      difficulty: 'easy',
+      levels: ['middle'],
+      isPublished: true,
+    },
+    {
+      id: 'j-easy-1',
+      technologyId: 'javascript',
+      order: 2,
+      difficulty: 'easy',
+      levels: ['middle', 'senior'],
+      isPublished: true,
+    },
+    {
+      id: 'j-senior',
+      technologyId: 'javascript',
+      order: 4,
+      difficulty: 'easy',
+      levels: ['senior'],
+      isPublished: true,
+    },
+    {
+      id: 'j-gone',
+      technologyId: 'javascript',
+      order: 5,
+      difficulty: 'easy',
+      levels: ['middle'],
+      isPublished: false,
+    },
+    {
+      id: 'ts-x',
+      technologyId: 'typescript',
+      order: 1,
+      difficulty: 'easy',
+      levels: ['middle'],
+      isPublished: true,
+    },
+  ]
+
+  it('orders by technology position, then difficulty, then task order; filters level and publication', () => {
+    expect(
+      assembleTasks(tasks, technologies, {
+        levelId: 'middle',
+        technologyIds: ['react', 'javascript'],
+      }),
+    ).toEqual([
+      { taskId: 'j-easy-1', order: 1 },
+      { taskId: 'j-easy-2', order: 2 },
+      { taskId: 'j-medium', order: 3 },
+      { taskId: 'r-hard', order: 4 },
+    ])
+  })
+
+  it('ignores technologies that were not selected', () => {
+    expect(
+      assembleTasks(tasks, technologies, { levelId: 'middle', technologyIds: ['react'] }),
+    ).toEqual([{ taskId: 'r-hard', order: 1 }])
+  })
+})
+
+describe('assembleExercises', () => {
+  const exercises: ExerciseForPlan[] = [
+    { id: 'b', trackId: 'frontend', order: 2, levels: ['middle'], isPublished: true },
+    { id: 'a', trackId: 'frontend', order: 1, levels: ['middle', 'senior'], isPublished: true },
+    { id: 'junior-only', trackId: 'frontend', order: 3, levels: ['junior'], isPublished: true },
+    { id: 'gone', trackId: 'frontend', order: 4, levels: ['middle'], isPublished: false },
+    { id: 'qa', trackId: 'qa', order: 1, levels: ['middle'], isPublished: true },
+  ]
+
+  it('selects the track and level in order', () => {
+    expect(assembleExercises(exercises, { trackId: 'frontend', levelId: 'middle' })).toEqual([
+      { exerciseId: 'a', order: 1 },
+      { exerciseId: 'b', order: 2 },
+    ])
   })
 })

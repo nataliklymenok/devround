@@ -55,6 +55,10 @@ quiz:
     options: ["Calling fetch()", "Mutating a global variable", "Computing a value from props and state", "Adding an event listener to window"]
     correct: 2
     explanation: Rendering must be pure; deriving values is fine, side effects are not.
+topics: [react-jsx-rendering]
+references:
+  - { title: 'React — Writing Markup with JSX', url: 'https://react.dev/learn/writing-markup-with-jsx' }
+  - { title: 'React — Render and Commit', url: 'https://react.dev/learn/render-and-commit' }
 ---
 
 ## Components are functions

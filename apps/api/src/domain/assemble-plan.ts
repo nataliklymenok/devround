@@ -51,3 +51,57 @@ export function assemblePlan(catalog: CatalogForPlan, selection: PlanSelection):
   }
   return result
 }
+
+export interface TaskForPlan {
+  id: string
+  technologyId: string
+  order: number
+  difficulty: 'easy' | 'medium' | 'hard'
+  levels: string[]
+  isPublished: boolean
+}
+
+export interface ExerciseForPlan {
+  id: string
+  trackId: string
+  order: number
+  levels: string[]
+  isPublished: boolean
+}
+
+const DIFFICULTY_RANK = { easy: 1, medium: 2, hard: 3 } as const
+
+/** Live coding section (R10): technology position → difficulty → task order. */
+export function assembleTasks(
+  tasks: TaskForPlan[],
+  technologies: { id: string; position: number }[],
+  selection: PlanSelection,
+): { taskId: string; order: number }[] {
+  const position = new Map(technologies.map((t) => [t.id, t.position]))
+  const selected = new Set(selection.technologyIds)
+  return tasks
+    .filter(
+      (t) => selected.has(t.technologyId) && t.isPublished && t.levels.includes(selection.levelId),
+    )
+    .sort(
+      (a, b) =>
+        (position.get(a.technologyId) ?? 0) - (position.get(b.technologyId) ?? 0) ||
+        DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty] ||
+        a.order - b.order,
+    )
+    .map((t, index) => ({ taskId: t.id, order: index + 1 }))
+}
+
+/** System design section (R10): exercises of the track relevant for the level, by order. */
+export function assembleExercises(
+  exercises: ExerciseForPlan[],
+  selection: { trackId: string; levelId: string },
+): { exerciseId: string; order: number }[] {
+  return exercises
+    .filter(
+      (e) =>
+        e.trackId === selection.trackId && e.isPublished && e.levels.includes(selection.levelId),
+    )
+    .sort((a, b) => a.order - b.order)
+    .map((e, index) => ({ exerciseId: e.id, order: index + 1 }))
+}

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    // No environment globals: shared code (schemas, test harness) must run in browsers and Node.
     "types": []
   },
-  "include": ["src", "tests"]
+  "include": ["src"]
 }

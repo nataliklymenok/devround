@@ -52,6 +52,10 @@ quiz:
     options: ["fn runs immediately", "fn runs after at least 0 ms, in a later task", "fn runs before pending promises", "fn runs on another thread"]
     correct: 1
     explanation: The delay is a minimum; the callback becomes a task and runs after current work and microtasks.
+topics: [js-event-loop]
+references:
+  - { title: 'MDN — Microtasks and the JavaScript runtime environment', url: 'https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth' }
+  - { title: 'HTML Standard — Event loops', url: 'https://html.spec.whatwg.org/multipage/webappapis.html#event-loops' }
 ---
 
 ## One stack, many queues

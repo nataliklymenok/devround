@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import YAML from 'yaml'
-import { loadLibrary } from './load.js'
+import { SYSTEM_DESIGN_DIR, TASKS_DIR, loadLibrary } from './load.js'
 import { collectIds, findRemovedIds, type ContentIds } from './rules.js'
 import { argValue, formatIssues, resolveContentDir } from './validate-library.js'
 
@@ -9,15 +9,22 @@ function git(args: string[]): string {
   return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] })
 }
 
-/** Lesson and module ids of the library as it exists at `ref`. */
+/** Lesson, module, task and exercise ids of the library as it exists at `ref`. */
 function idsAtRef(ref: string, contentRel: string): ContentIds {
-  const files = git(['ls-tree', '-r', '--name-only', ref, '--', contentRel]).split('\n').filter(Boolean)
-  const ids: ContentIds = { lessons: [], modules: [] }
+  const files = git(['ls-tree', '-r', '--name-only', ref, '--', contentRel])
+    .split('\n')
+    .filter(Boolean)
+  const ids: ContentIds = { lessons: [], modules: [], tasks: [], exercises: [] }
   for (const file of files) {
-    const rel = path.posix.relative(contentRel, file)
-    if (rel.split('/').length !== 3) continue // <track>/<technology>/<file>
-    if (rel.endsWith('.md')) ids.lessons.push(path.posix.basename(rel, '.md'))
-    if (rel.endsWith('/modules.yaml')) {
+    const parts = path.posix.relative(contentRel, file).split('/')
+    const name = parts.at(-1) ?? ''
+    if (parts.length === 3 && parts[1] === SYSTEM_DESIGN_DIR && name.endsWith('.md')) {
+      ids.exercises.push(path.posix.basename(name, '.md')) // <track>/system-design/<id>.md
+    } else if (parts.length === 4 && parts[2] === TASKS_DIR && name.endsWith('.md')) {
+      ids.tasks.push(path.posix.basename(name, '.md')) // <track>/<technology>/tasks/<id>.md
+    } else if (parts.length === 3 && name.endsWith('.md')) {
+      ids.lessons.push(path.posix.basename(name, '.md')) // <track>/<technology>/<id>.md
+    } else if (parts.length === 3 && name === 'modules.yaml') {
       const parsed = YAML.parse(git(['show', `${ref}:${file}`])) as { modules?: { id?: string }[] }
       ids.modules.push(...(parsed.modules ?? []).flatMap((m) => (m.id ? [m.id] : [])))
     }

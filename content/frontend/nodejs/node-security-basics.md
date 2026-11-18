@@ -54,6 +54,10 @@ quiz:
     options: ["Your server from all unauthorized clients", "Users' browsers from cross-origin pages reading responses", "Your database from injection", "Cookies from being stolen over HTTP"]
     correct: 1
     explanation: CORS is enforced by browsers; servers still need authentication and authorization.
+topics: [node-api-security]
+references:
+  - { title: 'OWASP — API Security Top 10', url: 'https://owasp.org/API-Security/' }
+  - { title: 'Node.js — Security Best Practices', url: 'https://nodejs.org/en/learn/getting-started/security-best-practices' }
 ---
 
 ## Validate at the boundary

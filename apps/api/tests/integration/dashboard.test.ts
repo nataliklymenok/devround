@@ -1,4 +1,4 @@
-import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { cp, mkdtemp, rm } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import type { FastifyInstance } from 'fastify'
@@ -10,6 +10,7 @@ import {
   resetDb,
   signIn,
   syncContent,
+  retireFixtureLesson,
 } from '../helpers.js'
 
 let app: FastifyInstance
@@ -89,19 +90,7 @@ describe('GET /dashboard', () => {
     tmpDirs.push(dir)
     await cp(FIXTURE_CONTENT_DIR, dir, { recursive: true })
     // Coverage only applies to available technologies; mark React unavailable to retire a lesson.
-    const catalog = path.join(dir, 'catalog.yaml')
-    await writeFile(
-      catalog,
-      (await readFile(catalog, 'utf8')).replace(
-        '{ id: react, name: React, available: true }',
-        '{ id: react, name: React, available: false }',
-      ),
-    )
-    await rm(path.join(dir, 'frontend/react/react-jsx.md'))
-    await writeFile(
-      path.join(dir, 'retired.yaml'),
-      'lessons:\n  - { id: react-jsx, retiredAt: 2026-10-26, reason: test }\nmodules: []\n',
-    )
+    await retireFixtureLesson(dir, 'react', 'react-jsx')
     await syncContent(dir)
 
     const body = (await dashboard()).json()

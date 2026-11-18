@@ -34,7 +34,16 @@ npm run e2e                 # Playwright, fake auth
 - No runtime LLM calls. Content may be drafted with AI offline but needs human review.
 - Lesson/module ids are permanent. To remove one: delete the file AND add the id to
   `content/retired.yaml`. Never reuse a retired id.
-- Never send quiz `correct`/`explanation` from `GET /lessons/:id`.
+- Never send quiz `correct`/`explanation` from `GET /lessons/:id`; likewise never send coding-task
+  hints/solutions or design-exercise section bodies before the user reveals them.
+- Content kinds: lessons (`<tech>/<id>.md`), coding tasks (`<tech>/tasks/<id>.md`, `mode: tests` for
+  JS with automated tests, `self-check` for React), design exercises (`<track>/system-design/<id>.md`),
+  and Middle topic maps (`<tech>/topics.middle.yaml`, every `must` topic needs a Middle lesson).
+- Every content item needs `references` (official docs). Items without a `reviewed:` date are drafts:
+  fine on feature branches, but PRs into `main` must pass `content:validate --require-reviewed`.
+- User code from coding tasks runs only in the user's browser inside the sandboxed iframe runner
+  (`apps/web/src/features/task/runner`) — never on the server, never with access to the session.
+  The test harness lives in `packages/shared/src/runner` and is shared with `content:validate`.
 - Every user-data query filters by the session user; foreign resources return 404.
 - Tests: integration tests hit a real Postgres (no Prisma mocks); Google verification uses
   `FakeGoogleVerifier` (`AUTH_PROVIDER=fake`, forbidden in production); tests use the fixture

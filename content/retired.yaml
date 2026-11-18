@@ -2,3 +2,5 @@
 # Retired ids can never be reused (enforced by content:validate and content:check-ids).
 lessons: []
 modules: []
+tasks: []
+exercises: []

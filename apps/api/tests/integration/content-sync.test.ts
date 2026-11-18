@@ -2,7 +2,13 @@ import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import { afterAll, beforeEach, describe, expect, it } from 'vitest'
-import { FIXTURE_CONTENT_DIR, resetDb, syncContent, testDb } from '../helpers.js'
+import {
+  FIXTURE_CONTENT_DIR,
+  resetDb,
+  retireFixtureLesson,
+  syncContent,
+  testDb,
+} from '../helpers.js'
 
 const tmpDirs: string[] = []
 
@@ -21,13 +27,13 @@ afterAll(async () => {
 describe('content:sync', () => {
   it('creates the catalog on first sync and is a no-op on re-sync', async () => {
     const first = await syncContent()
-    expect(first).toEqual({ created: 12, updated: 0, unchanged: 0, unpublished: 0 })
+    expect(first).toMatchObject({ created: 12, updated: 0, unchanged: 0, unpublished: 0 })
     expect(await testDb().track.count()).toBe(2)
     expect(await testDb().technology.count()).toBe(3)
     expect(await testDb().module.count()).toBe(4)
 
     const second = await syncContent()
-    expect(second).toEqual({ created: 0, updated: 0, unchanged: 12, unpublished: 0 })
+    expect(second).toMatchObject({ created: 0, updated: 0, unchanged: 12, unpublished: 0 })
   })
 
   it('updates an edited lesson and unpublishes a removed one', async () => {
@@ -42,19 +48,7 @@ describe('content:sync', () => {
 
     // The fixture has no spare lessons, so make React unavailable (coverage applies only to
     // available technologies) before retiring one of its lessons.
-    const catalog = path.join(dir, 'catalog.yaml')
-    await writeFile(
-      catalog,
-      (await readFile(catalog, 'utf8')).replace(
-        '{ id: react, name: React, available: true }',
-        '{ id: react, name: React, available: false }',
-      ),
-    )
-    await rm(path.join(dir, 'frontend/react/react-memo.md'))
-    await writeFile(
-      path.join(dir, 'retired.yaml'),
-      'lessons:\n  - { id: react-memo, retiredAt: 2026-10-26, reason: test }\nmodules: []\n',
-    )
+    await retireFixtureLesson(dir, 'react', 'react-memo')
 
     const report = await syncContent(dir)
     expect(report).toMatchObject({ created: 0, updated: 1, unpublished: 1 })

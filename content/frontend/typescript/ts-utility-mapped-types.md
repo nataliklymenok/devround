@@ -54,6 +54,11 @@ quiz:
     options: ["{ admin: boolean; user: boolean }", "boolean[]", "Map<string, boolean>", "{ [key: string]: boolean }"]
     correct: 0
     explanation: Record maps each key of the union to the value type.
+topics: [ts-utility-types, ts-mapped-conditional-types]
+references:
+  - { title: 'TypeScript Handbook — Utility Types', url: 'https://www.typescriptlang.org/docs/handbook/utility-types.html' }
+  - { title: 'TypeScript Handbook — Mapped Types', url: 'https://www.typescriptlang.org/docs/handbook/2/mapped-types.html' }
+  - { title: 'TypeScript Handbook — Conditional Types', url: 'https://www.typescriptlang.org/docs/handbook/2/conditional-types.html' }
 ---
 
 ## Everyday utility types

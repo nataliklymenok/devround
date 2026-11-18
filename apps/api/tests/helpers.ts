@@ -1,3 +1,4 @@
+import { readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { FastifyInstance } from 'fastify'
@@ -88,4 +89,32 @@ export async function signIn(app: FastifyInstance, email: string): Promise<strin
   const cookie = res.cookies.find((c) => c.name === 'dr_session')
   if (!cookie) throw new Error('no session cookie')
   return `dr_session=${cookie.value}`
+}
+
+/**
+ * Retire a lesson in a copy of the fixture library: make its technology unavailable (coverage rules
+ * apply only to available technologies), delete the file, drop its topic and list it in retired.yaml.
+ */
+export async function retireFixtureLesson(dir: string, technology: string, lessonId: string) {
+  const catalogFile = path.join(dir, 'catalog.yaml')
+  await writeFile(
+    catalogFile,
+    (await readFile(catalogFile, 'utf8')).replace(
+      new RegExp(`(\\{ id: ${technology}, [^}]*available: )true`),
+      '$1false',
+    ),
+  )
+  await rm(path.join(dir, `frontend/${technology}/${lessonId}.md`))
+  const topicsFile = path.join(dir, `frontend/${technology}/topics.middle.yaml`)
+  await writeFile(
+    topicsFile,
+    (await readFile(topicsFile, 'utf8'))
+      .split('\n')
+      .filter((line) => !line.includes(`id: t-${lessonId},`))
+      .join('\n'),
+  )
+  await writeFile(
+    path.join(dir, 'retired.yaml'),
+    `lessons:\n  - { id: ${lessonId}, retiredAt: 2026-11-18, reason: test }\nmodules: []\ntasks: []\nexercises: []\n`,
+  )
 }

@@ -1,0 +1,12 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: js-types-equality, title: 'Types, typeof, equality and coercion', priority: must }
+  - { id: js-scope-hoisting, title: 'Scope, hoisting and the temporal dead zone', priority: must }
+  - { id: js-closures, title: 'Closures', priority: must }
+  - { id: js-this, title: 'How this is bound', priority: must }
+  - { id: js-prototypes-classes, title: 'Prototypes and classes', priority: must }
+  - { id: js-modern-syntax, title: 'Destructuring, spread, optional chaining and nullish coalescing', priority: must }
+  - { id: js-modules, title: 'ES modules', priority: must }
+  - { id: js-event-loop, title: 'Event loop, tasks and microtasks', priority: must }
+  - { id: js-promises, title: 'Promises and combinators', priority: must }
+  - { id: js-async-await, title: 'async/await and error handling', priority: must }

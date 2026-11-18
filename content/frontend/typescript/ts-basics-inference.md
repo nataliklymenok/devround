@@ -50,6 +50,10 @@ quiz:
     options: ["They become runtime checks", "They are erased", "They become JSDoc comments that run", "They are stored in a .d.ts and enforced at runtime"]
     correct: 1
     explanation: Types are erased; validate untrusted data at runtime yourself.
+topics: [ts-inference-structural, ts-any-unknown]
+references:
+  - { title: 'TypeScript Handbook — Everyday Types', url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html' }
+  - { title: 'TypeScript Handbook — Type Compatibility', url: 'https://www.typescriptlang.org/docs/handbook/type-compatibility.html' }
 ---
 
 ## Annotate the edges, infer the rest

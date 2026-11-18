@@ -43,6 +43,10 @@ quiz:
     options: ["It is synchronous", "It does not propagate errors or clean up the other stream", "It cannot handle binary data", "It ignores backpressure"]
     correct: 1
     explanation: pipe handles backpressure but not error propagation — pipeline does both.
+topics: [node-streams]
+references:
+  - { title: 'Node.js — Stream', url: 'https://nodejs.org/api/stream.html' }
+  - { title: 'Node.js — Backpressuring in Streams', url: 'https://nodejs.org/en/learn/modules/backpressuring-in-streams' }
 ---
 
 ## Promise-based I/O

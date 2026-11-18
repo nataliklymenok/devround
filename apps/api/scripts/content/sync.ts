@@ -1,9 +1,16 @@
 import { createDb } from '../../src/db.js'
 import { syncLibrary } from './sync-library.js'
-import { argValue, formatIssues, resolveContentDir, validateLibrary } from './validate-library.js'
+import {
+  argValue,
+  formatIssues,
+  hasFlag,
+  resolveContentDir,
+  validateLibrary,
+} from './validate-library.js'
 
 const dir = resolveContentDir(argValue('dir'))
-const { library, issues } = await validateLibrary(dir)
+const requireReviewed = hasFlag('require-reviewed')
+const { library, issues } = await validateLibrary(dir, { requireReviewed })
 if (!library) {
   console.error(`✗ sync aborted, ${issues.length} content issue(s):\n${formatIssues(issues)}`)
   process.exit(1)
@@ -17,9 +24,13 @@ if (!url) {
 
 const db = createDb(url)
 try {
-  const r = await syncLibrary(db, library)
+  const r = await syncLibrary(db, library, { requireReviewed })
   console.log(
-    `✓ content synced: ${r.created} created, ${r.updated} updated, ${r.unchanged} unchanged, ${r.unpublished} unpublished`,
+    `✓ content synced — lessons: ${r.created} created, ${r.updated} updated, ${r.unchanged} unchanged, ` +
+      `${r.unpublished} unpublished; tasks: ${r.tasks.created + r.tasks.updated} changed, ` +
+      `${r.tasks.unpublished} unpublished; exercises: ${r.exercises.created + r.exercises.updated} changed, ` +
+      `${r.exercises.unpublished} unpublished` +
+      (r.drafts > 0 ? `; ${r.drafts} drafts (review before merging into main)` : ''),
   )
 } catch (error) {
   console.error(`✗ sync failed: ${(error as Error).message}`)

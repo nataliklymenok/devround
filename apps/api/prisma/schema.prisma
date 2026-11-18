@@ -12,14 +12,15 @@ datasource db {
 // ---------- Catalog (read model of content/, written only by content:sync) ----------
 
 model Track {
-  id           String       @id
+  id           String           @id
   name         String
   isAvailable  Boolean
   position     Int
   technologies Technology[]
   plans        Plan[]
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  exercises    DesignExercise[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
 }
 
 model Level {
@@ -38,8 +39,11 @@ model Technology {
   name        String
   isAvailable Boolean
   position    Int
+  /// technology ids suggested together on the setup screen (FR-008)
+  recommends  String[]         @default([])
   modules     Module[]
   plans       PlanTechnology[]
+  tasks       CodingTask[]
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
 }
@@ -76,6 +80,13 @@ model Lesson {
   keyTakeaways       String[]
   /// QuizItem[] incl. correct answers — never sent before submission
   quiz               Json
+  /// topic ids from the technology's topic map
+  topics             String[]         @default([])
+  /// Reference[] — further reading (FR-006)
+  references         Json             @default("[]")
+  /// true when the file has no `reviewed:` date
+  isDraft            Boolean          @default(true)
+  reviewedAt         DateTime?        @db.Date
   isPublished        Boolean          @default(true)
   contentHash        String
   planLessons        PlanLesson[]
@@ -90,17 +101,19 @@ model Lesson {
 // ---------- Users & auth ----------
 
 model User {
-  id        String           @id @default(cuid())
-  googleSub String           @unique
-  email     String
-  name      String
-  avatarUrl String?
-  sessions  Session[]
-  plans     Plan[]
-  progress  LessonProgress[]
-  attempts  QuizAttempt[]
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
+  id               String             @id @default(cuid())
+  googleSub        String             @unique
+  email            String
+  name             String
+  avatarUrl        String?
+  sessions         Session[]
+  plans            Plan[]
+  progress         LessonProgress[]
+  attempts         QuizAttempt[]
+  taskProgress     TaskProgress[]
+  exerciseProgress ExerciseProgress[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
 }
 
 model Session {
@@ -134,6 +147,8 @@ model Plan {
   archivedAt   DateTime?
   technologies PlanTechnology[]
   lessons      PlanLesson[]
+  tasks        PlanTask[]
+  exercises    PlanExercise[]
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
 
@@ -194,4 +209,148 @@ model QuizAttempt {
   createdAt    DateTime @default(now())
 
   @@index([userId, lessonId])
+}
+
+// ---------- Coding tasks & design exercises (feature 002) ----------
+
+enum TaskMode {
+  tests
+  self_check
+}
+
+enum TaskDifficulty {
+  easy
+  medium
+  hard
+}
+
+model CodingTask {
+  id                 String         @id
+  technologyId       String
+  technology         Technology     @relation(fields: [technologyId], references: [id])
+  order              Int
+  title              String
+  levels             String[]
+  difficulty         TaskDifficulty
+  estimatedMinutes   Int
+  mode               TaskMode
+  /// Problem + Constraints + Examples (public)
+  statement          String
+  starterCode        String
+  entry              String?
+  /// TestCase[] (public, tests mode)
+  tests              Json?
+  /// string[] (public, self-check mode)
+  acceptanceCriteria Json?
+  /// string[] — hidden until revealed
+  hints              Json
+  /// Solution + Explanation + Complexity + Common mistakes — hidden until revealed
+  solution           String
+  topics             String[]       @default([])
+  references         Json           @default("[]")
+  isDraft            Boolean        @default(true)
+  reviewedAt         DateTime?      @db.Date
+  isPublished        Boolean        @default(true)
+  contentHash        String
+  planTasks          PlanTask[]
+  progress           TaskProgress[]
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([technologyId, order])
+}
+
+model DesignExercise {
+  id             String             @id
+  trackId        String
+  track          Track              @relation(fields: [trackId], references: [id])
+  order          Int
+  title          String
+  levels         String[]
+  timeboxMinutes Int
+  prompt         String
+  /// [{ key, title, body }] in the fixed order — bodies hidden until revealed
+  sections       Json
+  /// [{ id, text }] (public)
+  checklist      Json
+  topics         String[]           @default([])
+  references     Json               @default("[]")
+  isDraft        Boolean            @default(true)
+  reviewedAt     DateTime?          @db.Date
+  isPublished    Boolean            @default(true)
+  contentHash    String
+  planExercises  PlanExercise[]
+  progress       ExerciseProgress[]
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([trackId, order])
+}
+
+model PlanTask {
+  planId String
+  plan   Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  taskId String
+  task   CodingTask @relation(fields: [taskId], references: [id])
+  order  Int
+
+  @@id([planId, taskId])
+  @@unique([planId, order])
+}
+
+model PlanExercise {
+  planId     String
+  plan       Plan           @relation(fields: [planId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise   DesignExercise @relation(fields: [exerciseId], references: [id])
+  order      Int
+
+  @@id([planId, exerciseId])
+  @@unique([planId, order])
+}
+
+enum TaskStatus {
+  solved_own
+  solved_with_hints
+  revisit
+}
+
+model TaskProgress {
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskId           String
+  task             CodingTask  @relation(fields: [taskId], references: [id])
+  status           TaskStatus?
+  /// current attempt
+  hintsRevealed    Int         @default(0)
+  solutionRevealed Boolean     @default(false)
+  /// ≤ 20 KB, tests mode only
+  draftCode        String?
+  /// task contentHash when the draft was saved
+  draftContentHash String?
+  lastCheckPassed  Int?
+  lastCheckTotal   Int?
+  attemptStartedAt DateTime    @default(now())
+  lastOpenedAt     DateTime    @default(now())
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@id([userId, taskId])
+}
+
+model ExerciseProgress {
+  userId           String
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId       String
+  exercise         DesignExercise @relation(fields: [exerciseId], references: [id])
+  sectionsRevealed String[]       @default([])
+  /// 0–100, max over attempts
+  bestScore        Int?
+  lastCovered      String[]       @default([])
+  completedAt      DateTime?
+  lastOpenedAt     DateTime       @default(now())
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@id([userId, exerciseId])
 }

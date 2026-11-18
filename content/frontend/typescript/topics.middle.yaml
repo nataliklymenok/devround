@@ -1,0 +1,11 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: ts-inference-structural, title: 'Inference and structural typing', priority: must }
+  - { id: ts-any-unknown, title: 'any vs unknown and runtime validation', priority: must }
+  - { id: ts-narrowing, title: 'Narrowing and type guards', priority: must }
+  - { id: ts-discriminated-unions, title: 'Discriminated unions and exhaustiveness', priority: must }
+  - { id: ts-interface-vs-type, title: 'Interfaces vs type aliases', priority: must }
+  - { id: ts-generics, title: 'Generics and constraints', priority: must }
+  - { id: ts-utility-types, title: 'Built-in utility types', priority: must }
+  - { id: ts-mapped-conditional-types, title: 'Mapped and conditional types', priority: must }
+  - { id: ts-react-typing, title: 'Typing React components and hooks', priority: must }

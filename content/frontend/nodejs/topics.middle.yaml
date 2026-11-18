@@ -1,0 +1,9 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: node-event-loop, title: 'Node.js runtime and event loop phases', priority: must }
+  - { id: node-modules, title: 'CommonJS vs ES modules', priority: must }
+  - { id: node-npm-semver, title: 'npm, semver and lockfiles', priority: must }
+  - { id: node-streams, title: 'Async I/O, streams and backpressure', priority: must }
+  - { id: node-http-server, title: 'HTTP servers, status codes and graceful shutdown', priority: must }
+  - { id: node-error-handling, title: 'Error handling and unhandled rejections', priority: must }
+  - { id: node-api-security, title: 'API security basics', priority: must }

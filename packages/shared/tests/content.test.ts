@@ -21,6 +21,7 @@ function validLesson() {
       { id: 'q2', question: 'Q?', options: ['a', 'b', 'c'], correct: 2, explanation: 'E' },
       { id: 'q3', question: 'Q?', options: ['a', 'b'], correct: 1, explanation: 'E' },
     ],
+    references: [{ title: 'React docs', url: 'https://react.dev/reference/rules/rules-of-hooks' }],
   }
 }
 
@@ -95,6 +96,6 @@ describe('CatalogFileSchema', () => {
 
 describe('RetiredFileSchema', () => {
   it('defaults to empty lists', () => {
-    expect(RetiredFileSchema.parse({})).toEqual({ lessons: [], modules: [] })
+    expect(RetiredFileSchema.parse({})).toEqual({ lessons: [], modules: [], tasks: [], exercises: [] })
   })
 })

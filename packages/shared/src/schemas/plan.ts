@@ -31,6 +31,7 @@ export const PlanLessonSchema = z.object({
   description: z.string(),
   estimatedMinutes: z.number().int(),
   isAvailable: z.boolean(),
+  isDraft: z.boolean(),
   progress: LessonProgressSummarySchema,
 })
 export type PlanLesson = z.infer<typeof PlanLessonSchema>
@@ -43,9 +44,54 @@ export const PlanModuleSchema = z.object({
 })
 export type PlanModule = z.infer<typeof PlanModuleSchema>
 
+export const TaskModeSchema = z.enum(['tests', 'self-check'])
+export type TaskMode = z.infer<typeof TaskModeSchema>
+export const TaskDifficultySchema = z.enum(['easy', 'medium', 'hard'])
+export type TaskDifficulty = z.infer<typeof TaskDifficultySchema>
+export const TaskStatusSchema = z.enum(['solved_own', 'solved_with_hints', 'revisit'])
+export type TaskStatus = z.infer<typeof TaskStatusSchema>
+
+export const CheckSummarySchema = z.object({
+  passed: z.number().int().min(0),
+  total: z.number().int().min(0),
+})
+
+export const PlanTaskSchema = z.object({
+  id: z.string(),
+  order: z.number().int(),
+  title: z.string(),
+  technology: z.string(),
+  difficulty: TaskDifficultySchema,
+  estimatedMinutes: z.number().int(),
+  mode: TaskModeSchema,
+  isAvailable: z.boolean(),
+  isDraft: z.boolean(),
+  progress: z.object({
+    status: TaskStatusSchema.nullable(),
+    lastCheck: CheckSummarySchema.nullable(),
+  }),
+})
+export type PlanTask = z.infer<typeof PlanTaskSchema>
+
+export const PlanExerciseSchema = z.object({
+  id: z.string(),
+  order: z.number().int(),
+  title: z.string(),
+  timeboxMinutes: z.number().int(),
+  isAvailable: z.boolean(),
+  isDraft: z.boolean(),
+  progress: z.object({
+    completed: z.boolean(),
+    bestScore: z.number().int().min(0).max(100).nullable(),
+  }),
+})
+export type PlanExercise = z.infer<typeof PlanExerciseSchema>
+
 export const PlanDetailSchema = z.object({
   id: z.string(),
   target: PlanTargetSchema,
   modules: z.array(PlanModuleSchema),
+  tasks: z.array(PlanTaskSchema),
+  exercises: z.array(PlanExerciseSchema),
 })
 export type PlanDetail = z.infer<typeof PlanDetailSchema>

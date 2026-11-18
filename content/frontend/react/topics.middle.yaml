@@ -1,0 +1,11 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: react-jsx-rendering, title: 'Components, JSX and the render/commit cycle', priority: must }
+  - { id: react-state-props, title: 'State, props and immutable updates', priority: must }
+  - { id: react-keys-reconciliation, title: 'Lists, keys and reconciliation', priority: must }
+  - { id: react-rules-of-hooks, title: 'Rules of hooks', priority: must }
+  - { id: react-custom-hooks, title: 'Custom hooks', priority: must }
+  - { id: react-effects, title: 'Effects, dependencies and cleanup', priority: must }
+  - { id: react-memoization, title: 'Re-renders, memoization and the React Compiler', priority: must }
+  - { id: react-context, title: 'Context', priority: must }
+  - { id: react-state-management, title: 'Where state should live: local, context, query cache, stores', priority: must }

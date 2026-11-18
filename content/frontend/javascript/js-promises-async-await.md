@@ -60,6 +60,10 @@ quiz:
     options: ["It crashes the page immediately", "It is swallowed silently", "It becomes a rejection handled by the next catch in the chain", "It is retried"]
     correct: 2
     explanation: Throwing inside then rejects the promise returned by then, which flows to the next catch.
+topics: [js-promises, js-async-await]
+references:
+  - { title: 'MDN — Using promises', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises' }
+  - { title: 'MDN — async function', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function' }
 ---
 
 ## Promise basics

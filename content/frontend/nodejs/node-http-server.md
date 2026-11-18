@@ -44,6 +44,10 @@ quiz:
     options: ["Hard-coded constants", "Environment variables or a secret manager", "A file committed to git", "Query parameters"]
     correct: 1
     explanation: Configuration and secrets belong in the environment, validated at startup.
+topics: [node-http-server]
+references:
+  - { title: 'Node.js — HTTP', url: 'https://nodejs.org/api/http.html' }
+  - { title: 'Fastify — Documentation', url: 'https://fastify.dev/docs/latest/' }
 ---
 
 ## The bare http module

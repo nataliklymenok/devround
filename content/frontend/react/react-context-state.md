@@ -46,6 +46,10 @@ quiz:
     options: ["The text of a search input", "The current theme", "Whether a dropdown is open", "A list item's hover state"]
     correct: 1
     explanation: Theme is global and changes rarely; the others are local UI state.
+topics: [react-context, react-state-management]
+references:
+  - { title: 'React — Passing Data Deeply with Context', url: 'https://react.dev/learn/passing-data-deeply-with-context' }
+  - { title: 'TanStack Query — Overview', url: 'https://tanstack.com/query/latest/docs/framework/react/overview' }
 ---
 
 ## Creating and consuming context

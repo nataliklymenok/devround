@@ -44,6 +44,10 @@ quiz:
     options: ["It increments too", "Nothing — each has its own state", "It re-renders with the same value", "React throws"]
     correct: 1
     explanation: Custom hooks share logic, not state.
+topics: [react-rules-of-hooks, react-custom-hooks]
+references:
+  - { title: 'React — Rules of Hooks', url: 'https://react.dev/reference/rules/rules-of-hooks' }
+  - { title: 'React — Reusing Logic with Custom Hooks', url: 'https://react.dev/learn/reusing-logic-with-custom-hooks' }
 ---
 
 ## How React tracks hooks

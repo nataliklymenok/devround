@@ -57,6 +57,10 @@ quiz:
     options: ["They copy variable values at creation time", "They keep a live reference to the outer variables", "They only work with var", "They are created only by arrow functions"]
     correct: 1
     explanation: Closures reference the variables themselves, so they see later updates (and keep them in memory).
+topics: [js-scope-hoisting, js-closures]
+references:
+  - { title: 'MDN — Closures', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures' }
+  - { title: 'MDN — let and the temporal dead zone', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let' }
 ---
 
 ## Lexical scope

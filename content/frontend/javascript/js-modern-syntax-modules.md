@@ -44,6 +44,10 @@ quiz:
     options: ["null", "undefined", "It throws a TypeError", "''"]
     correct: 1
     explanation: Optional chaining short-circuits to undefined when it meets null or undefined.
+topics: [js-modern-syntax, js-modules]
+references:
+  - { title: 'MDN — Destructuring', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring' }
+  - { title: 'MDN — JavaScript modules', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules' }
 ---
 
 ## Destructuring and defaults

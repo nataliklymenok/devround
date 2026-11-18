@@ -51,6 +51,11 @@ quiz:
     options: ["Wrap everything in memo", "Measure with the Profiler", "Convert to class components", "Remove all state"]
     correct: 1
     explanation: Optimize what measurements show is slow.
+topics: [react-memoization]
+references:
+  - { title: 'React — memo', url: 'https://react.dev/reference/react/memo' }
+  - { title: 'React — useMemo', url: 'https://react.dev/reference/react/useMemo' }
+  - { title: 'React — React Compiler', url: 'https://react.dev/learn/react-compiler' }
 ---
 
 ## Measure first

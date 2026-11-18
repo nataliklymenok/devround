@@ -33,6 +33,9 @@ quiz:
     options: [Wrong, Also wrong, Right]
     correct: 2
     explanation: The third option is right.
+topics: [t-js-values]
+references:
+  - { title: MDN, url: 'https://developer.mozilla.org/' }
 ---
 
 ## Overview

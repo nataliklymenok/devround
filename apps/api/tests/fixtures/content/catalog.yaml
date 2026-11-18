@@ -8,6 +8,6 @@ tracks:
     available: true
     technologies:
       - { id: javascript, name: JavaScript, available: true }
-      - { id: react, name: React, available: true }
+      - { id: react, name: React, available: true, recommends: [javascript] }
       - { id: html-css, name: HTML & CSS, available: false }
   - { id: qa, name: QA, available: false, technologies: [] }

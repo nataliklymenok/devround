@@ -48,6 +48,11 @@ quiz:
     options: ["Sync it with useEffect", "Compute it during render", "Store it in a ref", "Store it in context"]
     correct: 1
     explanation: Derived values should be computed during render — storing them creates sync bugs.
+topics: [react-state-props]
+references:
+  - { title: 'React — State: A Component''s Memory', url: 'https://react.dev/learn/state-a-components-memory' }
+  - { title: 'React — Updating Objects in State', url: 'https://react.dev/learn/updating-objects-in-state' }
+  - { title: 'React — Sharing State Between Components', url: 'https://react.dev/learn/sharing-state-between-components' }
 ---
 
 ## Props flow down, events flow up

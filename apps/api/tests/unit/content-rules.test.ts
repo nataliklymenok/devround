@@ -122,13 +122,16 @@ describe('findRemovedIds', () => {
     const lib = clone()
     const current = collectIds(lib)
     const base = {
+      ...current,
       lessons: [...current.lessons, 'old-lesson', 'gone-lesson'],
       modules: [...current.modules, 'old-module'],
+      tasks: [...current.tasks, 'gone-task'],
     }
     lib.retired.lessons.push({ id: 'old-lesson', retiredAt: '2026-10-01', reason: 'merged' })
     const messages = findRemovedIds(base, current, lib).map((i) => i.message)
-    expect(messages).toHaveLength(2)
+    expect(messages).toHaveLength(3)
     expect(messages.join()).toContain('gone-lesson')
     expect(messages.join()).toContain('old-module')
+    expect(messages.join()).toContain('task "gone-task"')
   })
 })

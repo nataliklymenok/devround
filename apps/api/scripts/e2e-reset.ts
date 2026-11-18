@@ -17,8 +17,23 @@ if (!library) {
 
 const db = createDb(url)
 try {
-  const tables = ['QuizAttempt', 'LessonProgress', 'PlanLesson', 'PlanTechnology', 'Plan', 'Session', 'User', 'Lesson', 'Module', 'Technology', 'Track', 'Level']
-  await db.$executeRawUnsafe(`TRUNCATE ${tables.map((t) => `"${t}"`).join(', ')} RESTART IDENTITY CASCADE`)
+  const tables = [
+    'QuizAttempt',
+    'LessonProgress',
+    'PlanLesson',
+    'PlanTechnology',
+    'Plan',
+    'Session',
+    'User',
+    'Lesson',
+    'Module',
+    'Technology',
+    'Track',
+    'Level',
+  ]
+  await db.$executeRawUnsafe(
+    `TRUNCATE ${tables.map((t) => `"${t}"`).join(', ')} RESTART IDENTITY CASCADE`,
+  )
   await syncLibrary(db, library)
   console.log('✓ e2e database reset with fixture content')
 } finally {

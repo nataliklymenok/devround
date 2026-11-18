@@ -44,6 +44,10 @@ quiz:
     options: ["npm install", "npm update", "npm ci", "npm audit fix"]
     correct: 2
     explanation: npm ci installs exactly what the lockfile says and fails if it is out of date.
+topics: [node-modules, node-npm-semver]
+references:
+  - { title: 'Node.js — Modules: Packages', url: 'https://nodejs.org/api/packages.html' }
+  - { title: 'npm Docs — About semantic versioning', url: 'https://docs.npmjs.com/about-semantic-versioning' }
 ---
 
 ## CommonJS vs ES modules

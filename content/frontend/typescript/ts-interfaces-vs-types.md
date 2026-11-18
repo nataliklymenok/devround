@@ -43,6 +43,10 @@ quiz:
     options: ["extends", "implements", "An intersection with &", "A union with |"]
     correct: 2
     explanation: type C = A & B produces a type with the members of both.
+topics: [ts-interface-vs-type]
+references:
+  - { title: 'TypeScript Handbook — Type aliases vs interfaces', url: 'https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces' }
+  - { title: 'TypeScript Handbook — Declaration Merging', url: 'https://www.typescriptlang.org/docs/handbook/declaration-merging.html' }
 ---
 
 ## Mostly interchangeable

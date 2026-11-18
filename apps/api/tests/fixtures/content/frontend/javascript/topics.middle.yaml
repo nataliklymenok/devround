@@ -1,0 +1,7 @@
+topics:
+  - { id: t-js-async-await, title: Js Async Await, priority: must }
+  - { id: t-js-event-loop, title: Js Event Loop, priority: good }
+  - { id: t-js-promises, title: Js Promises, priority: must }
+  - { id: t-js-scope, title: Js Scope, priority: must }
+  - { id: t-js-this, title: Js This, priority: must }
+  - { id: t-js-values, title: Js Values, priority: must }

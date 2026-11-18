@@ -47,6 +47,9 @@ quiz:
     options: ["any", "null", "unknown", "undefined"]
     correct: 1
     explanation: The state type is just null — pass useState<User | null>(null) instead.
+topics: [ts-react-typing]
+references:
+  - { title: 'React — Using TypeScript', url: 'https://react.dev/learn/typescript' }
 ---
 
 ## Props and children

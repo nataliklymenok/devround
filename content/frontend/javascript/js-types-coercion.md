@@ -56,6 +56,10 @@ quiz:
     options: ["value === NaN", "Number.isNaN(value)", "typeof value === 'NaN'", "value == NaN"]
     correct: 1
     explanation: NaN is not equal to anything, including itself; Number.isNaN checks for it without coercion.
+topics: [js-types-equality]
+references:
+  - { title: 'MDN — Equality comparisons and sameness', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness' }
+  - { title: 'MDN — typeof', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof' }
 ---
 
 ## Primitives and objects

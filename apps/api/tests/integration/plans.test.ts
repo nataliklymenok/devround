@@ -82,8 +82,48 @@ describe('POST /plans', () => {
       description: 'Fixture lesson about Js Values.',
       estimatedMinutes: 15,
       isAvailable: true,
+      isDraft: true,
       progress: { completed: false, bestScore: null },
     })
+  })
+
+  it('includes live coding tasks and system design exercises for the level (002)', async () => {
+    const plan = (
+      await createPlan({ ...middleReact, technologyIds: ['react', 'javascript'] })
+    ).json()
+    expect(plan.tasks.map((t: { id: string }) => t.id)).toEqual([
+      'js-sum-array',
+      'js-debounce-fx',
+      'react-counter-fx',
+    ])
+    expect(plan.tasks[1]).toEqual({
+      id: 'js-debounce-fx',
+      order: 2,
+      title: 'Implement debounce',
+      technology: 'JavaScript',
+      difficulty: 'medium',
+      estimatedMinutes: 20,
+      mode: 'tests',
+      isAvailable: true,
+      isDraft: false,
+      progress: { status: null, lastCheck: null },
+    })
+    expect(plan.tasks[2].mode).toBe('self-check')
+    expect(plan.exercises.map((e: { id: string }) => e.id)).toEqual([
+      'sd-fx-autocomplete',
+      'sd-fx-feed',
+    ])
+
+    const junior = (
+      await createPlan({
+        ...middleReact,
+        levelId: 'junior',
+        technologyIds: ['javascript'],
+        replaceExisting: true,
+      })
+    ).json()
+    expect(junior.tasks.map((t: { id: string }) => t.id)).toEqual(['js-sum-array'])
+    expect(junior.exercises.map((e: { id: string }) => e.id)).toEqual(['sd-fx-feed'])
   })
 
   it('only includes lessons for the chosen level', async () => {

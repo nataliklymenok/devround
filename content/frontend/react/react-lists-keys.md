@@ -54,6 +54,10 @@ quiz:
     options: ["Across the whole app", "Among siblings in the same list", "Within the same file", "Per component type"]
     correct: 1
     explanation: Keys only need to be unique among siblings.
+topics: [react-keys-reconciliation]
+references:
+  - { title: 'React — Rendering Lists', url: 'https://react.dev/learn/rendering-lists' }
+  - { title: 'React — Preserving and Resetting State', url: 'https://react.dev/learn/preserving-and-resetting-state' }
 ---
 
 ## Rendering lists

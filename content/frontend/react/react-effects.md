@@ -56,6 +56,10 @@ quiz:
     options: ["Removing the dependency array", "Aborting or ignoring stale requests in cleanup", "Adding a setTimeout", "Using useLayoutEffect"]
     correct: 1
     explanation: Older responses can arrive last; cleanup must cancel or ignore them.
+topics: [react-effects]
+references:
+  - { title: 'React — Synchronizing with Effects', url: 'https://react.dev/learn/synchronizing-with-effects' }
+  - { title: 'React — You Might Not Need an Effect', url: 'https://react.dev/learn/you-might-not-need-an-effect' }
 ---
 
 ## What effects are for

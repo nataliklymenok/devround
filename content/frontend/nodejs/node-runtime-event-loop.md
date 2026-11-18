@@ -54,6 +54,10 @@ quiz:
     options: ["cluster", "worker_threads", "child_process only", "events"]
     correct: 1
     explanation: worker_threads run JS on separate threads; cluster forks separate processes.
+topics: [node-event-loop]
+references:
+  - { title: 'Node.js — The Node.js Event Loop', url: 'https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick' }
+  - { title: 'Node.js — Don''t Block the Event Loop', url: 'https://nodejs.org/en/learn/asynchronous-work/dont-block-the-event-loop' }
 ---
 
 ## The pieces

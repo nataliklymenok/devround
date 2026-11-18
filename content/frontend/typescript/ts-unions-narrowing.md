@@ -51,6 +51,9 @@ quiz:
     options: ["typeof", "in", "keyof", "satisfies"]
     correct: 1
     explanation: "'prop' in value narrows to the members that declare that property."
+topics: [ts-narrowing, ts-discriminated-unions]
+references:
+  - { title: 'TypeScript Handbook — Narrowing', url: 'https://www.typescriptlang.org/docs/handbook/2/narrowing.html' }
 ---
 
 ## Union types

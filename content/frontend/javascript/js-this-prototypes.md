@@ -56,6 +56,10 @@ quiz:
     options: ["The result of calling fn", "A new function with this bound to obj", "obj with fn attached", "undefined"]
     correct: 1
     explanation: bind returns a new function; call and apply invoke immediately.
+topics: [js-this, js-prototypes-classes]
+references:
+  - { title: 'MDN — this', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this' }
+  - { title: 'MDN — Inheritance and the prototype chain', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain' }
 ---
 
 ## this is decided at call time

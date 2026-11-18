@@ -48,6 +48,9 @@ quiz:
     options: ["function wrap<T>(x: T): { value: T }", "function log<T>(x: T): void", "function pair<A, B>(a: A, b: B): [A, B]", "function last<T>(xs: T[]): T | undefined"]
     correct: 1
     explanation: T appears once and relates nothing — unknown would be clearer.
+topics: [ts-generics]
+references:
+  - { title: 'TypeScript Handbook — Generics', url: 'https://www.typescriptlang.org/docs/handbook/2/generics.html' }
 ---
 
 ## Keeping input and output connected

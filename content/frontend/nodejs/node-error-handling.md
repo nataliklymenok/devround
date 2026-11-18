@@ -55,6 +55,10 @@ quiz:
     options: ["new Error(msg, { cause: original })", "new Error(msg + original)", "Error.wrap(original)", "original.parent = new Error(msg)"]
     correct: 0
     explanation: The cause option preserves the original error chain.
+topics: [node-error-handling]
+references:
+  - { title: 'Node.js — Errors', url: 'https://nodejs.org/api/errors.html' }
+  - { title: 'Node.js — process: unhandledRejection', url: 'https://nodejs.org/api/process.html#event-unhandledrejection' }
 ---
 
 ## Two kinds of errors

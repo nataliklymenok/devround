@@ -33,6 +33,10 @@ quiz:
     options: [Wrong, Also wrong, Right]
     correct: 2
     explanation: The third option is right.
+topics: [t-react-memo]
+reviewed: 2026-11-18
+references:
+  - { title: MDN, url: 'https://developer.mozilla.org/' }
 ---
 
 ## Overview
