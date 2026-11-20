@@ -6,6 +6,7 @@ title: Utility, mapped and conditional types
 description: Built-in utility types, how they are implemented with mapped types, and conditional types with infer.
 levels: [middle, senior]
 estimatedMinutes: 30
+reviewed: 2026-11-20
 keyTakeaways:
   - Partial, Required, Readonly, Pick, Omit and Record cover most everyday transformations.
   - Mapped types iterate over keys to build a new object type.

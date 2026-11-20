@@ -7,6 +7,7 @@ description: Actions, useActionState, useFormStatus, useOptimistic, use, ref as 
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [react-19]
+reviewed: 2026-11-20
 references:
   - { title: 'React — React 19 release post', url: 'https://react.dev/blog/2024/12/05/react-19' }
   - { title: 'React — useOptimistic', url: 'https://react.dev/reference/react/useOptimistic' }

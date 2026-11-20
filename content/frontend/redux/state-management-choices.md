@@ -7,6 +7,7 @@ description: Local vs global state, server state vs client state, and when Conte
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [state-choices]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Choosing the State Structure', url: 'https://react.dev/learn/choosing-the-state-structure' }
   - { title: 'Redux — When should I use Redux?', url: 'https://redux.js.org/faq/general#when-should-i-use-redux' }

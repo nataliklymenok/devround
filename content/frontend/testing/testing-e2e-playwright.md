@@ -7,6 +7,7 @@ description: Locators and web-first assertions, auto-waiting, fixtures and authe
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [testing-e2e]
+reviewed: 2026-11-20
 references:
   - { title: 'Playwright — Writing tests', url: 'https://playwright.dev/docs/writing-tests' }
   - { title: 'Playwright — Best Practices', url: 'https://playwright.dev/docs/best-practices' }

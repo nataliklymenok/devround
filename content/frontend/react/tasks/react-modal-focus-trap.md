@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 40
 mode: self-check
 topics: [react-refs-portals, react-effects]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — dialog element', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog' }
   - { title: 'W3C APG — Dialog (Modal) pattern', url: 'https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/' }

@@ -7,6 +7,7 @@ description: setTimeout and setInterval details, debounce vs throttle, requestAn
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [js-timers-abort]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — setTimeout()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout' }
   - { title: 'MDN — requestAnimationFrame()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame' }

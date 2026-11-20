@@ -7,6 +7,7 @@ description: Mutating vs non-mutating array methods, reduce, sorting pitfalls, a
 levels: [junior, middle]
 estimatedMinutes: 25
 topics: [js-arrays-immutability]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Array', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array' }
   - { title: 'MDN — structuredClone()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone' }

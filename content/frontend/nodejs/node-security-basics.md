@@ -6,6 +6,7 @@ title: Security basics for Node APIs
 description: Input validation, injection, authentication cookies, CORS, CSRF, rate limiting and dependencies.
 levels: [middle, senior]
 estimatedMinutes: 30
+reviewed: 2026-11-20
 keyTakeaways:
   - Validate and parse every input at the boundary; never build SQL or shell commands from strings.
   - Store sessions in httpOnly, Secure, SameSite cookies — not in localStorage.

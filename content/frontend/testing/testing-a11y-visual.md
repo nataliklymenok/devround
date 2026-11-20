@@ -7,6 +7,7 @@ description: Automated accessibility checks with axe, their limits, and screensh
 levels: [middle, senior]
 estimatedMinutes: 15
 topics: [testing-a11y-visual]
+reviewed: 2026-11-20
 references:
   - { title: 'Playwright — Accessibility testing', url: 'https://playwright.dev/docs/accessibility-testing' }
   - { title: 'Playwright — Visual comparisons', url: 'https://playwright.dev/docs/test-snapshots' }

@@ -6,6 +6,7 @@ title: State, props and data flow
 description: Props vs state, immutable updates, lifting state up and derived values.
 levels: [junior, middle]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Props are inputs from the parent and are read-only; state is memory owned by the component.
   - State updates are asynchronous snapshots — use the updater form when the next state depends on the previous one.

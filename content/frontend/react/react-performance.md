@@ -6,6 +6,7 @@ title: Memoization and performance
 description: When re-renders matter, React.memo, useMemo, useCallback and the React Compiler.
 levels: [middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Re-renders are usually cheap; measure with the React DevTools Profiler before optimizing.
   - React.memo skips re-rendering when props are shallowly equal — it needs stable props to work.

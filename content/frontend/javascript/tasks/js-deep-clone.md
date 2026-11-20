@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 25
 mode: tests
 topics: [js-arrays-immutability, js-collections-gc]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — structuredClone()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone' }
   - { title: 'MDN — WeakMap', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap' }

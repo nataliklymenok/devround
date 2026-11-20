@@ -7,6 +7,7 @@ difficulty: easy
 estimatedMinutes: 15
 mode: tests
 topics: [js-closures, js-collections-gc]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Map', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map' }
   - { title: 'MDN — Closures', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures' }

@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 20
 mode: tests
 topics: [js-promises]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Promise.all()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all' }
 hints:

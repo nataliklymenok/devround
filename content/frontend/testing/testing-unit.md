@@ -7,6 +7,7 @@ description: Structure, assertions, mocks and spies, module mocking, fake timers
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [testing-unit]
+reviewed: 2026-11-20
 references:
   - { title: 'Vitest — Getting Started', url: 'https://vitest.dev/guide/' }
   - { title: 'Vitest — Mocking', url: 'https://vitest.dev/guide/mocking' }

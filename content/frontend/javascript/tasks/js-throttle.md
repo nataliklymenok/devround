@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 25
 mode: tests
 topics: [js-timers-abort, js-closures]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Date.now()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now' }
   - { title: 'MDN — setTimeout()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout' }

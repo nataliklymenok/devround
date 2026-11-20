@@ -7,6 +7,7 @@ description: How React prioritizes updates, useTransition and useDeferredValue, 
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [react-concurrent]
+reviewed: 2026-11-20
 references:
   - { title: 'React — useTransition', url: 'https://react.dev/reference/react/useTransition' }
   - { title: 'React — useDeferredValue', url: 'https://react.dev/reference/react/useDeferredValue' }

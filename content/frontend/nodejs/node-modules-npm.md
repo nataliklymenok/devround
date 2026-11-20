@@ -6,6 +6,7 @@ title: Modules and npm
 description: CommonJS vs ES modules in Node, package.json fields, semver and lockfiles.
 levels: [junior, middle]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - Node supports CommonJS (require) and ES modules (import); "type" in package.json picks the default for .js files.
   - ES modules need file extensions in relative imports and have no __dirname — use import.meta.dirname.

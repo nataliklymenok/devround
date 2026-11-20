@@ -7,6 +7,7 @@ description: Semantic HTML, the rules of ARIA, keyboard support, focus managemen
 levels: [junior, middle, senior]
 estimatedMinutes: 30
 topics: [web-accessibility]
+reviewed: 2026-11-20
 references:
   - { title: 'W3C — WCAG 2.2 Quick Reference', url: 'https://www.w3.org/WAI/WCAG22/quickref/' }
   - { title: 'W3C — ARIA Authoring Practices Guide', url: 'https://www.w3.org/WAI/ARIA/apg/' }

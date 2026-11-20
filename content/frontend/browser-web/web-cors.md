@@ -7,6 +7,7 @@ description: What an origin is, what the same-origin policy protects, simple vs 
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [web-cors]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Same-origin policy', url: 'https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy' }
   - { title: 'MDN — Cross-Origin Resource Sharing (CORS)', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS' }

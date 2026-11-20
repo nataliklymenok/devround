@@ -6,6 +6,7 @@ title: this, prototypes and classes
 description: How this is determined at call time, how prototype chains work and what classes really are.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - The value of this depends on how a function is called, not where it is defined (except arrow functions).
   - Arrow functions do not have their own this; they use this from the surrounding scope.

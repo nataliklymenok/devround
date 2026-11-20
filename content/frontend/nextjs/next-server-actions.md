@@ -7,6 +7,7 @@ description: Server Functions with forms, pending and error states, revalidation
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [next-server-actions]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Updating data (Server Functions)', url: 'https://nextjs.org/docs/app/getting-started/updating-data' }
   - { title: "React — 'use server'", url: 'https://react.dev/reference/rsc/use-server' }

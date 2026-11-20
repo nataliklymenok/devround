@@ -7,6 +7,7 @@ description: public, private, protected and readonly, #private fields, parameter
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [ts-classes]
+reviewed: 2026-11-20
 references:
   - { title: 'TypeScript Handbook — Classes', url: 'https://www.typescriptlang.org/docs/handbook/2/classes.html' }
   - { title: 'MDN — Private properties', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties' }

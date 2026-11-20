@@ -7,6 +7,7 @@ description: Building HTTP endpoints with route.ts, when to use them instead of 
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [next-route-handlers]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Route Handlers', url: 'https://nextjs.org/docs/app/getting-started/route-handlers-and-middleware' }
   - { title: 'Next.js Docs — route.js file convention', url: 'https://nextjs.org/docs/app/api-reference/file-conventions/route' }

@@ -6,6 +6,7 @@ title: The event loop, tasks and microtasks
 description: Call stack, task queue, microtask queue and why promise callbacks run before setTimeout.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - JavaScript runs one call stack at a time; async work is scheduled as tasks or microtasks.
   - After each task the engine drains the entire microtask queue before rendering or running the next task.

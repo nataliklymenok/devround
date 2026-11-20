@@ -5,6 +5,7 @@ title: Design an image gallery with a lightbox carousel
 levels: [junior, middle, senior]
 timeboxMinutes: 40
 topics: [fe-system-design, web-performance, web-accessibility]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Responsive images', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images' }
   - { title: 'W3C APG — Carousel pattern', url: 'https://www.w3.org/WAI/ARIA/apg/patterns/carousel/' }

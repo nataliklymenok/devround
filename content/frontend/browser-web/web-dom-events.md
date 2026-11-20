@@ -7,6 +7,7 @@ description: Capturing, target and bubbling phases, preventDefault vs stopPropag
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [web-dom-events]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Introduction to events', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events' }
   - { title: 'MDN — EventTarget.addEventListener()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener' }

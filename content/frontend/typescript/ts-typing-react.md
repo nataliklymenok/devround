@@ -6,6 +6,7 @@ title: Typing React components
 description: Props, children, events, hooks and generic components with TypeScript.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Type props with an interface or type and destructure them in the parameter list.
   - Use ReactNode for children and the specific event types for handlers.

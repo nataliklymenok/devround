@@ -6,6 +6,7 @@ title: Components, JSX and rendering
 description: What a component is, what JSX compiles to, and what happens when React renders.
 levels: [junior, middle]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - A component is a function that returns a description of UI; React calls it, you never do.
   - JSX compiles to function calls that create plain element objects.

@@ -7,6 +7,7 @@ description: What runs where, the 'use client' boundary, passing data across it,
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [next-server-client]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Server and Client Components', url: 'https://nextjs.org/docs/app/getting-started/server-and-client-components' }
   - { title: 'React — Server Components', url: 'https://react.dev/reference/rsc/server-components' }

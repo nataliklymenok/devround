@@ -6,6 +6,7 @@ title: Annotations, inference and structural typing
 description: When to annotate, what TypeScript infers for you, and why types are compared by shape.
 levels: [junior, middle]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - Annotate function parameters and public APIs; let TypeScript infer local variables.
   - TypeScript is structural — a value fits a type if it has the required shape, whatever its name.

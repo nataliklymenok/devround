@@ -5,6 +5,7 @@ title: Design a multi-step form wizard with draft saving
 levels: [junior, middle, senior]
 timeboxMinutes: 40
 topics: [fe-system-design, web-accessibility, react-state-management]
+reviewed: 2026-11-20
 references:
   - { title: 'W3C WAI — Multi-page forms', url: 'https://www.w3.org/WAI/tutorials/forms/multi-page/' }
   - { title: 'React — Choosing the State Structure', url: 'https://react.dev/learn/choosing-the-state-structure' }

@@ -7,6 +7,7 @@ description: Tracks and the fr unit, repeat and minmax, auto-fit vs auto-fill, n
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [css-grid]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Basic concepts of grid layout', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout' }
   - { title: 'MDN — Subgrid', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid' }

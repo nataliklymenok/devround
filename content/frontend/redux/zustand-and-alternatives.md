@@ -7,6 +7,7 @@ description: Zustand stores and selectors, atom-based state, and how to compare 
 levels: [junior, middle]
 estimatedMinutes: 20
 topics: [state-alternatives]
+reviewed: 2026-11-20
 references:
   - { title: 'Zustand — Documentation', url: 'https://zustand.docs.pmnd.rs/' }
   - { title: 'Jotai — Documentation', url: 'https://jotai.org/docs/introduction' }

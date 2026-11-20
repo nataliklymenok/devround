@@ -6,6 +6,7 @@ title: useEffect done right
 description: What effects are for, dependency arrays, cleanup, race conditions and when you do not need an effect.
 levels: [junior, middle, senior]
 estimatedMinutes: 30
+reviewed: 2026-11-20
 keyTakeaways:
   - Effects synchronize a component with an external system — network, subscriptions, timers, the DOM.
   - Every reactive value used inside an effect belongs in the dependency array.

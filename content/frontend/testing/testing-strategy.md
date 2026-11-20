@@ -7,6 +7,7 @@ description: The testing pyramid and trophy, what each test type is good at, wha
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [testing-strategy]
+reviewed: 2026-11-20
 references:
   - { title: 'Kent C. Dodds — The Testing Trophy and Testing Classifications', url: 'https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications' }
   - { title: 'Martin Fowler — The Practical Test Pyramid', url: 'https://martinfowler.com/articles/practical-test-pyramid.html' }

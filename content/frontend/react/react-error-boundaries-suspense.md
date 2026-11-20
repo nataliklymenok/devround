@@ -7,6 +7,7 @@ description: Catching render errors, showing fallbacks while code or data loads,
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [react-error-boundaries-suspense]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Catching rendering errors with an error boundary', url: 'https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary' }
   - { title: 'React — Suspense', url: 'https://react.dev/reference/react/Suspense' }

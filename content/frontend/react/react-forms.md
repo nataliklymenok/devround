@@ -7,6 +7,7 @@ description: Controlled vs uncontrolled inputs, form actions in React 19, valida
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [react-forms]
+reviewed: 2026-11-20
 references:
   - { title: 'React — input (controlled and uncontrolled)', url: 'https://react.dev/reference/react-dom/components/input' }
   - { title: 'React — form (actions)', url: 'https://react.dev/reference/react-dom/components/form' }

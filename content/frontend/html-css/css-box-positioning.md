@@ -7,6 +7,7 @@ description: content-box vs border-box, margin collapsing, display types, positi
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [css-box-positioning]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — The box model', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model' }
   - { title: 'MDN — position', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/position' }

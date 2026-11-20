@@ -6,6 +6,7 @@ title: Scope, hoisting and closures
 description: var vs let/const, the temporal dead zone, lexical scope and how closures capture variables.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - let and const are block-scoped; var is function-scoped and hoisted with the value undefined.
   - let/const are hoisted too, but accessing them before declaration throws (temporal dead zone).

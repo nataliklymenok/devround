@@ -7,6 +7,7 @@ description: Methods, status codes and headers that frontend developers use dail
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [web-http-caching]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — HTTP caching', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching' }
   - { title: 'MDN — HTTP response status codes', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status' }

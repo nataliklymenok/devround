@@ -6,6 +6,7 @@ title: Context and state management
 description: Avoiding prop drilling with context, its re-render behavior, and choosing where state should live.
 levels: [middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Context passes values deep into the tree without prop drilling — ideal for theme, auth and locale.
   - Every consumer re-renders when the context value changes, so keep values stable and split contexts.

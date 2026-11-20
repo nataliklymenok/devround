@@ -7,6 +7,7 @@ description: Validate a value against a type without widening it, freeze literal
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [ts-satisfies-enums]
+reviewed: 2026-11-20
 references:
   - { title: 'TypeScript 4.9 release notes — satisfies', url: 'https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-9.html' }
   - { title: 'TypeScript Handbook — Enums', url: 'https://www.typescriptlang.org/docs/handbook/enums.html' }

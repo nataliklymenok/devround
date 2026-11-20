@@ -6,6 +6,7 @@ title: Error handling in Node.js
 description: Operational vs programmer errors, async error propagation, unhandled rejections and error responses.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Operational errors (network down, invalid input) are expected and handled; programmer errors are bugs.
   - Await every promise — an un-awaited rejection escapes try/catch and becomes an unhandled rejection.

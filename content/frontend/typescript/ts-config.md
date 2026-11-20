@@ -7,6 +7,7 @@ description: What strict enables, the options worth turning on, module and modul
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [ts-config]
+reviewed: 2026-11-20
 references:
   - { title: 'TypeScript — TSConfig Reference', url: 'https://www.typescriptlang.org/tsconfig/' }
   - { title: 'TypeScript — Modules reference: module resolution', url: 'https://www.typescriptlang.org/docs/handbook/modules/reference.html' }

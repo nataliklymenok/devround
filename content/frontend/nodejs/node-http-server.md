@@ -6,6 +6,7 @@ title: Building an HTTP server
 description: The http module, routing and JSON with a framework, status codes and graceful shutdown.
 levels: [junior, middle]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Node's http module gives you raw request and response streams; frameworks add routing, parsing and validation.
   - Always validate input and return correct status codes and a consistent error format.

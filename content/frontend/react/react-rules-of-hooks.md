@@ -6,6 +6,7 @@ title: Rules of hooks and custom hooks
 description: Why hooks must be called unconditionally, how React tracks them and how to extract custom hooks.
 levels: [junior, middle, senior]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - Call hooks only at the top level of components or custom hooks — never in conditions, loops or callbacks.
   - React identifies each hook by its call order between renders.

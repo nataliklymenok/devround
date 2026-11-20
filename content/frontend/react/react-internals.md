@@ -7,6 +7,7 @@ description: What the virtual DOM really is, how Fiber splits rendering into uni
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [react-internals]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Render and Commit', url: 'https://react.dev/learn/render-and-commit' }
   - { title: 'React — Preserving and Resetting State', url: 'https://react.dev/learn/preserving-and-resetting-state' }

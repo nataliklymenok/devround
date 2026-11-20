@@ -5,6 +5,7 @@ title: Design an infinite news feed
 levels: [middle, senior]
 timeboxMinutes: 45
 topics: [fe-system-design, web-performance, web-http-caching]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Intersection Observer API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API' }
   - { title: 'TanStack Query — Infinite Queries', url: 'https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries' }

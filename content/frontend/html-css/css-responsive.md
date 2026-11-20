@@ -7,6 +7,7 @@ description: Mobile-first media queries, container queries, relative units, flui
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [css-responsive]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Responsive web design', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design' }
   - { title: 'MDN — CSS container queries', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries' }

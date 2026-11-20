@@ -7,6 +7,7 @@ description: The Redux data flow, configureStore, createSlice with Immer, typed 
 levels: [junior, middle, senior]
 estimatedMinutes: 30
 topics: [redux-toolkit]
+reviewed: 2026-11-20
 references:
   - { title: 'Redux Toolkit — Quick Start', url: 'https://redux-toolkit.js.org/tutorials/quick-start' }
   - { title: 'Redux Toolkit — createSlice', url: 'https://redux-toolkit.js.org/api/createSlice' }

@@ -7,6 +7,7 @@ difficulty: easy
 estimatedMinutes: 15
 mode: tests
 topics: [js-arrays-immutability]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Array.prototype.flat()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat' }
 hints:

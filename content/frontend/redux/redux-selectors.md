@@ -7,6 +7,7 @@ description: How useSelector decides to re-render, memoized selectors with creat
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [redux-selectors]
+reviewed: 2026-11-20
 references:
   - { title: 'Redux — Deriving Data with Selectors', url: 'https://redux.js.org/usage/deriving-data-selectors' }
   - { title: 'Redux — Normalizing State Shape', url: 'https://redux.js.org/usage/structuring-reducers/normalizing-state-shape' }

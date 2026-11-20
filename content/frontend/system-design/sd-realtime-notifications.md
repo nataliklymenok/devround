@@ -5,6 +5,7 @@ title: Design real-time notifications
 levels: [middle, senior]
 timeboxMinutes: 45
 topics: [fe-system-design, web-http-caching, react-state-management]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Using server-sent events', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events' }
   - { title: 'MDN — WebSockets API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API' }

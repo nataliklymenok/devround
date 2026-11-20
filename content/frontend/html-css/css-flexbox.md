@@ -7,6 +7,7 @@ description: Main and cross axes, flex-grow/shrink/basis, alignment, wrapping an
 levels: [junior, middle]
 estimatedMinutes: 20
 topics: [css-flexbox]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Basic concepts of flexbox', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox' }
   - { title: 'MDN — flex', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/flex' }

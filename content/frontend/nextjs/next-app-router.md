@@ -7,6 +7,7 @@ description: File-system routing with page, layout, loading, error and not-found
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [next-app-router]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Layouts and Pages', url: 'https://nextjs.org/docs/app/getting-started/layouts-and-pages' }
   - { title: 'Next.js Docs — File-system conventions', url: 'https://nextjs.org/docs/app/api-reference/file-conventions' }

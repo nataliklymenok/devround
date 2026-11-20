@@ -7,6 +7,7 @@ description: LCP, INP and CLS, how to measure them in the lab and in the field, 
 levels: [middle, senior]
 estimatedMinutes: 30
 topics: [web-performance]
+reviewed: 2026-11-20
 references:
   - { title: 'web.dev — Web Vitals', url: 'https://web.dev/articles/vitals' }
   - { title: 'web.dev — Optimize Largest Contentful Paint', url: 'https://web.dev/articles/optimize-lcp' }

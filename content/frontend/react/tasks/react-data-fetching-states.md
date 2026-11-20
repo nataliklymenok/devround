@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 30
 mode: self-check
 topics: [react-effects, react-state-management]
+reviewed: 2026-11-20
 references:
   - { title: 'React — You Might Not Need an Effect (fetching data)', url: 'https://react.dev/learn/you-might-not-need-an-effect#fetching-data' }
   - { title: 'TanStack Query — Queries', url: 'https://tanstack.com/query/latest/docs/framework/react/guides/queries' }

@@ -7,6 +7,7 @@ description: Server-side sessions and stateless tokens, where to store them, ref
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [node-auth]
+reviewed: 2026-11-20
 references:
   - { title: 'OWASP — Session Management Cheat Sheet', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html' }
   - { title: 'RFC 7519 — JSON Web Token (JWT)', url: 'https://datatracker.ietf.org/doc/html/rfc7519' }

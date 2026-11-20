@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 25
 mode: tests
 topics: [js-collections-gc, js-prototypes-classes]
+reviewed: 2026-11-20
 references:
   - { title: 'Node.js — Events (EventEmitter)', url: 'https://nodejs.org/api/events.html' }
   - { title: 'MDN — Map', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map' }

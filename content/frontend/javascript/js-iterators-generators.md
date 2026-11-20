@@ -7,6 +7,7 @@ description: The iteration protocols, for...of vs for...in, generator functions 
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [js-iterators-generators]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Iteration protocols', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols' }
   - { title: 'MDN — function*', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*' }

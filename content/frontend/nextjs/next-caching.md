@@ -7,6 +7,7 @@ description: Fetching in Server Components, what is cached by default in Next.js
 levels: [middle, senior]
 estimatedMinutes: 30
 topics: [next-caching]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Caching and Revalidating', url: 'https://nextjs.org/docs/app/getting-started/caching-and-revalidating' }
   - { title: 'Next.js Docs — Fetching data', url: 'https://nextjs.org/docs/app/getting-started/fetching-data' }

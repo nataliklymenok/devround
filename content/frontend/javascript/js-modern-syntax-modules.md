@@ -6,6 +6,7 @@ title: Modern syntax and ES modules
 description: Destructuring, spread, optional chaining, nullish coalescing and how ES modules work.
 levels: [junior, middle]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - Destructuring and spread make copying and extracting data concise — but spread copies only one level deep.
   - "?. stops at null/undefined; ?? falls back only for null/undefined, unlike ||."

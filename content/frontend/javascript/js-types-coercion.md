@@ -6,6 +6,7 @@ title: Types, equality and coercion
 description: The seven primitives, objects, typeof quirks and how == and === really compare values.
 levels: [junior, middle]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - JavaScript has seven primitive types plus objects; primitives are immutable and compared by value.
   - "=== compares without coercion; == applies the abstract equality algorithm and is best avoided except for x == null."

@@ -7,6 +7,7 @@ description: Cookie attributes, localStorage vs sessionStorage, IndexedDB, and w
 levels: [junior, middle]
 estimatedMinutes: 20
 topics: [web-storage]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Using HTTP cookies', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies' }
   - { title: 'MDN — Web Storage API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API' }

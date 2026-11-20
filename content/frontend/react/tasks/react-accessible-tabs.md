@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 40
 mode: self-check
 topics: [react-state-props, react-refs-portals]
+reviewed: 2026-11-20
 references:
   - { title: 'W3C APG — Tabs pattern', url: 'https://www.w3.org/WAI/ARIA/apg/patterns/tabs/' }
   - { title: 'React — Manipulating the DOM with Refs', url: 'https://react.dev/learn/manipulating-the-dom-with-refs' }

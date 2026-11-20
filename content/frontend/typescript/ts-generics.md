@@ -6,6 +6,7 @@ title: Generics
 description: Write reusable, type-safe functions and components with type parameters and constraints.
 levels: [middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Generics let a function or type work with many types while keeping the relationship between input and output.
   - Constrain type parameters with extends to require a minimal shape.

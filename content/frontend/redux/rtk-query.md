@@ -7,6 +7,7 @@ description: Defining an API slice, generated hooks, cache lifetime, tag-based i
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [rtk-query]
+reviewed: 2026-11-20
 references:
   - { title: 'Redux Toolkit — RTK Query Overview', url: 'https://redux-toolkit.js.org/rtk-query/overview' }
   - { title: 'RTK Query — Automated Re-fetching (tags)', url: 'https://redux-toolkit.js.org/rtk-query/usage/automated-refetching' }

@@ -7,6 +7,7 @@ description: createAsyncThunk and its lifecycle actions, loading state patterns,
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [redux-async]
+reviewed: 2026-11-20
 references:
   - { title: 'Redux Toolkit — createAsyncThunk', url: 'https://redux-toolkit.js.org/api/createAsyncThunk' }
   - { title: 'Redux — Writing Logic with Thunks', url: 'https://redux.js.org/usage/writing-logic-thunks' }

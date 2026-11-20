@@ -7,6 +7,7 @@ description: Resource-oriented URLs, methods and status codes, validation and er
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [node-rest-design]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — HTTP request methods', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods' }
   - { title: 'RFC 9457 — Problem Details for HTTP APIs', url: 'https://www.rfc-editor.org/rfc/rfc9457' }

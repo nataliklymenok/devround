@@ -6,6 +6,7 @@ title: Async I/O and streams
 description: Promises-based fs, streams, backpressure and processing large data without running out of memory.
 levels: [middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Use the promise APIs (fs/promises) and await them; avoid sync APIs in request handlers.
   - Streams process data in chunks, so memory stays flat regardless of input size.

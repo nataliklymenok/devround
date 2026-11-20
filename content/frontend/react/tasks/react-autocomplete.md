@@ -7,6 +7,7 @@ difficulty: hard
 estimatedMinutes: 60
 mode: self-check
 topics: [react-effects, react-forms]
+reviewed: 2026-11-20
 references:
   - { title: 'W3C APG — Combobox pattern', url: 'https://www.w3.org/WAI/ARIA/apg/patterns/combobox/' }
   - { title: 'React — Synchronizing with Effects (fetching data)', url: 'https://react.dev/learn/synchronizing-with-effects#fetching-data' }

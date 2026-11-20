@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 20
 mode: tests
 topics: [js-closures]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Function: length', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length' }
 hints:

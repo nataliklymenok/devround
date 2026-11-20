@@ -7,6 +7,7 @@ description: Query priorities, user-event, async UI with findBy and waitFor, and
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [testing-rtl]
+reviewed: 2026-11-20
 references:
   - { title: 'Testing Library — Guiding Principles', url: 'https://testing-library.com/docs/guiding-principles' }
   - { title: 'Testing Library — Which query should I use?', url: 'https://testing-library.com/docs/queries/about/#priority' }

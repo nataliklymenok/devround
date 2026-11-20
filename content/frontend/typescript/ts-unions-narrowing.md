@@ -6,6 +6,7 @@ title: Unions, narrowing and type guards
 description: Model states with union types, narrow them safely and get exhaustiveness checks with never.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Union types describe values that can be one of several shapes.
   - TypeScript narrows unions using typeof, instanceof, in, equality and discriminant checks.

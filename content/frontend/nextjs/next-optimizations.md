@@ -7,6 +7,7 @@ description: next/image, next/font, the Metadata API and next/script — the bui
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [next-optimizations]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Image Optimization', url: 'https://nextjs.org/docs/app/getting-started/images' }
   - { title: 'Next.js Docs — Font Optimization', url: 'https://nextjs.org/docs/app/getting-started/fonts' }

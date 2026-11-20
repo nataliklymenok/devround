@@ -6,6 +6,7 @@ title: Lists, keys and reconciliation
 description: How React matches elements between renders, why keys matter and what goes wrong with index keys.
 levels: [junior, middle, senior]
 estimatedMinutes: 20
+reviewed: 2026-11-20
 keyTakeaways:
   - Reconciliation compares element type and key to decide whether to update, move or recreate a component.
   - Keys must be stable and unique among siblings — use ids from your data.

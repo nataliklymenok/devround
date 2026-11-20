@@ -7,6 +7,7 @@ description: What .d.ts files are, typing untyped packages, global declarations 
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [ts-declarations]
+reviewed: 2026-11-20
 references:
   - { title: 'TypeScript Handbook — Declaration Files: Introduction', url: 'https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html' }
   - { title: 'TypeScript Handbook — Declaration Merging (module augmentation)', url: 'https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation' }

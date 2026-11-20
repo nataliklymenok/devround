@@ -7,6 +7,7 @@ description: try/catch/finally, error types, custom errors with cause, async err
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [js-error-handling]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Control flow and error handling', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling' }
   - { title: 'MDN — Error', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error' }

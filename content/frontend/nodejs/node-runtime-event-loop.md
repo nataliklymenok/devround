@@ -6,6 +6,7 @@ title: The Node.js runtime and event loop
 description: V8, libuv, the thread pool, event loop phases and why you must not block the main thread.
 levels: [junior, middle, senior]
 estimatedMinutes: 25
+reviewed: 2026-11-20
 keyTakeaways:
   - Node runs your JavaScript on one main thread; libuv handles I/O asynchronously around it.
   - Some work (file system, DNS lookup, crypto, zlib) runs on libuv's thread pool, four threads by default.

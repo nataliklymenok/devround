@@ -7,6 +7,7 @@ description: A repeatable structure for frontend system design questions and wha
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [fe-system-design]
+reviewed: 2026-11-20
 references:
   - { title: 'web.dev — Rendering on the Web', url: 'https://web.dev/articles/rendering-on-the-web' }
   - { title: 'W3C — ARIA Authoring Practices Guide', url: 'https://www.w3.org/WAI/ARIA/apg/' }

@@ -7,6 +7,7 @@ description: Landmarks, headings, the right element for the job, forms and the d
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [html-semantics]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — HTML elements reference', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements' }
   - { title: 'MDN — Web forms', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms' }

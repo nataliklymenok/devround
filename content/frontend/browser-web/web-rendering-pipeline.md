@@ -7,6 +7,7 @@ description: Critical rendering path, layout, paint and compositing, layout thra
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [web-rendering-pipeline]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Critical rendering path', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path' }
   - { title: 'MDN — The script element: async and defer', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script' }

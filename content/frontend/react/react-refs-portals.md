@@ -7,6 +7,7 @@ description: useRef for DOM nodes and mutable values, ref as a prop in React 19,
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [react-refs-portals]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Manipulating the DOM with Refs', url: 'https://react.dev/learn/manipulating-the-dom-with-refs' }
   - { title: 'React — useImperativeHandle', url: 'https://react.dev/reference/react/useImperativeHandle' }

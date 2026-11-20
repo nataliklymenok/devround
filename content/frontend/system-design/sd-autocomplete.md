@@ -5,6 +5,7 @@ title: Design an autocomplete (typeahead)
 levels: [middle, senior]
 timeboxMinutes: 45
 topics: [fe-system-design, web-performance, web-accessibility]
+reviewed: 2026-11-20
 references:
   - { title: 'W3C APG — Combobox pattern', url: 'https://www.w3.org/WAI/ARIA/apg/patterns/combobox/' }
   - { title: 'MDN — AbortController', url: 'https://developer.mozilla.org/en-US/docs/Web/API/AbortController' }

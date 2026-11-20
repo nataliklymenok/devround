@@ -7,6 +7,7 @@ description: Static vs dynamic rendering, SSR, SSG and ISR in App Router terms, 
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [next-rendering]
+reviewed: 2026-11-20
 references:
   - { title: 'Next.js Docs — Fetching data (streaming)', url: 'https://nextjs.org/docs/app/getting-started/fetching-data' }
   - { title: 'Next.js Docs — generateStaticParams', url: 'https://nextjs.org/docs/app/api-reference/functions/generate-static-params' }

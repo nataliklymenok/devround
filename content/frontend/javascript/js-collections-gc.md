@@ -7,6 +7,7 @@ description: When to use Map and Set instead of objects and arrays, weak referen
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [js-collections-gc]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Map', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map' }
   - { title: 'MDN — WeakMap', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap' }

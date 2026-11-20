@@ -6,6 +6,7 @@ title: Promises and async/await
 description: Promise states, chaining, error handling, combinators and common async/await mistakes.
 levels: [junior, middle, senior]
 estimatedMinutes: 30
+reviewed: 2026-11-20
 keyTakeaways:
   - A promise is pending, then settles once — fulfilled or rejected.
   - Returning from then passes a value down the chain; throwing turns into a rejection.

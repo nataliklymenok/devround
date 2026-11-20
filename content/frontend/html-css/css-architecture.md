@@ -7,6 +7,7 @@ description: Custom properties, :has and nesting, theming, and the trade-offs be
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [css-architecture]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Using CSS custom properties', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties' }
   - { title: 'MDN — :has()', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:has' }

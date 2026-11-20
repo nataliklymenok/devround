@@ -7,6 +7,7 @@ description: The attacks frontend developers are asked about most and the defenc
 levels: [middle, senior]
 estimatedMinutes: 30
 topics: [web-security]
+reviewed: 2026-11-20
 references:
   - { title: 'OWASP — Cross Site Scripting Prevention Cheat Sheet', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html' }
   - { title: 'OWASP — Cross-Site Request Forgery Prevention Cheat Sheet', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html' }

@@ -7,6 +7,7 @@ description: Choosing what to mock, why mocking at the network level is more rea
 levels: [middle, senior]
 estimatedMinutes: 20
 topics: [testing-mocking]
+reviewed: 2026-11-20
 references:
   - { title: 'Mock Service Worker — Documentation', url: 'https://mswjs.io/docs/' }
   - { title: 'Martin Fowler — Mocks Aren’t Stubs', url: 'https://martinfowler.com/articles/mocksArentStubs.html' }

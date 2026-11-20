@@ -7,6 +7,7 @@ description: How the browser decides which declaration wins, specificity math, i
 levels: [junior, middle, senior]
 estimatedMinutes: 20
 topics: [css-cascade]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Introducing the CSS cascade', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Cascade' }
   - { title: 'MDN — Specificity', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Specificity' }

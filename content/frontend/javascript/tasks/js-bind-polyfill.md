@@ -7,6 +7,7 @@ difficulty: medium
 estimatedMinutes: 20
 mode: tests
 topics: [js-this, js-prototypes-classes]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Function.prototype.bind()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind' }
   - { title: 'MDN — new.target', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target' }

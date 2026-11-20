@@ -7,6 +7,7 @@ difficulty: easy
 estimatedMinutes: 30
 mode: self-check
 topics: [react-state-props, react-keys-reconciliation, react-forms]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Updating Arrays in State', url: 'https://react.dev/learn/updating-arrays-in-state' }
   - { title: 'React — Rendering Lists', url: 'https://react.dev/learn/rendering-lists' }

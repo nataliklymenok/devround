@@ -7,6 +7,7 @@ description: When overload signatures beat unions and generics, how they are res
 levels: [middle, senior]
 estimatedMinutes: 15
 topics: [ts-overloads]
+reviewed: 2026-11-20
 references:
   - { title: 'TypeScript Handbook — More on Functions (overloads, this)', url: 'https://www.typescriptlang.org/docs/handbook/2/functions.html' }
 keyTakeaways:

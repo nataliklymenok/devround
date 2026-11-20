@@ -7,6 +7,7 @@ difficulty: hard
 estimatedMinutes: 30
 mode: tests
 topics: [js-promises, js-async-await, js-error-handling]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — async function', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function' }
   - { title: 'MDN — setTimeout()', url: 'https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout' }
