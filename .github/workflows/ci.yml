@@ -33,9 +33,6 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run content:validate
-      - name: Content review gate (no drafts into main — Constitution IV)
-        if: github.event_name == 'pull_request' && github.base_ref == 'main'
-        run: npm run content:validate -- --require-reviewed
       - name: Content id permanence
         if: github.event_name == 'pull_request'
         run: npm run content:check-ids -- --base origin/${{ github.base_ref }}
@@ -48,3 +45,17 @@ jobs:
         with:
           name: playwright-traces
           path: test-results
+
+  # Separate job so tests, build and E2E always run and report even while content is still in review.
+  content-review:
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: No drafts into main (Constitution IV — every item needs a reviewed date)
+        run: npm run content:validate -- --require-reviewed
