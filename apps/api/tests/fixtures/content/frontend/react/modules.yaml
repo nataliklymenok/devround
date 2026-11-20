@@ -1,0 +1,7 @@
+modules:
+  - id: react-basics
+    title: React basics
+    description: Fixture module React basics.
+  - id: react-advanced
+    title: Advanced React
+    description: Fixture module Advanced React.

@@ -1,0 +1,8 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: testing-strategy, title: 'Testing strategy: pyramid vs trophy, what and how much to test', priority: must }
+  - { id: testing-unit, title: 'Unit tests with Vitest/Jest: assertions, mocks, fake timers, async', priority: must }
+  - { id: testing-rtl, title: 'React Testing Library: queries, user-event, async UI', priority: must }
+  - { id: testing-mocking, title: 'Test doubles and mocking the network with MSW', priority: must }
+  - { id: testing-e2e, title: 'End-to-end tests with Playwright and avoiding flakiness', priority: must }
+  - { id: testing-a11y-visual, title: 'Accessibility and visual regression testing', priority: good }

@@ -1,0 +1,356 @@
+// DevRound data model — see specs/001-interview-prep-mvp/data-model.md
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Catalog (read model of content/, written only by content:sync) ----------
+
+model Track {
+  id           String           @id
+  name         String
+  isAvailable  Boolean
+  position     Int
+  technologies Technology[]
+  plans        Plan[]
+  exercises    DesignExercise[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model Level {
+  id        String   @id
+  name      String
+  rank      Int
+  plans     Plan[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Technology {
+  id          String           @id
+  trackId     String
+  track       Track            @relation(fields: [trackId], references: [id])
+  name        String
+  isAvailable Boolean
+  position    Int
+  /// technology ids suggested together on the setup screen (FR-008)
+  recommends  String[]         @default([])
+  modules     Module[]
+  plans       PlanTechnology[]
+  tasks       CodingTask[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Module {
+  id           String       @id
+  technologyId String
+  technology   Technology   @relation(fields: [technologyId], references: [id])
+  title        String
+  description  String
+  order        Int
+  lessons      Lesson[]
+  planLessons  PlanLesson[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  // order comes from the position in modules.yaml (unique by construction); no DB unique
+  // constraint so content:sync can reorder modules and keep retired ones.
+  @@index([technologyId, order])
+}
+
+model Lesson {
+  id                 String           @id
+  moduleId           String
+  module             Module           @relation(fields: [moduleId], references: [id])
+  order              Int
+  title              String
+  description        String
+  levels             String[]
+  estimatedMinutes   Int
+  body               String
+  /// InterviewQuestion[] (validated by LessonFileSchema)
+  interviewQuestions Json
+  keyTakeaways       String[]
+  /// QuizItem[] incl. correct answers — never sent before submission
+  quiz               Json
+  /// topic ids from the technology's topic map
+  topics             String[]         @default([])
+  /// Reference[] — further reading (FR-006)
+  references         Json             @default("[]")
+  /// true when the file has no `reviewed:` date
+  isDraft            Boolean          @default(true)
+  reviewedAt         DateTime?        @db.Date
+  isPublished        Boolean          @default(true)
+  contentHash        String
+  planLessons        PlanLesson[]
+  progress           LessonProgress[]
+  attempts           QuizAttempt[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@index([moduleId, order])
+}
+
+// ---------- Users & auth ----------
+
+model User {
+  id               String             @id @default(cuid())
+  googleSub        String             @unique
+  email            String
+  name             String
+  avatarUrl        String?
+  sessions         Session[]
+  plans            Plan[]
+  progress         LessonProgress[]
+  attempts         QuizAttempt[]
+  taskProgress     TaskProgress[]
+  exerciseProgress ExerciseProgress[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  lastSeenAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------- Plans ----------
+
+enum PlanStatus {
+  active
+  archived
+}
+
+model Plan {
+  id           String           @id @default(cuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trackId      String
+  track        Track            @relation(fields: [trackId], references: [id])
+  levelId      String
+  level        Level            @relation(fields: [levelId], references: [id])
+  status       PlanStatus       @default(active)
+  archivedAt   DateTime?
+  technologies PlanTechnology[]
+  lessons      PlanLesson[]
+  tasks        PlanTask[]
+  exercises    PlanExercise[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  // Partial unique index "plan_one_active_per_user" (status = 'active') lives in raw SQL migration.
+  @@index([userId, status])
+}
+
+model PlanTechnology {
+  planId       String
+  plan         Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  technologyId String
+  technology   Technology @relation(fields: [technologyId], references: [id])
+
+  @@id([planId, technologyId])
+}
+
+model PlanLesson {
+  planId   String
+  plan     Plan   @relation(fields: [planId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id])
+  moduleId String
+  module   Module @relation(fields: [moduleId], references: [id])
+  order    Int
+
+  @@id([planId, lessonId])
+  @@unique([planId, order])
+}
+
+// ---------- Progress ----------
+
+model LessonProgress {
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       Lesson    @relation(fields: [lessonId], references: [id])
+  completedAt  DateTime?
+  /// 0–100, max over attempts
+  bestScore    Int?
+  lastOpenedAt DateTime  @default(now())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@id([userId, lessonId])
+}
+
+model QuizAttempt {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId     String
+  lesson       Lesson   @relation(fields: [lessonId], references: [id])
+  answers      Int[]
+  questionIds  String[]
+  correctCount Int
+  totalCount   Int
+  score        Int
+  createdAt    DateTime @default(now())
+
+  @@index([userId, lessonId])
+}
+
+// ---------- Coding tasks & design exercises (feature 002) ----------
+
+enum TaskMode {
+  tests
+  self_check
+}
+
+enum TaskDifficulty {
+  easy
+  medium
+  hard
+}
+
+model CodingTask {
+  id                 String         @id
+  technologyId       String
+  technology         Technology     @relation(fields: [technologyId], references: [id])
+  order              Int
+  title              String
+  levels             String[]
+  difficulty         TaskDifficulty
+  estimatedMinutes   Int
+  mode               TaskMode
+  /// Problem + Constraints + Examples (public)
+  statement          String
+  starterCode        String
+  entry              String?
+  /// TestCase[] (public, tests mode)
+  tests              Json?
+  /// string[] (public, self-check mode)
+  acceptanceCriteria Json?
+  /// string[] — hidden until revealed
+  hints              Json
+  /// Solution + Explanation + Complexity + Common mistakes — hidden until revealed
+  solution           String
+  topics             String[]       @default([])
+  references         Json           @default("[]")
+  isDraft            Boolean        @default(true)
+  reviewedAt         DateTime?      @db.Date
+  isPublished        Boolean        @default(true)
+  contentHash        String
+  planTasks          PlanTask[]
+  progress           TaskProgress[]
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([technologyId, order])
+}
+
+model DesignExercise {
+  id             String             @id
+  trackId        String
+  track          Track              @relation(fields: [trackId], references: [id])
+  order          Int
+  title          String
+  levels         String[]
+  timeboxMinutes Int
+  prompt         String
+  /// [{ key, title, body }] in the fixed order — bodies hidden until revealed
+  sections       Json
+  /// [{ id, text }] (public)
+  checklist      Json
+  topics         String[]           @default([])
+  references     Json               @default("[]")
+  isDraft        Boolean            @default(true)
+  reviewedAt     DateTime?          @db.Date
+  isPublished    Boolean            @default(true)
+  contentHash    String
+  planExercises  PlanExercise[]
+  progress       ExerciseProgress[]
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@index([trackId, order])
+}
+
+model PlanTask {
+  planId String
+  plan   Plan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  taskId String
+  task   CodingTask @relation(fields: [taskId], references: [id])
+  order  Int
+
+  @@id([planId, taskId])
+  @@unique([planId, order])
+}
+
+model PlanExercise {
+  planId     String
+  plan       Plan           @relation(fields: [planId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise   DesignExercise @relation(fields: [exerciseId], references: [id])
+  order      Int
+
+  @@id([planId, exerciseId])
+  @@unique([planId, order])
+}
+
+enum TaskStatus {
+  solved_own
+  solved_with_hints
+  revisit
+}
+
+model TaskProgress {
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  taskId           String
+  task             CodingTask  @relation(fields: [taskId], references: [id])
+  status           TaskStatus?
+  /// current attempt
+  hintsRevealed    Int         @default(0)
+  solutionRevealed Boolean     @default(false)
+  /// ≤ 20 KB, tests mode only
+  draftCode        String?
+  /// task contentHash when the draft was saved
+  draftContentHash String?
+  lastCheckPassed  Int?
+  lastCheckTotal   Int?
+  attemptStartedAt DateTime    @default(now())
+  lastOpenedAt     DateTime    @default(now())
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@id([userId, taskId])
+}
+
+model ExerciseProgress {
+  userId           String
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId       String
+  exercise         DesignExercise @relation(fields: [exerciseId], references: [id])
+  sectionsRevealed String[]       @default([])
+  /// 0–100, max over attempts
+  bestScore        Int?
+  lastCovered      String[]       @default([])
+  completedAt      DateTime?
+  lastOpenedAt     DateTime       @default(now())
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  @@id([userId, exerciseId])
+}

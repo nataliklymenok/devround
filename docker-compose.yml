@@ -1,0 +1,24 @@
+# Optional: PostgreSQL via Docker (alternative to a local Homebrew install).
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: devround
+      POSTGRES_PASSWORD: devround
+      POSTGRES_DB: devround
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  db-test:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: devround
+      POSTGRES_PASSWORD: devround
+      POSTGRES_DB: devround_test
+    ports:
+      - '5433:5432'
+    tmpfs:
+      - /var/lib/postgresql/data
+volumes:
+  db-data:

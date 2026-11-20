@@ -1,0 +1,7 @@
+modules:
+  - id: next-fundamentals
+    title: App Router fundamentals
+    description: Routing conventions, Server and Client Components, and rendering strategies.
+  - id: next-data
+    title: Data, mutations and optimizations
+    description: Fetching and caching, Server Actions, route handlers, middleware/proxy and built-in optimizations.

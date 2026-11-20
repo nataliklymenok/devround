@@ -1,0 +1,7 @@
+modules:
+  - id: js-basics
+    title: JavaScript basics
+    description: Fixture module JavaScript basics.
+  - id: js-async
+    title: Async JavaScript
+    description: Fixture module Async JavaScript.

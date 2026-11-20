@@ -1,0 +1,8 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: state-choices, title: 'Choosing state management: local, context, stores, server state', priority: must }
+  - { id: redux-toolkit, title: 'Redux Toolkit: store, slices, Immer, typed hooks', priority: must }
+  - { id: redux-async, title: 'Async logic: thunks, middleware, listener middleware', priority: must }
+  - { id: rtk-query, title: 'RTK Query: caching, tags and invalidation', priority: must }
+  - { id: redux-selectors, title: 'Selectors, memoization and normalized state', priority: must }
+  - { id: state-alternatives, title: 'Zustand, atoms and other alternatives', priority: must }

@@ -1,0 +1,13 @@
+# Middle topic map for this technology. Must-know topics need a Middle lesson (content:validate).
+topics:
+  - { id: web-dom-events, title: 'DOM, event propagation and delegation', priority: must }
+  - { id: web-rendering-pipeline, title: 'Critical rendering path, reflow and repaint, script loading', priority: must }
+  - { id: web-http-caching, title: 'HTTP basics and caching', priority: must }
+  - { id: web-cors, title: 'Same-origin policy and CORS', priority: must }
+  - { id: web-storage, title: 'Cookies, Web Storage and IndexedDB', priority: must }
+  - { id: web-security, title: 'XSS, CSRF, CSP and clickjacking', priority: must }
+  - { id: web-accessibility, title: 'Accessibility: semantics, ARIA, keyboard and focus', priority: must }
+  - { id: web-performance, title: 'Core Web Vitals and performance optimization', priority: must }
+  - { id: fe-system-design, title: 'Frontend system design approach', priority: must }
+  - { id: web-navigation, title: 'From URL to rendered page: DNS, TCP/TLS, HTTP, parsing, load events', priority: must }
+  - { id: web-platform-apis, title: 'Browser APIs: attributes vs properties, History, postMessage, fetch vs XHR, Intl, canvas vs SVG', priority: good }

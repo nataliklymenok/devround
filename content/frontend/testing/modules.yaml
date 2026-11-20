@@ -1,0 +1,7 @@
+modules:
+  - id: testing-foundations
+    title: Testing foundations
+    description: Testing strategy, unit tests with Vitest and component tests with React Testing Library.
+  - id: testing-advanced
+    title: Mocks, end-to-end and beyond
+    description: Mocking the network with MSW, end-to-end tests with Playwright, accessibility and visual tests.

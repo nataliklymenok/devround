@@ -1,0 +1,6 @@
+# Permanently retired ids. To remove a lesson or module: delete it AND list its id here.
+# Retired ids can never be reused (enforced by content:validate and content:check-ids).
+lessons: []
+modules: []
+tasks: []
+exercises: []

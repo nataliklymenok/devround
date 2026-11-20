@@ -1,0 +1,7 @@
+modules:
+  - id: js-fundamentals
+    title: Language fundamentals
+    description: Types, scope, closures, this and the modern syntax interviewers expect you to know cold.
+  - id: js-async
+    title: Asynchronous JavaScript
+    description: The event loop, promises and async/await — the most common source of tricky interview questions.

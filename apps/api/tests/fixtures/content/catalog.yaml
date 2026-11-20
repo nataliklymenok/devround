@@ -1,0 +1,13 @@
+levels:
+  - { id: junior, name: Junior, rank: 1 }
+  - { id: middle, name: Middle, rank: 2 }
+  - { id: senior, name: Senior, rank: 3 }
+tracks:
+  - id: frontend
+    name: Frontend
+    available: true
+    technologies:
+      - { id: javascript, name: JavaScript, available: true }
+      - { id: react, name: React, available: true, recommends: [javascript] }
+      - { id: html-css, name: HTML & CSS, available: false }
+  - { id: qa, name: QA, available: false, technologies: [] }
