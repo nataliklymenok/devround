@@ -7,6 +7,7 @@ description: Attributes vs properties, innerHTML vs textContent, the History API
 levels: [junior, middle]
 estimatedMinutes: 25
 topics: [web-platform-apis]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — HTML attribute reference: content vs IDL attributes', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes' }
   - { title: 'MDN — History API', url: 'https://developer.mozilla.org/en-US/docs/Web/API/History_API' }

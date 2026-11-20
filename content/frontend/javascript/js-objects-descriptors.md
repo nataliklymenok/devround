@@ -7,6 +7,7 @@ description: Ways to create objects, property descriptors, getters and setters, 
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [js-objects-metaprogramming]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Object.defineProperty()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty' }
   - { title: 'MDN — Object.freeze()', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze' }

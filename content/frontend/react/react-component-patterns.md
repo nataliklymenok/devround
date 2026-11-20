@@ -7,6 +7,7 @@ description: Composition and children, compound components, higher-order compone
 levels: [middle, senior]
 estimatedMinutes: 30
 topics: [react-patterns]
+reviewed: 2026-11-20
 references:
   - { title: 'React — Passing JSX as children', url: 'https://react.dev/learn/passing-props-to-a-component#passing-jsx-as-children' }
   - { title: 'React — Reusing logic with custom hooks', url: 'https://react.dev/learn/reusing-logic-with-custom-hooks' }

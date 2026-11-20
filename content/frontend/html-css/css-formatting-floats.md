@@ -7,6 +7,7 @@ description: Block, inline and inline-block, block formatting contexts, floats a
 levels: [junior, middle]
 estimatedMinutes: 20
 topics: [css-formatting-contexts]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — Block formatting context', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Block_formatting_context' }
   - { title: 'MDN — Floats', url: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Floats' }

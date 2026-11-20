@@ -7,6 +7,7 @@ description: What happens between typing a URL and seeing the page — DNS, TCP 
 levels: [junior, middle, senior]
 estimatedMinutes: 25
 topics: [web-navigation]
+reviewed: 2026-11-20
 references:
   - { title: 'MDN — How browsers work', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work' }
   - { title: 'MDN — Populating the page: how browsers work (DNS, TCP, TLS)', url: 'https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work#navigation' }

@@ -7,6 +7,7 @@ description: The module pattern and IIFE, singleton, factory, observer, decorato
 levels: [middle, senior]
 estimatedMinutes: 25
 topics: [js-design-patterns]
+reviewed: 2026-11-20
 references:
   - { title: 'patterns.dev — Design patterns', url: 'https://www.patterns.dev/#patterns' }
   - { title: 'MDN — IIFE', url: 'https://developer.mozilla.org/en-US/docs/Glossary/IIFE' }
