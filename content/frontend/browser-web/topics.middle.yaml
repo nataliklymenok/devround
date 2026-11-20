@@ -9,3 +9,5 @@ topics:
   - { id: web-accessibility, title: 'Accessibility: semantics, ARIA, keyboard and focus', priority: must }
   - { id: web-performance, title: 'Core Web Vitals and performance optimization', priority: must }
   - { id: fe-system-design, title: 'Frontend system design approach', priority: must }
+  - { id: web-navigation, title: 'From URL to rendered page: DNS, TCP/TLS, HTTP, parsing, load events', priority: must }
+  - { id: web-platform-apis, title: 'Browser APIs: attributes vs properties, History, postMessage, fetch vs XHR, Intl, canvas vs SVG', priority: good }

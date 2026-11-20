@@ -15,3 +15,4 @@ topics:
   - { id: react-19, title: 'React 19 features: actions, useActionState, useOptimistic, use', priority: must }
   - { id: react-concurrent, title: 'Concurrent rendering, transitions and batching', priority: must }
   - { id: react-internals, title: 'Virtual DOM, Fiber and reconciliation internals', priority: good }
+  - { id: react-patterns, title: 'Composition, compound components, HOC, render props, one-way data flow, anti-patterns', priority: must }

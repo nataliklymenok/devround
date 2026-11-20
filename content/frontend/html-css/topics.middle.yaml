@@ -7,3 +7,4 @@ topics:
   - { id: css-grid, title: 'CSS Grid', priority: must }
   - { id: css-responsive, title: 'Responsive design: media and container queries, units, images', priority: must }
   - { id: css-architecture, title: 'Custom properties, modern selectors and CSS architecture', priority: must }
+  - { id: css-formatting-contexts, title: 'Display types, BFC, floats and clearing, nth-child vs nth-of-type, visually hidden', priority: good }

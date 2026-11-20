@@ -15,3 +15,5 @@ topics:
   - { id: js-error-handling, title: 'Error handling: try/catch, custom errors, async and global errors', priority: must }
   - { id: js-timers-abort, title: 'Timers, debounce vs throttle, requestAnimationFrame and AbortController', priority: must }
   - { id: js-iterators-generators, title: 'Iterators, generators and async iteration', priority: good }
+  - { id: js-objects-metaprogramming, title: 'Property descriptors, freeze/seal, Symbol, Proxy/Reflect, tagged templates', priority: good }
+  - { id: js-design-patterns, title: 'Design patterns: module/IIFE, singleton, factory, observer, decorator, strategy, command', priority: good }
